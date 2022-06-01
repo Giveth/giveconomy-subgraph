@@ -1,12 +1,8 @@
-import {
-  GIVPower,
-  PowerLocked,
-  PowerUnlocked,
-} from '../types/GIVPower/GIVPower';
+import { PowerLocked, PowerUnlocked } from '../types/GIVPower/GIVPower';
 import { PowerLock } from '../types/schema';
-import { GIVPOWER_ADDRESS } from '../utils/constants';
+import { ZERO_BD } from '../utils/constants';
 import { scaleDown } from '../utils/math';
-import { getUserEntity } from '../utils/misc';
+import { getGIVPower, getPowerLockId, getUserEntity } from '../utils/misc';
 
 export function handlePowerLocked(event: PowerLocked): void {
   const userAddress = event.params.account;
@@ -15,32 +11,31 @@ export function handlePowerLocked(event: PowerLocked): void {
   user.givPower = user.givPower.plus(powerAmount);
   user.save();
 
-  let initialDate: i32;
-  let roundDuration: i32;
-
-  const givpower = GIVPower.bind(GIVPOWER_ADDRESS);
-  const initialDateCall = givpower.try_initialDate();
-  if (!initialDateCall.reverted) {
-    initialDate = initialDateCall.value.toI32();
-  }
-  const roundDurationCall = givpower.try_roundDuration();
-  if (!initialDateCall.reverted) {
-    roundDuration = roundDurationCall.value.toI32();
-  }
-
-  const txHash = event.transaction.hash.toHex();
   const rounds = event.params.rounds.toI32();
   const untilRound = event.params.untilRound.toI32();
 
-  const powerLock = new PowerLock(txHash);
-  powerLock.user = userAddress.toHex();
-  powerLock.amount = powerAmount;
-  powerLock.untilRound = untilRound;
-  powerLock.rounds = rounds;
-  powerLock.unlocked = false;
-  if (initialDate && roundDuration) {
-    powerLock.unlockableAt = initialDate + untilRound * roundDuration;
+  const lockId = getPowerLockId(userAddress, untilRound);
+  let powerLock = PowerLock.load(lockId);
+
+  const givpower = getGIVPower();
+  const initialDate = givpower.initialDate;
+  const roundDuration = givpower.roundDuration;
+
+  if (powerLock == null) {
+    powerLock = new PowerLock(lockId);
+    powerLock.user = userAddress.toHex();
+    powerLock.untilRound = untilRound;
+    powerLock.rounds = rounds;
+    powerLock.unlocked = false;
+
+    givpower.locksCreated += 1;
+    givpower.totalGIVPower = givpower.totalGIVPower.plus(powerAmount);
+    givpower.save();
   }
+
+  powerLock.amount = powerLock.amount.plus(powerAmount);
+  powerLock.unlockableAt = initialDate + untilRound * roundDuration;
+
   powerLock.save();
 }
 
@@ -51,5 +46,13 @@ export function handlePowerUnlocked(event: PowerUnlocked): void {
   user.givPower = user.givPower.minus(powerAmount);
   user.save();
 
-  // TODO: Unlock PowerLock entities below
+  const lockId = getPowerLockId(userAddress, event.params.round.toI32());
+  const powerLock = PowerLock.load(lockId) as PowerLock;
+  powerLock.unlockedAt = event.block.timestamp.toI32();
+  powerLock.amount = ZERO_BD;
+  powerLock.save();
+
+  const givpower = getGIVPower();
+  givpower.totalGIVPower = givpower.totalGIVPower.minus(powerAmount);
+  givpower.save();
 }
