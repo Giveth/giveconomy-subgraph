@@ -1,4 +1,9 @@
-import { PowerLocked, PowerUnlocked } from '../types/GIVPower/GIVPower';
+import {
+  GardenTokenLocked,
+  GardenTokenUnlocked,
+  PowerLocked,
+  PowerUnlocked,
+} from '../types/GIVPower/GIVPower';
 import { PowerLock } from '../types/schema';
 import { ZERO_BD } from '../utils/constants';
 import { scaleDown } from '../utils/math';
@@ -54,5 +59,29 @@ export function handlePowerUnlocked(event: PowerUnlocked): void {
 
   const givpower = getGIVPower();
   givpower.totalGIVPower = givpower.totalGIVPower.minus(powerAmount);
+  givpower.save();
+}
+
+export function handleGardenTokenLocked(event: GardenTokenLocked): void {
+  const userAddress = event.params.account;
+  const givAmount = scaleDown(event.params.amount);
+  const user = getUserEntity(userAddress);
+  user.givLocked = user.givLocked.plus(givAmount);
+  user.save();
+
+  const givpower = getGIVPower();
+  givpower.totalGIVLocked = givpower.totalGIVLocked.plus(givAmount);
+  givpower.save();
+}
+
+export function handleGardenTokenUnlocked(event: GardenTokenUnlocked): void {
+  const userAddress = event.params.account;
+  const givAmount = scaleDown(event.params.amount);
+  const user = getUserEntity(userAddress);
+  user.givLocked = user.givLocked.minus(givAmount);
+  user.save();
+
+  const givpower = getGIVPower();
+  givpower.totalGIVLocked = givpower.totalGIVLocked.minus(givAmount);
   givpower.save();
 }
