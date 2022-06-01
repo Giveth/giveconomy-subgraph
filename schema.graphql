@@ -11,7 +11,7 @@ type PowerLock @entity {
   amount: BigDecimal!
   rounds: Int!
   untilRound: Int!
-  unlockableAt: Int!
+  unlockableAt: Int
   unlockedAt: Int
-  locked: Boolean!
+  unlocked: Boolean!
 }
