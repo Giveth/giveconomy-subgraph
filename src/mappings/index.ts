@@ -55,6 +55,7 @@ export function handlePowerUnlocked(event: PowerUnlocked): void {
   const powerLock = PowerLock.load(lockId) as PowerLock;
   powerLock.unlockedAt = event.block.timestamp.toI32();
   powerLock.amount = ZERO_BD;
+  powerLock.unlocked = true;
   powerLock.save();
 
   const givpower = getGIVPower();
