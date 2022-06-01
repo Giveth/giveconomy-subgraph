@@ -1,0 +1,17 @@
+type User @entity {
+  id: ID!
+  givPower: BigDecimal!
+  givLocked: BigDecimal!
+  locksOwned: [PowerLock!] @derivedFrom(field: "user")
+}
+
+type PowerLock @entity {
+  id: ID!
+  user: User!
+  amount: BigDecimal!
+  rounds: Int!
+  untilRound: Int!
+  unlockableAt: Int!
+  unlockedAt: Int
+  locked: Boolean!
+}

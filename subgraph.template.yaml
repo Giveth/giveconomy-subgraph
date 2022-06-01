@@ -1,0 +1,29 @@
+specVersion: 0.0.2
+description: Giveth Subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: GIVPower
+    network: '{{network}}'
+    source:
+      address: '{{GIVPower.address}}'
+      abi: GIVPower
+      # prettier-ignore
+      startBlock: {{ GIVPower.startBlock }}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      abis:
+        - name: GIVPower
+          file: ./abis/GIVPower.json
+      entities:
+        - User
+        - PowerLock
+      eventHandlers:
+        - event: PowerLocked(address,uint256,uint256,uint256)
+          handler: handlePowerLocked
+        - event: PowerUnlocked(address,uint256,uint256)
+          handler: handlePowerUnlocked
+      file: ./src/mappings/index.ts

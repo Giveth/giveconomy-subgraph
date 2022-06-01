@@ -1,0 +1,30 @@
+name: Deploy Graph
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      GRAPH_SUBGRAPH_ACCOUNT: ${{ github.repository_owner }}
+      GRAPH_SUBGRAPH_NAME: subgraph-template
+      GRAPH_CONFIG_FILE: subgraph.yaml
+      NETWORK_NAME: mainnet
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - name: Install
+        run: yarn --frozen-lockfile
+      - name: Codegen
+        run: yarn codegen
+      - uses: gtaschuk/graph-deploy@v0.1.5
+        with:
+          graph_access_token: ${{ secrets.GRAPH_ACCESS_TOKEN }}
+          graph_subgraph_name: $GRAPH_SUBGRAPH_NAME
+          graph_account: $GRAPH_SUBGRAPH_ACCOUNT
+          graph_config_file: $GRAPH_CONFIG_FILE

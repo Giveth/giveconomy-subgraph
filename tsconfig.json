@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "lib": ["ES6"],
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noEmitOnError": true,
+    "strictNullChecks": true,
+    "moduleResolution": "Node"
+  }
+}

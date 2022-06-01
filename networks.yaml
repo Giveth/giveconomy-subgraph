@@ -1,0 +1,6 @@
+gnosis:
+  network: xdai
+  GIVPower:
+    address: '0xdA8576b68501540D6e5C4e5BbB644447541Ff628'
+    transactionHash: '0x796c4806efc7f42aebb7c9925d0b7815276028aaec7933db574429140b15b7cc'
+    startBlock: 22424341

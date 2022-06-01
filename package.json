@@ -1,0 +1,51 @@
+{
+  "name": "@tomfrench/subgraph-template",
+  "version": "1.0.0",
+  "description": "Template for subgraph development boilerplate",
+  "scripts": {
+    "auth": "graph auth https://api.thegraph.com/deploy/",
+    "lint": "eslint ./src",
+    "local:create": "graph create --node http://localhost:8020/ ORGANISATION/SUBGRAPH",
+    "local:remove": "graph remove --node http://localhost:8020/ ORGANISATION/SUBGRAPH",
+    "local:deploy": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 ORGANISATION/SUBGRAPH",
+    "deploy": "graph deploy --product hosted-service mendesfabio/giveth subgraph.gnosis.yaml",
+    "deploy:mainnet": "yarn deploy ORGANISATION/SUBGRAPH",
+    "codegen": "yarn generate-manifests && graph codegen subgraph.gnosis.yaml --output-dir src/types/",
+    "generate-manifests": "ts-node ./scripts/generate-manifests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TomAFrench/subgraph-template.git"
+  },
+  "contributors": [
+    {
+      "name": "Tom French",
+      "url": "https://github.com/tomafrench"
+    },
+    {
+      "name": "Dylan Golow",
+      "url": "https://github.com/dylangolow"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TomAFrench/subgraph-template/issues"
+  },
+  "homepage": "https://github.com/TomAFrench/subgraph-template#readme",
+  "dependencies": {
+    "@graphprotocol/graph-ts": "^0.24.1"
+  },
+  "devDependencies": {
+    "@graphprotocol/graph-cli": "^0.25.1",
+    "@types/fs-extra": "^9.0.2",
+    "@types/js-yaml": "^3.12.5",
+    "@types/node": "^14.14.37",
+    "eslint": "^7.10.0",
+    "eslint-config-airbnb-base-typescript-prettier": "^4.1.0",
+    "fs-extra": "^8.1.0",
+    "handlebars": "^4.7.6",
+    "prettier": "^2.1.2",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3"
+  }
+}
