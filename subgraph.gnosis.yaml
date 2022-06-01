@@ -26,4 +26,8 @@ dataSources:
           handler: handlePowerLocked
         - event: PowerUnlocked(address,uint256,uint256)
           handler: handlePowerUnlocked
+        - event: GardenTokenLocked(address,uint256,uint256,uint256)
+          handler: handleGardenTokenLocked
+        - event: GardenTokenUnlocked(address,uint256,uint256)
+          handler: handleGardenTokenUnlocked
       file: ./src/mappings/index.ts
