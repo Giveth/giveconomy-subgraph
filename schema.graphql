@@ -3,14 +3,14 @@ type GIVPower @entity {
   initialDate: Int!
   locksCreated: Int!
   roundDuration: Int!
-  totalGIVPower: BigDecimal!
-  totalGIVLocked: BigDecimal!
+  totalGIVPower: BigInt!
+  totalGIVLocked: BigInt!
 }
 
 type PowerLock @entity {
   id: ID!
   user: User!
-  amount: BigDecimal!
+  amount: BigInt!
   rounds: Int!
   untilRound: Int!
   unlockableAt: Int
@@ -20,7 +20,7 @@ type PowerLock @entity {
 
 type User @entity {
   id: ID!
-  givPower: BigDecimal!
-  givLocked: BigDecimal!
+  givPower: BigInt!
+  givLocked: BigInt!
   locksOwned: [PowerLock!] @derivedFrom(field: "user")
 }

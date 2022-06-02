@@ -9,8 +9,10 @@
     "local:remove": "graph remove --node http://localhost:8020/ ORGANISATION/SUBGRAPH",
     "local:deploy": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 ORGANISATION/SUBGRAPH",
     "deploy": "graph deploy --product hosted-service mendesfabio/giveth subgraph.gnosis.yaml",
+    "deploy:amin": "graph deploy --product hosted-service aminlatifi/givpower subgraph.gnosis.yaml",
     "deploy:mainnet": "yarn deploy ORGANISATION/SUBGRAPH",
     "codegen": "yarn generate-manifests && graph codegen subgraph.gnosis.yaml --output-dir src/types/",
+    "build": "yarn generate-manifests && graph build subgraph.gnosis.yaml",
     "generate-manifests": "ts-node ./scripts/generate-manifests"
   },
   "repository": {
