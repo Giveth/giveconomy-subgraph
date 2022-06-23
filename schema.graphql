@@ -23,4 +23,12 @@ type User @entity {
   givPower: BigInt!
   givLocked: BigInt!
   locksOwned: [PowerLock!] @derivedFrom(field: "user")
+  tokensBalance: [TokenBalance!] @derivedFrom(field: "user")
+}
+
+type TokenBalance @entity {
+    id: ID!
+    balance: BigInt!
+    user: User!
+    token: String!
 }

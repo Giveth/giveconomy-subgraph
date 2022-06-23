@@ -30,4 +30,29 @@ dataSources:
           handler: handleGardenTokenLocked
         - event: GardenTokenUnlocked(address,uint256,uint256)
           handler: handleGardenTokenUnlocked
-      file: ./src/mappings/index.ts
+      file: ./src/mappings/givPower.ts
+
+{{#each ERC20}}
+  - kind: ethereum/contract
+    name: '{{name}}'
+    network: '{{../network}}'
+    source:
+      address: '{{address}}'
+      abi: ERC20
+      # prettier-ignore
+      startBlock: {{ startBlock }}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      abis:
+        - name: ERC20
+          file: ./abis/ERC20.json
+      entities:
+        - TokenBalance
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/mappings/ERC20.ts
+
+     {{/each}}

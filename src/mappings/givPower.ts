@@ -1,10 +1,5 @@
 import { BigInt } from '@graphprotocol/graph-ts';
-import {
-  GardenTokenLocked,
-  GardenTokenUnlocked,
-  PowerLocked,
-  PowerUnlocked,
-} from '../types/GIVPower/GIVPower';
+import { GardenTokenLocked, GardenTokenUnlocked, PowerLocked, PowerUnlocked } from '../types/GIVPower/GIVPower';
 import { PowerLock } from '../types/schema';
 import { getGIVPower, getPowerLockId, getUserEntity } from '../utils/misc';
 import { MAX_LOCK_ROUNDS } from '../utils/constants';
