@@ -24,11 +24,12 @@ function updateReward(address: Address, userAddress: Address): void {
   }
   unipool.save();
 
-  if (userAddress.toHex() !== Address.zero().toHex()) {
+  if (userAddress.toHex() != Address.zero().toHex()) {
     const userUnipoolBalance = getUserUnipoolBalance(address, userAddress);
     userUnipoolBalance.rewards = contract.rewards(userAddress);
     userUnipoolBalance.rewardPerTokenPaid =
       contract.userRewardPerTokenPaid(userAddress);
+    userUnipoolBalance.save();
   }
 }
 

@@ -71,6 +71,9 @@ export function getUserTokenBalance(
   tokenAddress: Address,
   userAddress: Address,
 ): TokenBalance {
+  // To generate user entity if not exists
+  getUserEntity(userAddress);
+
   const id = tokenAddress.toHex() + '-' + userAddress.toHex();
   let tokenBalance = TokenBalance.load(id);
 
@@ -88,6 +91,9 @@ export function getUserUnipoolBalance(
   unipoolAddress: Address,
   userAddress: Address,
 ): UnipoolBalance {
+  // To generate user entity if not exists
+  getUserEntity(userAddress);
+
   const id = unipoolAddress.toHex() + '-' + userAddress.toHex();
   let unipoolBalance = UnipoolBalance.load(id);
 
