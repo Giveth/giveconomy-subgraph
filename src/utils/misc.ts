@@ -1,5 +1,5 @@
 import { Address } from '@graphprotocol/graph-ts';
-import { GIVPower, User } from '../types/schema';
+import { GIVPower, TokenBalance, User } from '../types/schema';
 import { GIVPower as GIVPowerContract } from '../types/GIVPower/GIVPower';
 
 export function getUserEntity(userAddress: Address): User {
@@ -34,12 +34,20 @@ export function getGIVPower(givPowerAddress: Address): GIVPower {
   return givpower;
 }
 
-export function getPowerLockId(
-  userAddress: Address,
-  rounds: i32,
-  untilRound: i32,
-): string {
-  return (
-    userAddress.toHex() + '-' + rounds.toString() + '-' + untilRound.toString()
-  );
+export function getPowerLockId(userAddress: Address, rounds: i32, untilRound: i32): string {
+  return userAddress.toHex() + '-' + rounds.toString() + '-' + untilRound.toString();
+}
+
+export function getUserBalance(tokenAddress: Address, userAddress: Address): TokenBalance {
+  const id = tokenAddress.toHex() + '-' + userAddress.toHex();
+  let tokenBalance = TokenBalance.load(id);
+
+  if (tokenBalance == null) {
+    tokenBalance = new TokenBalance(id);
+    tokenBalance.token = tokenAddress.toHex();
+    tokenBalance.user = userAddress.toHex();
+    tokenBalance.save();
+  }
+
+  return tokenBalance;
 }
