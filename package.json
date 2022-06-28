@@ -10,10 +10,11 @@
     "local:deploy": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 ORGANISATION/SUBGRAPH",
     "deploy": "graph deploy --product hosted-service mendesfabio/giveth subgraph.gnosis.yaml",
     "deploy:amin": "graph deploy --product hosted-service aminlatifi/givpower subgraph.gnosis.yaml",
+    "deploy:deployment-6": "yarn generate-manifests && graph deploy --product hosted-service aminlatifi/givpower-deployment-six subgraph.deployment-6.yaml",
     "deploy:mainnet": "yarn deploy ORGANISATION/SUBGRAPH",
-    "codegen": "yarn generate-manifests && graph codegen subgraph.gnosis.yaml --output-dir src/types/",
-    "build": "yarn generate-manifests && graph build subgraph.gnosis.yaml",
-    "generate-manifests": "ts-node ./scripts/generate-manifests"
+    "codegen:deployment-6": "yarn generate-manifests && graph codegen subgraph.deployment-6.yaml --output-dir src/types/",
+    "build:deployment-6": "yarn generate-manifests && graph build subgraph.deployment-6.yaml",
+    "generate-manifests": "ts-node ./scripts/generate-manifests && graph codegen subgraph.model.yaml --output-dir src/types/"
   },
   "repository": {
     "type": "git",
@@ -35,17 +36,18 @@
   },
   "homepage": "https://github.com/TomAFrench/subgraph-template#readme",
   "dependencies": {
-    "@graphprotocol/graph-ts": "^0.24.1"
+    "@graphprotocol/graph-ts": "^0.24.1",
+    "js-yaml": "^4.1.0",
+    "handlebars": "^4.7.6",
+    "fs-extra": "^8.1.0"
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "^0.25.1",
     "@types/fs-extra": "^9.0.2",
-    "@types/js-yaml": "^3.12.5",
+    "@types/js-yaml": "^4.0.5",
     "@types/node": "^14.14.37",
     "eslint": "^7.10.0",
     "eslint-config-airbnb-base-typescript-prettier": "^4.1.0",
-    "fs-extra": "^8.1.0",
-    "handlebars": "^4.7.6",
     "prettier": "^2.1.2",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.3"

@@ -9,7 +9,6 @@ dataSources:
     source:
       address: '{{GIVPower.address}}'
       abi: GIVPower
-      # prettier-ignore
       startBlock: {{ GIVPower.startBlock }}
     mapping:
       kind: ethereum/events
@@ -20,16 +19,14 @@ dataSources:
           file: ./abis/GIVPower.json
       entities:
         - User
-        - PowerLock
+        - TokenLock
       eventHandlers:
-        - event: PowerLocked(address,uint256,uint256,uint256)
-          handler: handlePowerLocked
-        - event: PowerUnlocked(address,uint256,uint256)
-          handler: handlePowerUnlocked
-        - event: GardenTokenLocked(address,uint256,uint256,uint256)
-          handler: handleGardenTokenLocked
-        - event: GardenTokenUnlocked(address,uint256,uint256)
-          handler: handleGardenTokenUnlocked
+        - event: TokenLocked(indexed address,uint256,uint256,uint256)
+          handler: handleTokenLocked
+        - event: TokenUnlocked(indexed address,uint256,uint256)
+          handler: handleTokenUnlocked
+        - event: Upgraded(indexed address)
+          handler: handleUpgrade
       file: ./src/mappings/givPower.ts
 
 {{#each ERC20}}
@@ -39,7 +36,6 @@ dataSources:
     source:
       address: '{{address}}'
       abi: ERC20
-      # prettier-ignore
       startBlock: {{ startBlock }}
     mapping:
       kind: ethereum/events
@@ -55,4 +51,35 @@ dataSources:
           handler: handleTransfer
       file: ./src/mappings/ERC20.ts
 
-     {{/each}}
+{{/each}}
+
+{{#each Unipool}}
+  - kind: ethereum/contract
+    name: '{{name}}'
+    network: '{{../network}}'
+    source:
+      address: '{{address}}'
+      abi: UnipoolTokenDistributor
+      startBlock: {{ startBlock }}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      abis:
+        - name: UnipoolTokenDistributor
+          file: ./abis/UnipoolTokenDistributor.json
+      entities:
+        - Unipool
+        - UnipoolBalance
+      eventHandlers:
+        - event: RewardPaid(indexed address,uint256)
+          handler: handleRewardPaid
+        - event: Staked(indexed address,uint256)
+          handler: handleStaked
+        - event: Withdrawn(indexed address,uint256)
+          handler: handleWithdrawn
+        - event: RewardAdded(uint256)
+          handler: handleRewardAdded
+
+      file: ./src/mappings/unipool.ts
+{{/each}}

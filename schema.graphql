@@ -3,11 +3,10 @@ type GIVPower @entity {
   initialDate: Int!
   locksCreated: Int!
   roundDuration: Int!
-  totalGIVPower: BigInt!
   totalGIVLocked: BigInt!
 }
 
-type PowerLock @entity {
+type TokenLock @entity {
   id: ID!
   user: User!
   amount: BigInt!
@@ -20,10 +19,10 @@ type PowerLock @entity {
 
 type User @entity {
   id: ID!
-  givPower: BigInt!
   givLocked: BigInt!
-  locksOwned: [PowerLock!] @derivedFrom(field: "user")
+  locksOwned: [TokenLock!] @derivedFrom(field: "user")
   tokensBalance: [TokenBalance!] @derivedFrom(field: "user")
+  unipoolsBalance: [UnipoolBalance!] @derivedFrom(field: "user")
 }
 
 type TokenBalance @entity {
@@ -31,4 +30,23 @@ type TokenBalance @entity {
     balance: BigInt!
     user: User!
     token: String!
+}
+
+type UnipoolBalance @entity {
+    id: ID!
+    balance: BigInt!
+    user: User!
+    unipool: String!
+    rewards:  BigInt!
+    rewardPerTokenPaid:  BigInt!
+}
+
+
+type Unipool @entity {
+    id: ID!
+    periodFinish: BigInt
+    totalSupply : BigInt!
+    rewardRate: BigInt!
+    lastUpdateTime: BigInt
+    rewardPerTokenStored: BigInt!
 }

@@ -22,10 +22,10 @@ dataSources:
         - User
         - PowerLock
       eventHandlers:
-        - event: PowerLocked(address,uint256,uint256,uint256)
-          handler: handlePowerLocked
-        - event: PowerUnlocked(address,uint256,uint256)
-          handler: handlePowerUnlocked
+        - event: TokenLocked(address,uint256,uint256,uint256)
+          handler: handleTokenLocked
+        - event: TokenUnlocked(address,uint256,uint256)
+          handler: handleTokenUnlocked
         - event: GardenTokenLocked(address,uint256,uint256,uint256)
           handler: handleGardenTokenLocked
         - event: GardenTokenUnlocked(address,uint256,uint256)

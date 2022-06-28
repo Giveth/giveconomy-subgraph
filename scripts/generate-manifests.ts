@@ -1,14 +1,13 @@
-import yaml = require('js-yaml');
-
-import Handlebars = require('handlebars');
-import fs = require('fs-extra');
-import path = require('path');
+import * as yaml from 'js-yaml';
+import * as Handlebars from 'handlebars';
+import * as fs from 'fs-extra';
+import * as path from 'path';
 
 const generateManifests = async (): Promise<void> => {
   const networksFilePath = path.resolve(__dirname, '../networks.yaml');
-  const networks: Record<string, Record<string, unknown>> = yaml.load(
+  const networks = yaml.load(
     await fs.readFile(networksFilePath, { encoding: 'utf-8' }),
-  );
+  ) as Record<string, Record<string, unknown>>;
 
   const template = fs.readFileSync('subgraph.template.yaml').toString();
   Object.entries(networks).forEach(([network, config]) => {
