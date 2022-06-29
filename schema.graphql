@@ -1,8 +1,8 @@
 type GIVPower @entity {
   id: ID!
-  initialDate: BigInt!
-  locksCreated: BigInt!
-  roundDuration: BigInt!
+  initialDate: Int!
+  locksCreated: Int!
+  roundDuration: Int!
   totalGIVLocked: BigInt!
 }
 
@@ -10,10 +10,10 @@ type TokenLock @entity {
   id: ID!
   user: User!
   amount: BigInt!
-  rounds: BigInt!
-  untilRound: BigInt!
-  unlockableAt: BigInt
-  unlockedAt: BigInt
+  rounds: Int!
+  untilRound: Int!
+  unlockableAt: Int
+  unlockedAt: Int
   unlocked: Boolean!
 }
 
