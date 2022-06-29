@@ -18,7 +18,7 @@ deployment-6:
   network: xdai
   GIVPower:
     address: '0x898Baa558A401e59Cb2aA77bb8b2D89978Cf506F'
-    startBlock: 22890237
+    startBlock: 22911767
 
   ERC20:
     - name: 'gGIV'
