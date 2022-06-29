@@ -8,5 +8,6 @@
     "noEmitOnError": true,
     "strictNullChecks": true,
     "moduleResolution": "Node"
-  }
+  },
+  "exclude": ["src"]
 }

@@ -21,10 +21,13 @@ node_modules/
 
 # Truffle and Graph build artifacts
 build/
+generated/
 
 # Subgraph stuff
 subgraph.yaml
 src/types/
+subgraph.*.yaml
+
 
 # Jetbrains
 .idea/
