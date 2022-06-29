@@ -21,8 +21,8 @@ export function handleTokenLocked(event: TokenLocked): void {
   user.givLocked = user.givLocked.plus(lockAmount);
   user.save();
 
-  const rounds = event.params.rounds.toI32();
-  const untilRound = event.params.untilRound.toI32();
+  const rounds = event.params.rounds;
+  const untilRound = event.params.untilRound;
 
   const lockId = getTokenLockId(userAddress, rounds, untilRound);
   let tokenLock = TokenLock.load(lockId);
@@ -37,13 +37,15 @@ export function handleTokenLocked(event: TokenLocked): void {
     tokenLock.untilRound = untilRound;
     tokenLock.rounds = rounds;
     tokenLock.unlocked = false;
-    tokenLock.unlockableAt = initialDate + (untilRound + 1) * roundDuration;
+    tokenLock.unlockableAt = initialDate.plus(
+      untilRound.plus(BigInt.fromI32(1)).times(roundDuration),
+    );
   }
 
   tokenLock.amount = tokenLock.amount.plus(lockAmount);
   tokenLock.save();
 
-  givPower.locksCreated += 1;
+  givPower.locksCreated = givPower.locksCreated.plus(BigInt.fromI32(1));
   givPower.totalGIVLocked = givPower.totalGIVLocked.plus(lockAmount);
 
   givPower.save();
@@ -61,12 +63,12 @@ export function handleTokenUnlocked(event: TokenUnlocked): void {
   givpower.totalGIVLocked = givpower.totalGIVLocked.minus(unlockAmount);
   givpower.save();
 
-  const round = event.params.round.toI32();
+  const round = event.params.round;
   for (let i = 0; i <= MAX_LOCK_ROUNDS; i += 1) {
-    const lockId = getTokenLockId(userAddress, i, round);
+    const lockId = getTokenLockId(userAddress, BigInt.fromI32(i), round);
     const tokenLock = TokenLock.load(lockId);
     if (tokenLock) {
-      tokenLock.unlockedAt = event.block.timestamp.toI32();
+      tokenLock.unlockedAt = event.block.timestamp;
       tokenLock.amount = BigInt.zero();
       tokenLock.unlocked = true;
       tokenLock.save();

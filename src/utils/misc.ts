@@ -29,12 +29,14 @@ export function getGIVPower(givPowerAddress: Address): GIVPower {
     const dateCall = givPowerContract.try_initialDate();
     const durationCall = givPowerContract.try_roundDuration();
 
-    let initialDate = dateCall.reverted ? 0 : dateCall.value.toI32();
-    let roundDuration = durationCall.reverted ? 0 : durationCall.value.toI32();
+    let initialDate = dateCall.reverted ? BigInt.zero() : dateCall.value;
+    let roundDuration = durationCall.reverted
+      ? BigInt.zero()
+      : durationCall.value;
 
     givpower.initialDate = initialDate;
     givpower.roundDuration = roundDuration;
-    givpower.locksCreated = 0;
+    givpower.locksCreated = BigInt.zero();
     givpower.save();
   }
 
@@ -48,8 +50,10 @@ export function updateGivPower(givPowerAddress: Address): void {
   const dateCall = givPowerContract.try_initialDate();
   const durationCall = givPowerContract.try_roundDuration();
 
-  let initialDate = dateCall.reverted ? 0 : dateCall.value.toI32();
-  let roundDuration = durationCall.reverted ? 0 : durationCall.value.toI32();
+  let initialDate = dateCall.reverted ? BigInt.zero() : dateCall.value;
+  let roundDuration = durationCall.reverted
+    ? BigInt.zero()
+    : durationCall.value;
 
   givPower.initialDate = initialDate;
   givPower.roundDuration = roundDuration;
@@ -59,8 +63,8 @@ export function updateGivPower(givPowerAddress: Address): void {
 
 export function getTokenLockId(
   userAddress: Address,
-  rounds: i32,
-  untilRound: i32,
+  rounds: BigInt,
+  untilRound: BigInt,
 ): string {
   return (
     userAddress.toHex() + '-' + rounds.toString() + '-' + untilRound.toString()
