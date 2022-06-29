@@ -29,7 +29,7 @@ export function getGIVPower(givPowerAddress: Address): GIVPower {
     const dateCall = givPowerContract.try_initialDate();
     const durationCall = givPowerContract.try_roundDuration();
 
-    let initialDate = dateCall.reverted ? 0 : dateCall.value.toI32();
+    let initialDate = dateCall.reverted ? 0 : dateCall.value.toI64();
     let roundDuration = durationCall.reverted ? 0 : durationCall.value.toI32();
 
     givpower.initialDate = initialDate;
@@ -48,7 +48,7 @@ export function updateGivPower(givPowerAddress: Address): void {
   const dateCall = givPowerContract.try_initialDate();
   const durationCall = givPowerContract.try_roundDuration();
 
-  let initialDate = dateCall.reverted ? 0 : dateCall.value.toI32();
+  let initialDate = dateCall.reverted ? 0 : dateCall.value.toI64();
   let roundDuration = durationCall.reverted ? 0 : durationCall.value.toI32();
 
   givPower.initialDate = initialDate;

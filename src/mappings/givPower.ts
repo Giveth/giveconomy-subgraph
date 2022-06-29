@@ -66,7 +66,7 @@ export function handleTokenUnlocked(event: TokenUnlocked): void {
     const lockId = getTokenLockId(userAddress, i, round);
     const tokenLock = TokenLock.load(lockId);
     if (tokenLock) {
-      tokenLock.unlockedAt = event.block.timestamp.toI32();
+      tokenLock.unlockedAt = event.block.timestamp.toI64();
       tokenLock.amount = BigInt.zero();
       tokenLock.unlocked = true;
       tokenLock.save();
