@@ -30,9 +30,6 @@ type TokenBalance @entity {
   balance: BigInt!
   user: User!
   token: String!
-  claimed: BigInt
-  givback: BigInt
-  givbackLiquidPart: BigInt
 }
 
 type UnipoolBalance @entity {
