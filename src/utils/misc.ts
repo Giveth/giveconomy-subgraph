@@ -5,6 +5,8 @@ import {
   User,
   Unipool,
   UnipoolBalance,
+  TransactionTokenAllocation,
+  TokenAllocation,
 } from '../types/schema';
 import { GIVPower as GIVPowerContract } from '../types/GIVPower/GIVPower';
 import { UnipoolTokenDistributor as UnipoolContract } from '../types/Unipool/UnipoolTokenDistributor';
@@ -125,4 +127,38 @@ export function getUnipool(address: Address): Unipool {
   }
 
   return unipool;
+}
+
+export function saveTokenAllocation(
+  recipient: string,
+  txHash: string,
+  logIndex: BigInt,
+  amount: BigInt,
+  timestamp: BigInt,
+): void {
+  let transactionTokenAllocations = TransactionTokenAllocation.load(txHash);
+  if (!transactionTokenAllocations) {
+    transactionTokenAllocations = new TransactionTokenAllocation(txHash);
+  }
+  const tokenAllocationIds =
+    transactionTokenAllocations.tokenAllocationIds || [];
+  const entityId = `${txHash}-${logIndex}`;
+  const entity = new TokenAllocation(entityId);
+  entity.amount = amount;
+  entity.timestamp = timestamp;
+  entity.recipient = recipient;
+  entity.txHash = txHash;
+  entity.save();
+  tokenAllocationIds.push(entityId);
+  transactionTokenAllocations.tokenAllocationIds = tokenAllocationIds;
+  transactionTokenAllocations.save();
+}
+
+export function addAllocatedTokens(to: string, value: BigInt): void {
+  let toBalance = TokenAllocation.load(to);
+  if (!toBalance) {
+    toBalance = new TokenAllocation(to);
+  }
+  toBalance.amount = toBalance.amount.plus(value);
+  toBalance.save();
 }

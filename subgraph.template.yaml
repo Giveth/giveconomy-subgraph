@@ -3,31 +3,69 @@ description: Giveth Subgraph
 schema:
   file: ./schema.graphql
 dataSources:
+  # - kind: ethereum/contract
+  #   name: GIVPower
+  #   network: '{{network}}'
+  #   source:
+  #     address: '{{GIVPower.address}}'
+  #     abi: GIVPower
+  #     startBlock: {{ GIVPower.startBlock }}
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.5
+  #     language: wasm/assemblyscript
+  #     abis:
+  #       - name: GIVPower
+  #         file: ./abis/GIVPower.json
+  #     entities:
+  #       - User
+  #       - TokenLock
+  #     eventHandlers:
+  #       - event: TokenLocked(indexed address,uint256,uint256,uint256)
+  #         handler: handleTokenLocked
+  #       - event: TokenUnlocked(indexed address,uint256,uint256)
+  #         handler: handleTokenUnlocked
+  #       - event: Upgraded(indexed address)
+  #         handler: handleUpgrade
+  #     file: ./src/mappings/givPower.ts
+  
   - kind: ethereum/contract
-    name: GIVPower
+    name: 'TokenDistro'
     network: '{{network}}'
     source:
-      address: '{{GIVPower.address}}'
-      abi: GIVPower
-      startBlock: {{ GIVPower.startBlock }}
+      address: '{{TokenDistro.address}}'
+      abi: TokenDistro
+      startBlock: {{ TokenDistro.startBlock }}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
       language: wasm/assemblyscript
       abis:
-        - name: GIVPower
-          file: ./abis/GIVPower.json
+        - name: TokenDistro
+          file: ./abis/TokenDistro.json
       entities:
-        - User
-        - TokenLock
+        - TokenAllocation
+        - TransactionTokenAllocation
       eventHandlers:
-        - event: TokenLocked(indexed address,uint256,uint256,uint256)
-          handler: handleTokenLocked
-        - event: TokenUnlocked(indexed address,uint256,uint256)
-          handler: handleTokenUnlocked
-        - event: Upgraded(indexed address)
-          handler: handleUpgrade
-      file: ./src/mappings/givPower.ts
+        - event: Allocate(indexed address,indexed address,uint256)
+          handler: handleAllocate
+        # - event: Assign(indexed address,indexed address,uint256)
+        #   handler: handleAssign
+        # - event: ChangeAddress(indexed address,indexed address)
+        #   handler: handleChangeAddress
+        # - event: Claim(indexed address,uint256)
+        #   handler: handleClaim
+        # - event: GivBackPaid(address)
+        #   handler: handleGivBackPaid
+        # - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+        #   handler: handleRoleAdminChanged
+        # - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+        #   handler: handleRoleGranted
+        # - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+        #   handler: handleRoleRevoked
+        # - event: StartTimeChanged(uint256,uint256)
+        #   handler: handleStartTimeChanged
+      file: ./src/mappings/tokenDistro.ts
 
 {{#each ERC20}}
   - kind: ethereum/contract
@@ -80,6 +118,5 @@ dataSources:
           handler: handleWithdrawn
         - event: RewardAdded(uint256)
           handler: handleRewardAdded
-
       file: ./src/mappings/unipool.ts
 {{/each}}

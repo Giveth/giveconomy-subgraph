@@ -26,27 +26,41 @@ type User @entity {
 }
 
 type TokenBalance @entity {
-    id: ID!
-    balance: BigInt!
-    user: User!
-    token: String!
+  id: ID!
+  balance: BigInt!
+  user: User!
+  token: String!
 }
 
 type UnipoolBalance @entity {
-    id: ID!
-    balance: BigInt!
-    user: User!
-    unipool: String!
-    rewards:  BigInt!
-    rewardPerTokenPaid:  BigInt!
+  id: ID!
+  balance: BigInt!
+  user: User!
+  unipool: String!
+  rewards: BigInt!
+  rewardPerTokenPaid: BigInt!
 }
 
-
 type Unipool @entity {
-    id: ID!
-    periodFinish: BigInt
-    totalSupply : BigInt!
-    rewardRate: BigInt!
-    lastUpdateTime: BigInt
-    rewardPerTokenStored: BigInt!
+  id: ID!
+  periodFinish: BigInt
+  totalSupply: BigInt!
+  rewardRate: BigInt!
+  lastUpdateTime: BigInt
+  rewardPerTokenStored: BigInt!
+}
+
+type TokenAllocation @entity {
+  id: ID!
+  recipient: String!
+  amount: BigInt!
+  timestamp: BigInt!
+  txHash: String!
+  distributor: String
+  givback: Boolean
+}
+
+type TransactionTokenAllocation @entity {
+  id: ID!
+  tokenAllocationIds: [String!]!
 }

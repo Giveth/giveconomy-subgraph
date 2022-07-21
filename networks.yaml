@@ -8,11 +8,13 @@ model:
     - name: 'ERC20'
       address: '0x0000000000000000000000000000000000000000'
       startBlock: 9999999999999
-
   Unipool:
     - name: 'Unipool'
       address: '0x0000000000000000000000000000000000000000'
       startBlock: 9999999999999
+  TokenDistro:
+    address: '0x0000000000000000000000000000000000000000'
+    startBlock: 9999999999999
 
 deployment-6:
   network: xdai
@@ -29,3 +31,14 @@ deployment-6:
     - name: 'garden'
       address: '0x898Baa558A401e59Cb2aA77bb8b2D89978Cf506F'
       startBlock: 19713038
+
+deployment-7:
+  network: xdai
+  Unipool:
+    - name: 'garden'
+      address: '0xDAEa66Adc97833781139373DF5B3bcEd3fdda5b1'
+      startBlock: 19717442
+
+  TokenDistro:
+    address: '0x18a46865AAbAf416a970eaA8625CFC430D2364A1'
+    startBlock: 19717412
