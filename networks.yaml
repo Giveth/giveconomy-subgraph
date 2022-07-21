@@ -2,28 +2,23 @@
 model:
   network: model
   GIVPower:
-    - name: 'GIVPower'
-      address: '0x0000000000000000000000000000000000000000'
-      startBlock: 9999999999999
+    address: '0x0000000000000000000000000000000000000000'
+    startBlock: 9999999999999
   ERC20:
     - name: 'ERC20'
       address: '0x0000000000000000000000000000000000000000'
       startBlock: 9999999999999
+
   Unipool:
     - name: 'Unipool'
-      address: '0x0000000000000000000000000000000000000000'
-      startBlock: 9999999999999
-  TokenDistro:
-    - name: 'TokenDistro'
       address: '0x0000000000000000000000000000000000000000'
       startBlock: 9999999999999
 
 deployment-6:
   network: xdai
   GIVPower:
-    - name: 'GIVpower'
-      address: '0x898Baa558A401e59Cb2aA77bb8b2D89978Cf506F'
-      startBlock: 22911767
+    address: '0x898Baa558A401e59Cb2aA77bb8b2D89978Cf506F'
+    startBlock: 22911767
 
   ERC20:
     - name: 'gGIV'

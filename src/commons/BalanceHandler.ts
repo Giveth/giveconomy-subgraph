@@ -1,5 +1,5 @@
 import { BigInt } from '@graphprotocol/graph-ts';
-import { TokenBalance } from '../types/schema';
+import { TokenDistroBalance } from '../types/schema';
 
 export function addAllocatedTokens(
   to: string,
@@ -7,14 +7,16 @@ export function addAllocatedTokens(
   tokenAddress: string,
 ): void {
   const id = tokenAddress + '-' + to;
-  let tokenBalance = TokenBalance.load(id);
-  if (!tokenBalance) {
-    tokenBalance = new TokenBalance(id);
+  let allocatedBalance = TokenDistroBalance.load(id);
+  if (!allocatedBalance) {
+    allocatedBalance = new TokenDistroBalance(id);
   }
-  tokenBalance.balance = tokenBalance.balance.plus(value);
-  tokenBalance.token = tokenAddress;
-  tokenBalance.user = to;
-  tokenBalance.save();
+  allocatedBalance.allocatedTokens =
+    allocatedBalance.allocatedTokens.plus(value);
+  allocatedBalance.allocationCount = allocatedBalance.allocationCount.plus(
+    BigInt.fromI32(1),
+  );
+  allocatedBalance.save();
 }
 
 export function addClaimed(
@@ -23,14 +25,12 @@ export function addClaimed(
   tokenAddress: string,
 ): void {
   const id = tokenAddress + '-' + to;
-  let toBalance = TokenBalance.load(id);
+  let toBalance = TokenDistroBalance.load(id);
 
   if (!toBalance) {
-    toBalance = new TokenBalance(id);
+    toBalance = new TokenDistroBalance(id);
   }
-  // Can I do this?
-  //   toBalance.claimed = toBalance.claimed.plus(value);
-  toBalance.claimed = value;
+  toBalance.claimed = toBalance.claimed.plus(value);
   toBalance.givback = BigInt.zero();
   toBalance.givbackLiquidPart = BigInt.zero();
   toBalance.save();
