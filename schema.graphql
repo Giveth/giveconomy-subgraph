@@ -35,15 +35,6 @@ type TokenBalance @entity {
   givbackLiquidPart: BigInt
 }
 
-type TokenDistroBalance @entity {
-  id: ID!
-  allocatedTokens: BigInt!
-  allocationCount: BigInt!
-  claimed: BigInt!
-  givback: BigInt!
-  givbackLiquidPart: BigInt!
-}
-
 type UnipoolBalance @entity {
   id: ID!
   balance: BigInt!
@@ -60,6 +51,15 @@ type Unipool @entity {
   rewardRate: BigInt!
   lastUpdateTime: BigInt
   rewardPerTokenStored: BigInt!
+}
+
+type TokenDistroBalance @entity {
+  id: ID!
+  allocatedTokens: BigInt!
+  allocationCount: BigInt!
+  claimed: BigInt!
+  givback: BigInt!
+  givbackLiquidPart: BigInt!
 }
 
 type TokenAllocation @entity {

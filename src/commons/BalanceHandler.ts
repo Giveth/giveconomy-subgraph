@@ -25,13 +25,13 @@ export function addClaimed(
   tokenAddress: string,
 ): void {
   const id = tokenAddress + '-' + to;
-  let toBalance = TokenDistroBalance.load(id);
+  let claimBalance = TokenDistroBalance.load(id);
 
-  if (!toBalance) {
-    toBalance = new TokenDistroBalance(id);
+  if (!claimBalance) {
+    claimBalance = new TokenDistroBalance(id);
   }
-  toBalance.claimed = toBalance.claimed.plus(value);
-  toBalance.givback = BigInt.zero();
-  toBalance.givbackLiquidPart = BigInt.zero();
-  toBalance.save();
+  claimBalance.claimed = claimBalance.claimed.plus(value);
+  claimBalance.givback = BigInt.zero();
+  claimBalance.givbackLiquidPart = BigInt.zero();
+  claimBalance.save();
 }

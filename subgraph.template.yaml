@@ -31,7 +31,7 @@ dataSources:
 
 {{#each TokenDistro}}
   - kind: ethereum/contract
-    name: 'TokenDistro'
+    name: '{{name}}'
     network: '{{../network}}'
     source:
       address: '{{address}}'
@@ -45,27 +45,30 @@ dataSources:
         - name: TokenDistro
           file: ./abis/TokenDistro.json
       entities:
+        - TokenDistroBalance
         - TokenAllocation
         - TransactionTokenAllocation
+        - TokenDistroContractInfo
       eventHandlers:
         - event: Allocate(indexed address,indexed address,uint256)
           handler: handleAllocate
-        # - event: Assign(indexed address,indexed address,uint256)
-        #   handler: handleAssign
-        # - event: ChangeAddress(indexed address,indexed address)
-        #   handler: handleChangeAddress
-        # - event: Claim(indexed address,uint256)
-        #   handler: handleClaim
-        # - event: GivBackPaid(address)
-        #   handler: handleGivBackPaid
-        # - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
-        #   handler: handleRoleAdminChanged
-        # - event: RoleGranted(indexed bytes32,indexed address,indexed address)
-        #   handler: handleRoleGranted
-        # - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
-        #   handler: handleRoleRevoked
-        # - event: StartTimeChanged(uint256,uint256)
-        #   handler: handleStartTimeChanged
+        - event: Assign(indexed address,indexed address,uint256)
+          handler: handleAssign
+        - event: ChangeAddress(indexed address,indexed address)
+          handler: handleChangeAddress
+        - event: Claim(indexed address,uint256)
+          handler: handleClaim
+        - event: GivBackPaid(address)
+          handler: handleGivBackPaid
+        - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+          handler: handleRoleAdminChanged
+        - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleGranted
+        - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleRevoked
+        - event: StartTimeChanged(uint256,uint256)
+          handler: handleStartTimeChanged
+
       file: ./src/mappings/tokenDistro.ts
 {{/each}}
 
@@ -120,5 +123,6 @@ dataSources:
           handler: handleWithdrawn
         - event: RewardAdded(uint256)
           handler: handleRewardAdded
+
       file: ./src/mappings/unipool.ts
 {{/each}}

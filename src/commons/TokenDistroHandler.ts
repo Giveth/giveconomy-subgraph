@@ -40,3 +40,27 @@ export function createTokenDistroContractInfoIfNotExists(
 export function updateContractInfo(address: Address): void {}
 
 export function updateRewardPerTokenStored(address: Address): void {}
+
+export function createOrUpdateTokenDistroContractInfo(address: Address): void {
+  log.info(
+    'createTokenDistroContractInfoIfNotExists() has been called: ' +
+      address.toHex(),
+    [],
+  );
+  // if (isContractInfoInitiated[address.toHex()]) {
+  //   return;
+  // }
+  const contract = TokenDistro.bind(address);
+  let contractInfo = TokenDistroContractInfo.load(address.toHex());
+  if (!contractInfo) {
+    contractInfo = new TokenDistroContractInfo(address.toHex());
+  }
+  contractInfo.lockedAmount = contract.lockedAmount();
+  contractInfo.startTime = contract.startTime();
+  contractInfo.cliffTime = contract.cliffTime();
+  contractInfo.duration = contract.duration();
+  contractInfo.initialAmount = contract.initialAmount();
+  contractInfo.totalTokens = contract.totalTokens();
+  contractInfo.save();
+  // isContractInfoInitiated[address.toHex()] = true;
+}
