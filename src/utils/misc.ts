@@ -153,12 +153,3 @@ export function saveTokenAllocation(
   transactionTokenAllocations.tokenAllocationIds = tokenAllocationIds;
   transactionTokenAllocations.save();
 }
-
-export function addAllocatedTokens(to: string, value: BigInt): void {
-  let toBalance = TokenAllocation.load(to);
-  if (!toBalance) {
-    toBalance = new TokenAllocation(to);
-  }
-  toBalance.amount = toBalance.amount.plus(value);
-  toBalance.save();
-}

@@ -30,6 +30,9 @@ type TokenBalance @entity {
   balance: BigInt!
   user: User!
   token: String!
+  claimed: BigInt
+  givback: BigInt
+  givbackLiquidPart: BigInt
 }
 
 type UnipoolBalance @entity {
@@ -63,4 +66,14 @@ type TokenAllocation @entity {
 type TransactionTokenAllocation @entity {
   id: ID!
   tokenAllocationIds: [String!]!
+}
+
+type TokenDistroContractInfo @entity {
+  id: ID!
+  totalTokens: BigInt
+  startTime: BigInt
+  cliffTime: BigInt
+  duration: BigInt
+  initialAmount: BigInt
+  lockedAmount: BigInt
 }

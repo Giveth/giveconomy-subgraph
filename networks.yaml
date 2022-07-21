@@ -2,8 +2,9 @@
 model:
   network: model
   GIVPower:
-    address: '0x0000000000000000000000000000000000000000'
-    startBlock: 9999999999999
+    - name: 'GIVPower'
+      address: '0x0000000000000000000000000000000000000000'
+      startBlock: 9999999999999
   ERC20:
     - name: 'ERC20'
       address: '0x0000000000000000000000000000000000000000'
@@ -13,14 +14,16 @@ model:
       address: '0x0000000000000000000000000000000000000000'
       startBlock: 9999999999999
   TokenDistro:
-    address: '0x0000000000000000000000000000000000000000'
-    startBlock: 9999999999999
+    - name: 'TokenDistro'
+      address: '0x0000000000000000000000000000000000000000'
+      startBlock: 9999999999999
 
 deployment-6:
   network: xdai
   GIVPower:
-    address: '0x898Baa558A401e59Cb2aA77bb8b2D89978Cf506F'
-    startBlock: 22911767
+    - name: 'GIVpower'
+      address: '0x898Baa558A401e59Cb2aA77bb8b2D89978Cf506F'
+      startBlock: 22911767
 
   ERC20:
     - name: 'gGIV'
@@ -40,5 +43,6 @@ deployment-7:
       startBlock: 19717442
 
   TokenDistro:
-    address: '0x18a46865AAbAf416a970eaA8625CFC430D2364A1'
-    startBlock: 19717412
+    - name: 'GIVstream'
+      address: '0x18a46865AAbAf416a970eaA8625CFC430D2364A1'
+      startBlock: 19717412

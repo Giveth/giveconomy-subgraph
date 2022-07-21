@@ -28,14 +28,15 @@ dataSources:
   #       - event: Upgraded(indexed address)
   #         handler: handleUpgrade
   #     file: ./src/mappings/givPower.ts
-  
+
+{{#each TokenDistro}}
   - kind: ethereum/contract
     name: 'TokenDistro'
-    network: '{{network}}'
+    network: '{{../network}}'
     source:
-      address: '{{TokenDistro.address}}'
+      address: '{{address}}'
       abi: TokenDistro
-      startBlock: {{ TokenDistro.startBlock }}
+      startBlock: {{ startBlock }}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -66,6 +67,7 @@ dataSources:
         # - event: StartTimeChanged(uint256,uint256)
         #   handler: handleStartTimeChanged
       file: ./src/mappings/tokenDistro.ts
+{{/each}}
 
 {{#each ERC20}}
   - kind: ethereum/contract
