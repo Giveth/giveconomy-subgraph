@@ -37,8 +37,8 @@ deployment-7:
   network: xdai
 
   GIVPower:
-    address: '0x898Baa558A401e59Cb2aA77bb8b2D89978Cf506F'
-    startBlock: 22911767
+    address: '0xDAEa66Adc97833781139373DF5B3bcEd3fdda5b1'
+    startBlock: 19717442
 
   Unipool:
     - name: 'garden'
