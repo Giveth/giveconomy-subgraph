@@ -1,16 +1,13 @@
 import { BigInt } from '@graphprotocol/graph-ts';
 import { TokenDistroBalance } from '../types/schema';
+import { getTokenDistroBalance } from '../utils/misc';
 
 export function addAllocatedTokens(
   to: string,
   value: BigInt,
   tokenAddress: string,
 ): void {
-  const id = tokenAddress + '-' + to;
-  let allocatedBalance = TokenDistroBalance.load(id);
-  if (!allocatedBalance) {
-    allocatedBalance = new TokenDistroBalance(id);
-  }
+  const allocatedBalance = getTokenDistroBalance(tokenAddress, to);
   allocatedBalance.allocatedTokens =
     allocatedBalance.allocatedTokens.plus(value);
   allocatedBalance.allocationCount = allocatedBalance.allocationCount.plus(
@@ -24,12 +21,7 @@ export function addClaimed(
   value: BigInt,
   tokenAddress: string,
 ): void {
-  const id = tokenAddress + '-' + to;
-  let claimBalance = TokenDistroBalance.load(id);
-
-  if (!claimBalance) {
-    claimBalance = new TokenDistroBalance(id);
-  }
+  const claimBalance = getTokenDistroBalance(tokenAddress, to);
   claimBalance.claimed = claimBalance.claimed.plus(value);
   claimBalance.givback = BigInt.zero();
   claimBalance.givbackLiquidPart = BigInt.zero();

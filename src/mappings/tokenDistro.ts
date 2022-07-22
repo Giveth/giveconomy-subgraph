@@ -11,7 +11,7 @@ import { saveTokenAllocation } from '../utils/misc';
 import { addAllocatedTokens, addClaimed } from '../commons/BalanceHandler';
 import {
   createTokenDistroContractInfoIfNotExists,
-  createOrUpdateTokenDistroContractInfo,
+  createOrUpdateTokenDistro,
 } from '../commons/TokenDistroHandler';
 import {
   TokenAllocation,
@@ -28,6 +28,7 @@ export function handleAllocate(event: Allocate): void {
     event.transactionLogIndex,
     event.params.amount,
     event.block.timestamp,
+    event.address.toHex(),
   );
   addAllocatedTokens(
     event.params.grantee.toHex(),
@@ -136,5 +137,5 @@ export function handleRoleGranted(): void {}
 export function handleRoleRevoked(): void {}
 
 export function handleStartTimeChanged(event: StartTimeChanged): void {
-  createOrUpdateTokenDistroContractInfo(event.address);
+  createOrUpdateTokenDistro(event.address);
 }

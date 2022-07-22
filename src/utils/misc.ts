@@ -7,6 +7,7 @@ import {
   UnipoolBalance,
   TransactionTokenAllocation,
   TokenAllocation,
+  TokenDistroBalance,
 } from '../types/schema';
 import { GIVPower as GIVPowerContract } from '../types/GIVPower/GIVPower';
 import { UnipoolTokenDistributor as UnipoolContract } from '../types/Unipool/UnipoolTokenDistributor';
@@ -135,6 +136,7 @@ export function saveTokenAllocation(
   logIndex: BigInt,
   amount: BigInt,
   timestamp: BigInt,
+  tokenDistroAddress: string,
 ): void {
   let transactionTokenAllocations = TransactionTokenAllocation.load(txHash);
   if (!transactionTokenAllocations) {
@@ -148,8 +150,23 @@ export function saveTokenAllocation(
   entity.timestamp = timestamp;
   entity.recipient = recipient;
   entity.txHash = txHash;
+  entity.tokenDistroAddress = tokenDistroAddress;
   entity.save();
   tokenAllocationIds.push(entityId);
   transactionTokenAllocations.tokenAllocationIds = tokenAllocationIds;
   transactionTokenAllocations.save();
+}
+
+export function getTokenDistroBalance(
+  tokenAddress: string,
+  userAddress: string,
+): TokenDistroBalance {
+  const id = tokenAddress + '-' + userAddress;
+  let tokenDistroBalance = TokenDistroBalance.load(id);
+
+  if (!tokenDistroBalance) {
+    tokenDistroBalance = new TokenDistroBalance(id);
+  }
+
+  return tokenDistroBalance;
 }
