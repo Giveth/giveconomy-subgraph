@@ -44,10 +44,6 @@ export function createTokenDistroContractInfoIfNotExists(
 
 export function updateContractInfo(address: Address): void {}
 
-export function updateRewardPerTokenStored(address: Address): void {
-  getTokenDistro(address);
-}
-
 export function createOrUpdateTokenDistro(address: Address): void {
   getTokenDistro(address);
 }

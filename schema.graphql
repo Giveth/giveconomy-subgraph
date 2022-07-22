@@ -59,6 +59,7 @@ type TokenDistroBalance @entity {
   claimed: BigInt!
   givback: BigInt!
   givbackLiquidPart: BigInt!
+  tokenDistroAddress: String
 }
 
 type TokenAllocation @entity {
