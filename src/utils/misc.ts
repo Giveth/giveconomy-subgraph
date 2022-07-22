@@ -158,14 +158,13 @@ export function saveTokenAllocation(
 }
 
 export function getTokenDistroBalance(
-  tokenDistro: string,
-  userAddress: string,
+  tokenDistro: Address,
 ): TokenDistroBalance {
-  const id = tokenDistro + '-' + userAddress;
-  let tokenDistroBalance = TokenDistroBalance.load(id);
+  const address = tokenDistro.toHex();
+  let tokenDistroBalance = TokenDistroBalance.load(address);
 
   if (!tokenDistroBalance) {
-    tokenDistroBalance = new TokenDistroBalance(id);
+    tokenDistroBalance = new TokenDistroBalance(address);
   }
 
   return tokenDistroBalance;

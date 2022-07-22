@@ -33,7 +33,7 @@ export function handleAllocate(event: Allocate): void {
   addAllocatedTokens(
     event.params.grantee.toHex(),
     event.params.amount,
-    event.params.distributor.toHex(),
+    event.params.distributor,
     event.address.toHex(),
   );
 }
@@ -76,11 +76,7 @@ export function handleChangeAddress(event: ChangeAddress): void {
 }
 
 export function handleClaim(event: Claim): void {
-  addClaimed(
-    event.params.grantee.toHex(),
-    event.params.amount,
-    event.address.toHex(),
-  );
+  addClaimed(event.params.grantee.toHex(), event.params.amount, event.address);
 }
 
 export function handleGivBackPaid(event: GivBackPaid): void {
