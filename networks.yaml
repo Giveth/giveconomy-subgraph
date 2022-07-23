@@ -47,6 +47,15 @@ deployment-7:
     - name: 'garden'
       address: '0xDAEa66Adc97833781139373DF5B3bcEd3fdda5b1'
       startBlock: 19717442
+    - name: 'GIV/DAI'
+      address: '0xe2c436E177C39A5D18AF6923Fc2Fc673f4729C05'
+      startBlock: 22290367
+    - name: 'ETH/GIV'
+      address: '0x83535D6DeF8E881E647C00462315bae9A6E7BD09'
+      startBlock: 19717433
+    - name: 'HNY/GIV'
+      address: '0xC09147Ac0aC8B5271F03b511c3554e3238Ae3201'
+      startBlock: 19717426
 
   TokenDistro:
     - name: 'GIVstream'
