@@ -6,7 +6,9 @@ import {
   UnipoolTokenDistributor as UnipoolContract,
   Withdrawn,
 } from '../types/Unipool/UnipoolTokenDistributor';
+import { UNISWAP_POOL } from '../utils/constants';
 import { getUnipool, getUserUnipoolBalance } from '../utils/misc';
+import { TransactionTokenAllocation, TokenAllocation } from '../types/schema';
 
 function updateReward(address: Address, userAddress: Address): void {
   const unipool = getUnipool(address);
@@ -39,8 +41,10 @@ export function handleRewardAdded(event: RewardAdded): void {
 
 export function handleRewardPaid(event: RewardPaid): void {
   updateReward(event.address, event.params.user);
-
-  // TODO: handle allocation on tokenDistro
+  updateTokenAllocationDistributor(
+    event.transaction.hash.toHex(),
+    UNISWAP_POOL,
+  );
 }
 
 export function handleStaked(event: Staked): void {
@@ -65,4 +69,28 @@ export function handleWithdrawn(event: Withdrawn): void {
   const userBalance = getUserUnipoolBalance(event.address, event.params.user);
   userBalance.balance = userBalance.balance.minus(event.params.amount);
   userBalance.save();
+}
+
+export function updateTokenAllocationDistributor(
+  txHash: string,
+  distributor: string,
+): void {
+  const transactionTokenAllocations = TransactionTokenAllocation.load(txHash);
+  if (!transactionTokenAllocations) {
+    return;
+  }
+  for (
+    let i = 0;
+    i < transactionTokenAllocations.tokenAllocationIds.length;
+    i++
+  ) {
+    const entity = TokenAllocation.load(
+      transactionTokenAllocations.tokenAllocationIds[i],
+    );
+    if (!entity) {
+      continue;
+    }
+    entity.distributor = distributor;
+    entity.save();
+  }
 }
