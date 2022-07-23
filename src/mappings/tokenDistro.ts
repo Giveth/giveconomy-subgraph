@@ -75,7 +75,11 @@ export function handleChangeAddress(event: ChangeAddress): void {
 }
 
 export function handleClaim(event: Claim): void {
-  addClaimed(event.params.grantee.toHex(), event.params.amount, event.address);
+  addClaimed(
+    event.params.grantee.toHex(),
+    event.params.amount,
+    event.address.toHex(),
+  );
 }
 
 export function handleGivBackPaid(event: GivBackPaid): void {
