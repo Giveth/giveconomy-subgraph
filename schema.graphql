@@ -58,7 +58,7 @@ type TokenDistroBalance @entity {
   allocationCount: BigInt!
   claimed: BigInt!
   givback: BigInt!
-  givDropClaimed: Boolean!
+  givDropClaimed: Boolean
   givbackLiquidPart: BigInt!
   tokenDistroAddress: String
 }
