@@ -50,6 +50,14 @@ export function createOrUpdateTokenDistro(address: Address): TokenDistro {
   let tokenDistro = getTokenDistro(address);
   const contract = TokenDistroContract.bind(address);
 
+  if (tokenDistro) {
+    log.info(
+      'createOrUpdateTokenDistro() contractInfo existed' + address.toHex(),
+      [],
+    );
+    return tokenDistro;
+  }
+
   tokenDistro = new TokenDistro(address.toHex());
   tokenDistro.lockedAmount = contract.lockedAmount();
   tokenDistro.startTime = contract.startTime();
