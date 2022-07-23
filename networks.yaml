@@ -16,6 +16,9 @@ model:
     - name: 'TokenDistro'
       address: '0x0000000000000000000000000000000000000000'
       startBlock: 9999999999999
+  MerkleDistro:
+    address: '0x0000000000000000000000000000000000000000'
+    startBlock: 9999999999999
 
 deployment-6:
   network: xdai
@@ -49,3 +52,7 @@ deployment-7:
     - name: 'GIVstream'
       address: '0x18a46865AAbAf416a970eaA8625CFC430D2364A1'
       startBlock: 19717412
+
+  MerkleDistro:
+    address: '0xc87403C70c9FBfb594d98d3B5E695BBE4C694188'
+    startBlock: 19717419

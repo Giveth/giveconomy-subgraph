@@ -29,6 +29,30 @@ dataSources:
           handler: handleUpgrade
       file: ./src/mappings/givPower.ts
 
+  - kind: ethereum/contract
+    name: MerkleDistro
+    network: '{{network}}'
+    source:
+      address: '{{MerkleDistro.address}}'
+      abi: MerkleDistro
+      startBlock: {{ MerkleDistro.startBlock }}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      abis:
+        - name: MerkleDistro
+          file: ./abis/MerkleDistro.json
+      entities:
+        - Claimed
+        - OwnershipTransferred
+      eventHandlers:
+        - event: Claimed(uint256,address,address,uint256)
+          handler: handleClaimed
+        # - event: OwnershipTransferred(indexed address,indexed address)
+        #   handler: handleOwnershipTransferred
+      file: ./src/mappings/merkleDistro.ts
+
 {{#each TokenDistro}}
   - kind: ethereum/contract
     name: '{{name}}'
@@ -125,4 +149,4 @@ dataSources:
           handler: handleRewardAdded
 
       file: ./src/mappings/unipool.ts
-{{/each}}
+  {{/each}}

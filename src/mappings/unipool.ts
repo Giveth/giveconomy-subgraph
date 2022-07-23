@@ -6,6 +6,7 @@ import {
   UnipoolTokenDistributor as UnipoolContract,
   Withdrawn,
 } from '../types/Unipool/UnipoolTokenDistributor';
+import { updateTokenAllocationDistributor } from '../commons/TokenAllocation';
 import { UNIPOOL } from '../utils/constants';
 import { getUnipool, getUserUnipoolBalance } from '../utils/misc';
 import { TransactionTokenAllocation, TokenAllocation } from '../types/schema';
@@ -66,28 +67,4 @@ export function handleWithdrawn(event: Withdrawn): void {
   const userBalance = getUserUnipoolBalance(event.address, event.params.user);
   userBalance.balance = userBalance.balance.minus(event.params.amount);
   userBalance.save();
-}
-
-export function updateTokenAllocationDistributor(
-  txHash: string,
-  distributor: string,
-): void {
-  const transactionTokenAllocations = TransactionTokenAllocation.load(txHash);
-  if (!transactionTokenAllocations) {
-    return;
-  }
-  for (
-    let i = 0;
-    i < transactionTokenAllocations.tokenAllocationIds.length;
-    i++
-  ) {
-    const entity = TokenAllocation.load(
-      transactionTokenAllocations.tokenAllocationIds[i],
-    );
-    if (!entity) {
-      continue;
-    }
-    entity.distributor = distributor;
-    entity.save();
-  }
 }
