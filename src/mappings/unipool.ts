@@ -6,7 +6,7 @@ import {
   UnipoolTokenDistributor as UnipoolContract,
   Withdrawn,
 } from '../types/Unipool/UnipoolTokenDistributor';
-import { UNISWAP_POOL } from '../utils/constants';
+import { UNIPOOL } from '../utils/constants';
 import { getUnipool, getUserUnipoolBalance } from '../utils/misc';
 import { TransactionTokenAllocation, TokenAllocation } from '../types/schema';
 
@@ -41,10 +41,7 @@ export function handleRewardAdded(event: RewardAdded): void {
 
 export function handleRewardPaid(event: RewardPaid): void {
   updateReward(event.address, event.params.user);
-  updateTokenAllocationDistributor(
-    event.transaction.hash.toHex(),
-    UNISWAP_POOL,
-  );
+  updateTokenAllocationDistributor(event.transaction.hash.toHex(), UNIPOOL);
 }
 
 export function handleStaked(event: Staked): void {

@@ -33,8 +33,7 @@ export function handleAllocate(event: Allocate): void {
   addAllocatedTokens(
     event.params.grantee.toHex(),
     event.params.amount,
-    event.params.distributor,
-    event.address.toHex(),
+    event.params.distributor.toHex(),
   );
 }
 
