@@ -166,6 +166,9 @@ export function getTokenDistroBalance(
 
   if (!tokenDistroBalance) {
     tokenDistroBalance = new TokenDistroBalance(id);
+    tokenDistroBalance.user = userAddress;
+    tokenDistroBalance.tokenDistroAddress = tokenDistro;
+    tokenDistroBalance.save();
   }
 
   return tokenDistroBalance;

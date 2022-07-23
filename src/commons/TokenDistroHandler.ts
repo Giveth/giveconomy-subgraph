@@ -1,6 +1,6 @@
 import { Address } from '@graphprotocol/graph-ts/common/numbers';
 import { TokenDistro } from '../types/schema';
-import { TokenDistro as TokenDistroType } from '../types/TokenDistro/TokenDistro';
+import { TokenDistro as TokenDistroContract } from '../types/TokenDistro/TokenDistro';
 import { log } from '@graphprotocol/graph-ts';
 
 // const isContractInfoInitiated: any = {};
@@ -18,26 +18,26 @@ export function createTokenDistroContractInfoIfNotExists(
       address.toHex(),
     [],
   );
-  let contractInfo = getTokenDistro(address);
-  const contract = TokenDistroType.bind(address);
+  let tokenDistro = getTokenDistro(address);
+  const contract = TokenDistroContract.bind(address);
 
-  if (contractInfo) {
+  if (tokenDistro) {
     log.info(
       'createTokenDistroContractInfoIfNotExists() contractInfo existed' +
         address.toHex(),
       [],
     );
-    return contractInfo;
+    return tokenDistro;
   }
-  contractInfo = new TokenDistro(address.toHex());
-  contractInfo.lockedAmount = contract.lockedAmount();
-  contractInfo.startTime = contract.startTime();
-  contractInfo.cliffTime = contract.cliffTime();
-  contractInfo.duration = contract.duration();
-  contractInfo.initialAmount = contract.initialAmount();
-  contractInfo.totalTokens = contract.totalTokens();
-  contractInfo.save();
-  return contractInfo;
+  tokenDistro = new TokenDistro(address.toHex());
+  tokenDistro.lockedAmount = contract.lockedAmount();
+  tokenDistro.startTime = contract.startTime();
+  tokenDistro.cliffTime = contract.cliffTime();
+  tokenDistro.duration = contract.duration();
+  tokenDistro.initialAmount = contract.initialAmount();
+  tokenDistro.totalTokens = contract.totalTokens();
+  tokenDistro.save();
+  return tokenDistro;
 }
 
 export function updateContractInfo(address: Address): void {}
@@ -47,16 +47,16 @@ export function createOrUpdateTokenDistro(address: Address): TokenDistro {
     'createOrUpdateTokenDistro() has been called: ' + address.toHex(),
     [],
   );
-  let contractInfo = getTokenDistro(address);
-  const contract = TokenDistroType.bind(address);
+  let tokenDistro = getTokenDistro(address);
+  const contract = TokenDistroContract.bind(address);
 
-  contractInfo = new TokenDistro(address.toHex());
-  contractInfo.lockedAmount = contract.lockedAmount();
-  contractInfo.startTime = contract.startTime();
-  contractInfo.cliffTime = contract.cliffTime();
-  contractInfo.duration = contract.duration();
-  contractInfo.initialAmount = contract.initialAmount();
-  contractInfo.totalTokens = contract.totalTokens();
-  contractInfo.save();
-  return contractInfo;
+  tokenDistro = new TokenDistro(address.toHex());
+  tokenDistro.lockedAmount = contract.lockedAmount();
+  tokenDistro.startTime = contract.startTime();
+  tokenDistro.cliffTime = contract.cliffTime();
+  tokenDistro.duration = contract.duration();
+  tokenDistro.initialAmount = contract.initialAmount();
+  tokenDistro.totalTokens = contract.totalTokens();
+  tokenDistro.save();
+  return tokenDistro;
 }
