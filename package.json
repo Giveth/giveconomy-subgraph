@@ -13,7 +13,7 @@
     "deploy:mateo": "yarn generate-manifests && graph deploy --product hosted-service mateodaza/givpower-subgraph subgraph.deployment-7.yaml",
     "deploy:deployment-6": "yarn generate-manifests && graph deploy --product hosted-service aminlatifi/givpower-deployment-six subgraph.deployment-6.yaml",
     "deploy:deployment-7": "yarn generate-manifests && graph deploy --product hosted-service mateodaza/givpower-subgraph subgraph.deployment-7.yaml",
-    "deploy:xdai:deployment-7": "yarn generate-manifests && graph deploy --product hosted-service mateodaza/givpower-subgraph subgraph.deployment-7-xdai.yaml",
+    "deploy:xdai:deployment-7": "yarn generate-manifests && graph deploy --product hosted-service aminlatifi/giveconomy-xdai-deployment-seven subgraph.deployment-7-xdai.yaml",
     "deploy:mainnet": "yarn deploy ORGANISATION/SUBGRAPH",
     "codegen:deployment-6": "yarn generate-manifests && graph codegen subgraph.deployment-6.yaml --output-dir src/types/",
     "codegen:deployment-7": "yarn generate-manifests && graph codegen subgraph.deployment-7.yaml --output-dir src/types/",
