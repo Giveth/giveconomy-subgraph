@@ -24,7 +24,5 @@ export function addClaimed(
   claimBalance.claimed = claimBalance.claimed.plus(value);
   claimBalance.givback = BigInt.zero();
   claimBalance.givbackLiquidPart = BigInt.zero();
-  claimBalance.givDropClaimed = false;
-  claimBalance.user = to;
   claimBalance.save();
 }
