@@ -107,9 +107,9 @@ export function updateTokenAllocationDistributor(
 export function addAllocatedTokens(
   to: string,
   value: BigInt,
-  tokenAddress: string,
+  tokenDistroAddress: string,
 ): void {
-  const allocatedBalance = getTokenDistroBalance(tokenAddress, to);
+  const allocatedBalance = getTokenDistroBalance(tokenDistroAddress, to);
   allocatedBalance.allocatedTokens =
     allocatedBalance.allocatedTokens.plus(value);
   allocatedBalance.allocationCount = allocatedBalance.allocationCount.plus(
@@ -121,9 +121,9 @@ export function addAllocatedTokens(
 export function addClaimed(
   to: string,
   value: BigInt,
-  tokenAddress: string,
+  tokenDistroAddress: string,
 ): void {
-  const claimBalance = getTokenDistroBalance(tokenAddress, to);
+  const claimBalance = getTokenDistroBalance(tokenDistroAddress, to);
   claimBalance.claimed = claimBalance.claimed.plus(value);
   claimBalance.givback = BigInt.zero();
   claimBalance.givbackLiquidPart = BigInt.zero();

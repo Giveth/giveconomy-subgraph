@@ -34,7 +34,7 @@ export function handleAllocate(event: Allocate): void {
   addAllocatedTokens(
     event.params.grantee.toHex(),
     event.params.amount,
-    event.params.distributor.toHex(),
+    event.address.toHex(),
   );
 }
 
@@ -117,9 +117,12 @@ export function handleGivBackPaid(event: GivBackPaid): void {
     }
     tokenAllocation.givback = true;
     tokenAllocation.distributor = GIVBACK;
-    tokenAllocation.tokenDistroAddress = event.address.toHex();
     tokenAllocation.save();
-    const balance = TokenDistroBalance.load(tokenAllocation.recipient);
+
+    const balance = getTokenDistroBalance(
+      tokenAllocation.tokenDistroAddress,
+      tokenAllocation.recipient,
+    );
     if (!balance) {
       continue;
     }

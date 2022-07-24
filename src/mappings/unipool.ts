@@ -37,6 +37,13 @@ function updateReward(address: Address, userAddress: Address): void {
 
 export function handleRewardAdded(event: RewardAdded): void {
   updateReward(event.address, Address.zero());
+
+  const unipool = getUnipool(event.address);
+  const contract = UnipoolContract.bind(Address.fromString(unipool.id));
+
+  unipool.rewardRate = contract.rewardRate();
+  unipool.periodFinish = contract.periodFinish();
+  unipool.save();
 }
 
 export function handleRewardPaid(event: RewardPaid): void {
