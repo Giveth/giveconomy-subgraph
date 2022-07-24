@@ -59,7 +59,7 @@ dataSources:
 
 {{#each TokenDistro}}
   - kind: ethereum/contract
-    name: '{{name}}'
+    name: 'TokenDistro_{{name}}'
     network: '{{../network}}'
     source:
       address: '{{address}}'
@@ -102,7 +102,7 @@ dataSources:
 
 {{#each ERC20}}
   - kind: ethereum/contract
-    name: '{{name}}'
+    name: 'ERC20_{{name}}'
     network: '{{../network}}'
     source:
       address: '{{address}}'
@@ -126,7 +126,7 @@ dataSources:
 
 {{#each Unipool}}
   - kind: ethereum/contract
-    name: '{{name}}'
+    name: 'Unipool_{{name}}'
     network: '{{../network}}'
     source:
       address: '{{address}}'

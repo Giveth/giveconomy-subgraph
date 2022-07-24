@@ -56,11 +56,31 @@ deployment-7-xdai:
     - name: 'HNY/GIV'
       address: '0xC09147Ac0aC8B5271F03b511c3554e3238Ae3201'
       startBlock: 19717426
-
+    - name: 'FOX/HNY'
+      address: '0x06851400866e065972ff21e1ECdE035b4772736d'
+      startBlock: 20735379
   TokenDistro:
     - name: 'GIVstream'
       address: '0x18a46865AAbAf416a970eaA8625CFC430D2364A1'
       startBlock: 19717412
+    - name: 'FOXstream'
+      address: '0xCA29ec6F4218E230294993E0d77d5ece5a6573D8'
+      startBlock: 20735375
+
+  ERC20:
+    - name: 'DRGIV3'
+      address: '0x83a8eea6427985C523a0c4d9d3E62C051B6580d3'
+      startBlock: 19714108
+    - name: 'HNY/GIV'
+      address: '0x31A5AeA76Af79F592a3A3F46a9f6Cb118990433b'
+      startBlock: 19714617
+    - name: 'DAI/GIV'
+      address: '0xB4E0fc187f0EEd740D93eF15Cd14750a2780fc2A'
+      startBlock: 22279465
+    - name: 'FOX/HNY'
+      address: '0xD28C07F802212F04AF41834ec0CC81d2d283124B'
+      startBlock: 20732925
+
 
   MerkleDistro:
     address: '0xc87403C70c9FBfb594d98d3B5E695BBE4C694188'
