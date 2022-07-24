@@ -36,7 +36,7 @@ deployment-6:
       address: '0x898Baa558A401e59Cb2aA77bb8b2D89978Cf506F'
       startBlock: 19713038
 
-deployment-7:
+deployment-7-xdai:
   network: xdai
 
   GIVPower:

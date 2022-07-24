@@ -6,10 +6,9 @@ import {
   UnipoolTokenDistributor as UnipoolContract,
   Withdrawn,
 } from '../types/Unipool/UnipoolTokenDistributor';
-import { updateTokenAllocationDistributor } from '../commons/TokenAllocation';
 import { UNIPOOL } from '../utils/constants';
 import { getUnipool, getUserUnipoolBalance } from '../utils/misc';
-import { TransactionTokenAllocation, TokenAllocation } from '../types/schema';
+import { updateTokenAllocationDistributor } from '../../src/utils/tokenDistroHelper';
 
 function updateReward(address: Address, userAddress: Address): void {
   const unipool = getUnipool(address);

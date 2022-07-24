@@ -1,13 +1,10 @@
-import { Address, BigInt } from '@graphprotocol/graph-ts';
+import { Address, BigInt, log } from '@graphprotocol/graph-ts';
 import {
   GIVPower,
   TokenBalance,
   User,
   Unipool,
   UnipoolBalance,
-  TransactionTokenAllocation,
-  TokenAllocation,
-  TokenDistroBalance,
 } from '../types/schema';
 import { GIVPower as GIVPowerContract } from '../types/GIVPower/GIVPower';
 import { UnipoolTokenDistributor as UnipoolContract } from '../types/Unipool/UnipoolTokenDistributor';
@@ -128,48 +125,4 @@ export function getUnipool(address: Address): Unipool {
   }
 
   return unipool;
-}
-
-export function saveTokenAllocation(
-  recipient: string,
-  txHash: string,
-  logIndex: BigInt,
-  amount: BigInt,
-  timestamp: BigInt,
-  tokenDistroAddress: string,
-): void {
-  let transactionTokenAllocations = TransactionTokenAllocation.load(txHash);
-  if (!transactionTokenAllocations) {
-    transactionTokenAllocations = new TransactionTokenAllocation(txHash);
-  }
-  const tokenAllocationIds =
-    transactionTokenAllocations.tokenAllocationIds || [];
-  const entityId = `${txHash}-${logIndex}`;
-  const entity = new TokenAllocation(entityId);
-  entity.amount = amount;
-  entity.timestamp = timestamp;
-  entity.recipient = recipient;
-  entity.txHash = txHash;
-  entity.tokenDistroAddress = tokenDistroAddress;
-  entity.save();
-  tokenAllocationIds.push(entityId);
-  transactionTokenAllocations.tokenAllocationIds = tokenAllocationIds;
-  transactionTokenAllocations.save();
-}
-
-export function getTokenDistroBalance(
-  tokenDistro: string,
-  userAddress: string,
-): TokenDistroBalance {
-  const id = tokenDistro + '-' + userAddress;
-  let tokenDistroBalance = TokenDistroBalance.load(id);
-
-  if (!tokenDistroBalance) {
-    tokenDistroBalance = new TokenDistroBalance(id);
-    tokenDistroBalance.user = userAddress;
-    tokenDistroBalance.tokenDistroAddress = tokenDistro;
-    tokenDistroBalance.save();
-  }
-
-  return tokenDistroBalance;
 }

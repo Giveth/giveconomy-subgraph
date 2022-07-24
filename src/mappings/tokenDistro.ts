@@ -7,12 +7,6 @@ import {
   StartTimeChanged,
   ChangeAddress,
 } from '../types/TokenDistro/TokenDistro';
-import { saveTokenAllocation } from '../utils/misc';
-import { addAllocatedTokens, addClaimed } from '../commons/BalanceHandler';
-import {
-  createTokenDistroContractInfoIfNotExists,
-  createOrUpdateTokenDistro,
-} from '../commons/TokenDistroHandler';
 import {
   TokenAllocation,
   TransactionTokenAllocation,
@@ -20,6 +14,12 @@ import {
 } from '../types/schema';
 import { GIVBACK } from '../utils/constants';
 import { BigInt, log } from '@graphprotocol/graph-ts';
+import {
+  addAllocatedTokens,
+  addClaimed,
+  saveTokenAllocation,
+  updateTokenDistro,
+} from '../../src/utils/tokenDistroHelper';
 
 export function handleAllocate(event: Allocate): void {
   saveTokenAllocation(
@@ -38,7 +38,7 @@ export function handleAllocate(event: Allocate): void {
 }
 
 export function handleAssign(event: Assign): void {
-  createTokenDistroContractInfoIfNotExists(event.address);
+  updateTokenDistro(event.address);
 }
 
 export function handleChangeAddress(event: ChangeAddress): void {
@@ -138,5 +138,5 @@ export function handleRoleGranted(): void {}
 export function handleRoleRevoked(): void {}
 
 export function handleStartTimeChanged(event: StartTimeChanged): void {
-  createOrUpdateTokenDistro(event.address);
+  updateTokenDistro(event.address);
 }

@@ -1,8 +1,10 @@
 import { Claimed } from '../types/MerkleDistro/MerkleDistro';
 import { GIVDROP } from '../utils/constants';
 import { TokenAllocation, TransactionTokenAllocation } from '../types/schema';
-import { updateTokenAllocationDistributor } from '../commons/TokenAllocation';
-import { getTokenDistroBalance } from '../../src/utils/misc';
+import {
+  getTokenDistroBalance,
+  updateTokenAllocationDistributor,
+} from '../../src/utils/tokenDistroHelper';
 
 export function handleClaimed(event: Claimed): void {
   updateTokenAllocationDistributor(event.transaction.hash.toHex(), GIVDROP);
