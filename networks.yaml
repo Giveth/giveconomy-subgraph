@@ -47,16 +47,16 @@ deployment-7-xdai:
     - name: 'garden'
       address: '0xDAEa66Adc97833781139373DF5B3bcEd3fdda5b1'
       startBlock: 19717442
-    - name: 'GIV/DAI'
+    - name: 'GIV/DAI LM'
       address: '0xe2c436E177C39A5D18AF6923Fc2Fc673f4729C05'
       startBlock: 22290367
-    - name: 'ETH/GIV'
+    - name: 'ETH/GIV LM'
       address: '0x83535D6DeF8E881E647C00462315bae9A6E7BD09'
       startBlock: 19717433
-    - name: 'HNY/GIV'
+    - name: 'HNY/GIV LM'
       address: '0xC09147Ac0aC8B5271F03b511c3554e3238Ae3201'
       startBlock: 19717426
-    - name: 'FOX/HNY'
+    - name: 'FOX/HNY LM'
       address: '0x06851400866e065972ff21e1ECdE035b4772736d'
       startBlock: 20735379
   TokenDistro:
@@ -74,16 +74,16 @@ deployment-7-xdai:
     - name: 'gDRGIV3'
       address: '0x4Bee761229AD815Cc64461783580F629dA0f0350'
       startBlock: 19716991
-    - name: 'HNY/GIV'
+    - name: 'HNY/GIV LP'
       address: '0x31A5AeA76Af79F592a3A3F46a9f6Cb118990433b'
       startBlock: 19714617
-    - name: 'DAI/GIV'
+    - name: 'DAI/GIV LP'
       address: '0xB4E0fc187f0EEd740D93eF15Cd14750a2780fc2A'
       startBlock: 22279465
-    - name: 'GIV/ETH'
+    - name: 'GIV/ETH LP'
       address: '0x437B0da7932b21F54488fD80Ee09b519a6f4d8AD'
       startBlock: 19714713
-    - name: 'FOX/HNY'
+    - name: 'FOX/HNY LP'
       address: '0xD28C07F802212F04AF41834ec0CC81d2d283124B'
       startBlock: 20732925
 
