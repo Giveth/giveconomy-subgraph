@@ -5,21 +5,13 @@ import { log } from '@graphprotocol/graph-ts';
 
 // const isContractInfoInitiated: any = {};
 
-export function getTokenDistro(address: Address): TokenDistro | null {
-  const contractInfo = TokenDistro.load(address.toHex());
-  return contractInfo;
-}
-
-export function createTokenDistroContractInfoIfNotExists(
-  address: Address,
-): TokenDistro {
+export function getTokenDistro(address: Address): TokenDistro {
   log.info(
     'createTokenDistroContractInfoIfNotExists() has been called: ' +
       address.toHex(),
     [],
   );
-  let tokenDistro = getTokenDistro(address);
-  const contract = TokenDistroContract.bind(address);
+  let tokenDistro = TokenDistro.load(address.toHex());
 
   if (tokenDistro) {
     log.info(
@@ -30,6 +22,8 @@ export function createTokenDistroContractInfoIfNotExists(
     return tokenDistro;
   }
   tokenDistro = new TokenDistro(address.toHex());
+
+  const contract = TokenDistroContract.bind(address);
   tokenDistro.lockedAmount = contract.lockedAmount();
   tokenDistro.startTime = contract.startTime();
   tokenDistro.cliffTime = contract.cliffTime();
@@ -47,18 +41,10 @@ export function createOrUpdateTokenDistro(address: Address): TokenDistro {
     'createOrUpdateTokenDistro() has been called: ' + address.toHex(),
     [],
   );
-  let tokenDistro = getTokenDistro(address);
+
+  const tokenDistro = getTokenDistro(address);
   const contract = TokenDistroContract.bind(address);
 
-  if (tokenDistro) {
-    log.info(
-      'createOrUpdateTokenDistro() contractInfo existed' + address.toHex(),
-      [],
-    );
-    return tokenDistro;
-  }
-
-  tokenDistro = new TokenDistro(address.toHex());
   tokenDistro.lockedAmount = contract.lockedAmount();
   tokenDistro.startTime = contract.startTime();
   tokenDistro.cliffTime = contract.cliffTime();
