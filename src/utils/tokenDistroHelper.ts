@@ -3,9 +3,9 @@ import {
   TokenDistro,
   TokenDistroBalance,
   TransactionTokenAllocation,
-} from '../../src/types/schema';
+} from '../types/schema';
 import { Address, BigInt, log } from '@graphprotocol/graph-ts';
-import { TokenDistro as TokenDistroContract } from '../../src/types/TokenDistro/TokenDistro';
+import { TokenDistro as TokenDistroContract } from '../types/TokenDistro/TokenDistro';
 export function saveTokenAllocation(
   recipient: string,
   txHash: string,
