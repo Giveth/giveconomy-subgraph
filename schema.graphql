@@ -71,7 +71,7 @@ type TokenAllocation @entity {
   txHash: String!
   distributor: String
   givback: Boolean
-  tokenDistroAddress: String
+  tokenDistroAddress: String!
 }
 
 type TransactionTokenAllocation @entity {

@@ -1,15 +1,45 @@
 import { Claimed } from '../types/MerkleDistro/MerkleDistro';
 import { GIVDROP } from '../utils/constants';
-import { TokenDistroBalance } from '../types/schema';
+import { TokenAllocation, TransactionTokenAllocation } from '../types/schema';
 import { updateTokenAllocationDistributor } from '../commons/TokenAllocation';
+import { getTokenDistroBalance } from '../../src/utils/misc';
 
 export function handleClaimed(event: Claimed): void {
-  const balance = TokenDistroBalance.load(event.params.recipient.toHex());
   updateTokenAllocationDistributor(event.transaction.hash.toHex(), GIVDROP);
 
-  if (balance) {
-    balance.givDropClaimed = true;
-    balance.save();
+  const transactionTokenAllocations = TransactionTokenAllocation.load(
+    event.transaction.hash.toHex(),
+  );
+
+  if (!transactionTokenAllocations) {
+    return;
+  }
+  for (
+    let i = 0;
+    i < transactionTokenAllocations.tokenAllocationIds.length;
+    i++
+  ) {
+    const tokenAllocation = TokenAllocation.load(
+      transactionTokenAllocations.tokenAllocationIds[i],
+    );
+    if (!tokenAllocation) {
+      continue;
+    }
+
+    if (
+      tokenAllocation.recipient == event.params.recipient.toHex() &&
+      tokenAllocation.amount.equals(event.params.amount)
+    ) {
+      const tokenDistroBalance = getTokenDistroBalance(
+        tokenAllocation.tokenDistroAddress,
+        tokenAllocation.recipient,
+      );
+
+      if (tokenDistroBalance) {
+        tokenDistroBalance.givDropClaimed = true;
+        tokenDistroBalance.save();
+      }
+    }
   }
 }
 
