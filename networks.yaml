@@ -65,3 +65,11 @@ deployment-7-xdai:
   MerkleDistro:
     address: '0xc87403C70c9FBfb594d98d3B5E695BBE4C694188'
     startBlock: 19717419
+
+production-mainnet:
+  network: mainnet
+
+  Unipool:
+    - name: 'GIV/DAI'
+      address: '0xa4523D703F663615Bd41606B46B58dEb2F926D98'
+      startBlock: 14620191

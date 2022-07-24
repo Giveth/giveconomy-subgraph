@@ -3,6 +3,7 @@ description: Giveth Subgraph
 schema:
   file: ./schema.graphql
 dataSources:
+{{#if (isdefined GIVPower)}}
   - kind: ethereum/contract
     name: GIVPower
     network: '{{network}}'
@@ -28,7 +29,9 @@ dataSources:
         - event: Upgraded(indexed address)
           handler: handleUpgrade
       file: ./src/mappings/givPower.ts
+{{/if}}
 
+{{#if (isdefined MerkleDistro)}}
   - kind: ethereum/contract
     name: MerkleDistro
     network: '{{network}}'
@@ -52,6 +55,7 @@ dataSources:
         # - event: OwnershipTransferred(indexed address,indexed address)
         #   handler: handleOwnershipTransferred
       file: ./src/mappings/merkleDistro.ts
+{{/if}}
 
 {{#each TokenDistro}}
   - kind: ethereum/contract

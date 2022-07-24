@@ -17,6 +17,7 @@ import { BigInt, log } from '@graphprotocol/graph-ts';
 import {
   addAllocatedTokens,
   addClaimed,
+  getTokenDistroBalance,
   saveTokenAllocation,
   updateTokenDistro,
 } from '../../src/utils/tokenDistroHelper';
@@ -42,14 +43,20 @@ export function handleAssign(event: Assign): void {
 }
 
 export function handleChangeAddress(event: ChangeAddress): void {
-  const oldBalance = TokenDistroBalance.load(event.params.oldAddress.toHex());
+  const oldBalance = getTokenDistroBalance(
+    event.address.toHex(),
+    event.params.oldAddress.toHex(),
+  );
   if (!oldBalance) {
     log.debug('Change Address oldAddress {} balance is null!', [
       event.params.oldAddress.toHex(),
     ]);
     return;
   }
-  let newBalance = TokenDistroBalance.load(event.params.newAddress.toHex());
+  let newBalance = getTokenDistroBalance(
+    event.address.toHex(),
+    event.params.newAddress.toHex(),
+  );
   if (!newBalance) {
     newBalance = new TokenDistroBalance(event.params.newAddress.toHex());
   }
