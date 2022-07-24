@@ -71,12 +71,18 @@ deployment-7-xdai:
     - name: 'DRGIV3'
       address: '0x83a8eea6427985C523a0c4d9d3E62C051B6580d3'
       startBlock: 19714108
+    - name: 'gDRGIV3'
+      address: '0x4Bee761229AD815Cc64461783580F629dA0f0350'
+      startBlock: 19716991
     - name: 'HNY/GIV'
       address: '0x31A5AeA76Af79F592a3A3F46a9f6Cb118990433b'
       startBlock: 19714617
     - name: 'DAI/GIV'
       address: '0xB4E0fc187f0EEd740D93eF15Cd14750a2780fc2A'
       startBlock: 22279465
+    - name: 'GIV/ETH'
+      address: '0x437B0da7932b21F54488fD80Ee09b519a6f4d8AD'
+      startBlock: 19714713
     - name: 'FOX/HNY'
       address: '0xD28C07F802212F04AF41834ec0CC81d2d283124B'
       startBlock: 20732925
