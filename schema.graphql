@@ -88,3 +88,33 @@ type TokenDistro @entity {
   initialAmount: BigInt
   lockedAmount: BigInt
 }
+
+type UniswapPosition @entity {
+    id: ID!
+    tokenId: String!
+    token0: String!
+    token1: String!
+    liquidity: BigInt!
+    tickLower: Int!
+    tickUpper: Int!
+    tokenURI: String!
+    owner: String!
+    staker: String
+    staked: Boolean
+    closed: Boolean
+}
+
+type UniswapV3Pool @entity {
+    id: ID!
+    token0: String!
+    token1: String!
+    sqrtPriceX96: BigInt!
+    tick: BigInt!
+    liquidity: BigInt!
+}
+
+type UniswapInfinitePosition @entity {
+    id: ID!
+    lastUpdateTimeStamp: BigInt!
+    lastRewardAmount: BigInt!
+}

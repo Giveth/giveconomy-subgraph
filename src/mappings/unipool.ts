@@ -8,7 +8,7 @@ import {
 } from '../types/Unipool/UnipoolTokenDistributor';
 import { UNIPOOL } from '../utils/constants';
 import { getUnipool, getUserUnipoolBalance } from '../utils/misc';
-import { updateTokenAllocationDistributor } from '../../src/utils/tokenDistroHelper';
+import { updateTokenAllocationDistributor } from '../utils/tokenDistroHelper';
 
 function updateReward(address: Address, userAddress: Address): void {
   const unipool = getUnipool(address);

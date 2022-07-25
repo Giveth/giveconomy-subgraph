@@ -5,3 +5,4 @@ export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
 export const GIVBACK = 'givback';
 export const GIVDROP = 'givdrop';
 export const UNIPOOL = 'unipool';
+export const UNISWAP_V3 = 'uniswapV3';
