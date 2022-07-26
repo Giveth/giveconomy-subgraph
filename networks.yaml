@@ -33,21 +33,84 @@ model:
       address: '0x0000000000000000000000000000000000000000'
       startBlock: 9999999999999
 
-deployment-6:
+deployment-6-xdai:
   network: xdai
   GIVPower:
     address: '0x898Baa558A401e59Cb2aA77bb8b2D89978Cf506F'
     startBlock: 22911767
 
   ERC20:
+    - name: 'DRGIV2'
+      address: '0x780FE5de651a3ea62E572f591BF848cFEBaf2163'
+      startBlock: 19711044
     - name: 'gGIV'
       address: '0x1460aaf51f4e0b1b59bb41981cb4aa5a1b377776'
       startBlock: 19711370
+    - name: 'GIV/HNY LP'
+      address: '0xE5021d9B578b84f7D272CFDE3E8B58c0Bf37B402'
+      startBlock: 19711564
+    - name: 'WETH/GIV LP'
+      address: '0x0346B748Ce9bdd42995452b5D30b46c296336f07'
+      startBlock: 19711732
+
+  MerkleDistro:
+    address: '0x06BA4122FC4F3AbCdAFD2fF1dD83A88A63842309'
+    startBlock: 19713011
 
   Unipool:
     - name: 'garden'
       address: '0x898Baa558A401e59Cb2aA77bb8b2D89978Cf506F'
       startBlock: 19713038
+    - name: 'GIV/HNY LM'
+      address: '0x34F8Cc88b872f13d32084464af56f1052A2eF0f6'
+      startBlock: 19713018
+    - name: 'WETH/GIV LM'
+      address: '0x448d5E09620752f031Ea629993050f8581118438'
+      startBlock: 19713026
+
+  TokenDistro:
+    - name: 'GIVstream'
+      address: '0x74B557bec1A496a8E9BE57e9A1530A15364C87Be'
+      startBlock: 19713005
+
+deployment-6-kovan:
+  network: kovan
+
+  Unipool:
+    - name: 'BALANCER GIV/ETH LM'
+      address: '0xc3092EeED159be05dF1c103e3CaAC3DacAe1EdF9'
+      startBlock: 28896918
+    - name: 'GIV LM'
+      # GIV Staking Unipool
+      address: '0xDfdBDA44b2b9C113475a372c078aAC1279C4d7BE'
+      startBlock: 28896934
+
+  UniswapV3:
+    Pool:
+      address: '0x77c3a14a9dffaa4b4b94f4f274cdbeb0518be24d'
+      startBlock: 28895711
+    PositionsNft:
+      address: '0xc36442b4a4522e871399cd717abdd847ab11fe88'
+      startBlock: 28683241
+    Staker:
+      address: '0x1f98407aaB862CdDeF78Ed252D6f557aA5b0f00d'
+      startBlock: 28898339
+    RewardToken:
+      address: '0x6397b874BC81c4c9bEb8D8f2a0fd121b304F21B2'
+      startBlock: 28896903
+
+  TokenDistro:
+    - name: 'GIVstream'
+      address: '0x373bAa19E92F6204b461b791094012fd259996F4'
+      startBlock: 28896896
+
+  ERC20:
+    - name: 'DRGIV'
+      address: '0x6c16216484069C19530a57762AD6630fB678D00E'
+      startBlock: 28895444
+    - name: 'Balancer WETH/GIV LP'
+      address: '0x02653cae0cad6b3cd73e7dbc4f7a3ce6693c3ed7'
+      startBlock: 28895593
 
 deployment-7-xdai:
   network: xdai
@@ -116,7 +179,7 @@ deployment-7-kovan:
     - name: 'CULT/ETH LM'
       address: '0x9D23d449Af3e2c07a286688c85ff5d3d4c219D79'
       startBlock: 31509500
-    - name: 'BAL/ETH LM'
+    - name: 'BALANCER WET/ETH LM'
       address: '0x4B319c068685aF260c91407B651918307df30061'
       startBlock: 28901423
     - name: 'GIV LM'
@@ -156,7 +219,7 @@ deployment-7-kovan:
     - name: 'CULT/ETH LP'
       address: '0x6Bb32725AA31b1a99e7C782e0605B0fB57e4B9E6'
       startBlock: 31509190
-    - name: 'Balancer LP'
+    - name: 'Balancer WETH/GIV LP'
       address: '0x8a6b25e33b12d1bb6929a8793961076bd1f9d3eb'
       startBlock: 28898529
 
