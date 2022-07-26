@@ -8,9 +8,28 @@ model:
     - name: 'ERC20'
       address: '0x0000000000000000000000000000000000000000'
       startBlock: 9999999999999
-
   Unipool:
     - name: 'Unipool'
+      address: '0x0000000000000000000000000000000000000000'
+      startBlock: 9999999999999
+  TokenDistro:
+    - name: 'TokenDistro'
+      address: '0x0000000000000000000000000000000000000000'
+      startBlock: 9999999999999
+  MerkleDistro:
+    address: '0x0000000000000000000000000000000000000000'
+    startBlock: 9999999999999
+  UniswapV3:
+    Pool:
+      address: '0x0000000000000000000000000000000000000000'
+      startBlock: 9999999999999
+    PositionsNft:
+      address: '0x0000000000000000000000000000000000000000'
+      startBlock: 9999999999999
+    Staker:
+      address: '0x0000000000000000000000000000000000000000'
+      startBlock: 9999999999999
+    RewardToken:
       address: '0x0000000000000000000000000000000000000000'
       startBlock: 9999999999999
 
@@ -29,3 +48,122 @@ deployment-6:
     - name: 'garden'
       address: '0x898Baa558A401e59Cb2aA77bb8b2D89978Cf506F'
       startBlock: 19713038
+
+deployment-7-xdai:
+  network: xdai
+
+  GIVPower:
+    address: '0xDAEa66Adc97833781139373DF5B3bcEd3fdda5b1'
+    startBlock: 19717442
+
+  Unipool:
+    - name: 'garden'
+      address: '0xDAEa66Adc97833781139373DF5B3bcEd3fdda5b1'
+      startBlock: 19717442
+    - name: 'GIV/DAI LM'
+      address: '0xe2c436E177C39A5D18AF6923Fc2Fc673f4729C05'
+      startBlock: 22290367
+    - name: 'ETH/GIV LM'
+      address: '0x83535D6DeF8E881E647C00462315bae9A6E7BD09'
+      startBlock: 19717433
+    - name: 'HNY/GIV LM'
+      address: '0xC09147Ac0aC8B5271F03b511c3554e3238Ae3201'
+      startBlock: 19717426
+    - name: 'FOX/HNY LM'
+      address: '0x06851400866e065972ff21e1ECdE035b4772736d'
+      startBlock: 20735379
+  TokenDistro:
+    - name: 'GIVstream'
+      address: '0x18a46865AAbAf416a970eaA8625CFC430D2364A1'
+      startBlock: 19717412
+    - name: 'FOXstream'
+      address: '0xCA29ec6F4218E230294993E0d77d5ece5a6573D8'
+      startBlock: 20735375
+
+  ERC20:
+    - name: 'DRGIV3'
+      address: '0x83a8eea6427985C523a0c4d9d3E62C051B6580d3'
+      startBlock: 19714108
+    - name: 'gDRGIV3'
+      address: '0x4Bee761229AD815Cc64461783580F629dA0f0350'
+      startBlock: 19716991
+    - name: 'HNY/GIV LP'
+      address: '0x31A5AeA76Af79F592a3A3F46a9f6Cb118990433b'
+      startBlock: 19714617
+    - name: 'DAI/GIV LP'
+      address: '0xB4E0fc187f0EEd740D93eF15Cd14750a2780fc2A'
+      startBlock: 22279465
+    - name: 'GIV/ETH LP'
+      address: '0x437B0da7932b21F54488fD80Ee09b519a6f4d8AD'
+      startBlock: 19714713
+    - name: 'FOX/HNY LP'
+      address: '0xD28C07F802212F04AF41834ec0CC81d2d283124B'
+      startBlock: 20732925
+
+
+  MerkleDistro:
+    address: '0xc87403C70c9FBfb594d98d3B5E695BBE4C694188'
+    startBlock: 19717419
+
+
+deployment-7-kovan:
+  network: kovan
+
+  Unipool:
+    - name: 'GIV/DAI LM'
+      address: '0x9e4EcF5fE5F58C888C84338525422A1D0915f6ff'
+      startBlock: 31115701
+    - name: 'CULT/ETH LM'
+      address: '0x9D23d449Af3e2c07a286688c85ff5d3d4c219D79'
+      startBlock: 31509500
+    - name: 'BAL/ETH LM'
+      address: '0x4B319c068685aF260c91407B651918307df30061'
+      startBlock: 28901423
+    - name: 'GIV LM'
+      # GIV Staking Unipool
+      address: '0x17207684344B206A06BF8651d6e5e1833660418b'
+      startBlock: 28901438
+
+  UniswapV3:
+    Pool:
+      address: '0x3c2455a3ee0d824941c9329c01a66b86078c3e82'
+      startBlock: 28898483
+    PositionsNft:
+      address: '0xc36442b4a4522e871399cd717abdd847ab11fe88'
+      startBlock: 28683241
+    Staker:
+      address: '0x1f98407aaB862CdDeF78Ed252D6f557aA5b0f00d'
+      startBlock: 28898339
+    RewardToken:
+      address: '0xDfbb5C70006B357d30BB335f55a01e6b0151Bcb5'
+      startBlock: 28901409
+
+  TokenDistro:
+    - name: 'GIVstream'
+      address: '0x2C84Ab41b53C52959a794830fe296Fd717c33337'
+      startBlock: 28901401
+    - name: 'CULTstream'
+      address: '0xBb974e08774544a361BCF496fE61DaB9Df29AFFc'
+      startBlock: 31509486
+
+  ERC20:
+    - name: 'DRGIV'
+      address: '0x29434A25abd94AE882aA883eea81585Aaa5b078D'
+      startBlock: 28898339
+    - name: 'GIV/DAI LP'
+      address: '0x6D5481911052a42c109F1f56354BEB07Ec430b85'
+      startBlock: 31113195
+    - name: 'CULT/ETH LP'
+      address: '0x6Bb32725AA31b1a99e7C782e0605B0fB57e4B9E6'
+      startBlock: 31509190
+    - name: 'Balancer LP'
+      address: '0x8a6b25e33b12d1bb6929a8793961076bd1f9d3eb'
+      startBlock: 28898529
+
+production-mainnet:
+  network: mainnet
+
+  Unipool:
+    - name: 'GIV/DAI'
+      address: '0xa4523D703F663615Bd41606B46B58dEb2F926D98'
+      startBlock: 14620191

@@ -6,7 +6,9 @@ import {
   UnipoolTokenDistributor as UnipoolContract,
   Withdrawn,
 } from '../types/Unipool/UnipoolTokenDistributor';
+import { UNIPOOL } from '../utils/constants';
 import { getUnipool, getUserUnipoolBalance } from '../utils/misc';
+import { updateTokenAllocationDistributor } from '../utils/tokenDistroHelper';
 
 function updateReward(address: Address, userAddress: Address): void {
   const unipool = getUnipool(address);
@@ -35,12 +37,18 @@ function updateReward(address: Address, userAddress: Address): void {
 
 export function handleRewardAdded(event: RewardAdded): void {
   updateReward(event.address, Address.zero());
+
+  const unipool = getUnipool(event.address);
+  const contract = UnipoolContract.bind(Address.fromString(unipool.id));
+
+  unipool.rewardRate = contract.rewardRate();
+  unipool.periodFinish = contract.periodFinish();
+  unipool.save();
 }
 
 export function handleRewardPaid(event: RewardPaid): void {
   updateReward(event.address, event.params.user);
-
-  // TODO: handle allocation on tokenDistro
+  updateTokenAllocationDistributor(event.transaction.hash.toHex(), UNIPOOL);
 }
 
 export function handleStaked(event: Staked): void {

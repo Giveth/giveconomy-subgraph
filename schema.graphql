@@ -23,30 +23,98 @@ type User @entity {
   locksOwned: [TokenLock!] @derivedFrom(field: "user")
   tokensBalance: [TokenBalance!] @derivedFrom(field: "user")
   unipoolsBalance: [UnipoolBalance!] @derivedFrom(field: "user")
+  tokenDistroBalance: [TokenDistroBalance!] @derivedFrom(field: "user")
 }
 
 type TokenBalance @entity {
-    id: ID!
-    balance: BigInt!
-    user: User!
-    token: String!
+  id: ID!
+  balance: BigInt!
+  user: User!
+  token: String!
 }
 
 type UnipoolBalance @entity {
-    id: ID!
-    balance: BigInt!
-    user: User!
-    unipool: String!
-    rewards:  BigInt!
-    rewardPerTokenPaid:  BigInt!
+  id: ID!
+  balance: BigInt!
+  user: User!
+  unipool: String!
+  rewards: BigInt!
+  rewardPerTokenPaid: BigInt!
 }
 
-
 type Unipool @entity {
+  id: ID!
+  periodFinish: BigInt
+  totalSupply: BigInt!
+  rewardRate: BigInt!
+  lastUpdateTime: BigInt
+  rewardPerTokenStored: BigInt!
+}
+
+type TokenDistroBalance @entity {
+  id: ID!
+  user: User!
+  allocatedTokens: BigInt!
+  allocationCount: BigInt!
+  claimed: BigInt!
+  givback: BigInt!
+  givDropClaimed: Boolean
+  givbackLiquidPart: BigInt!
+  tokenDistroAddress: String
+}
+
+type TokenAllocation @entity {
+  id: ID!
+  recipient: String!
+  amount: BigInt!
+  timestamp: BigInt!
+  txHash: String!
+  distributor: String
+  givback: Boolean
+  tokenDistroAddress: String!
+}
+
+type TransactionTokenAllocation @entity {
+  id: ID!
+  tokenAllocationIds: [String!]!
+}
+
+type TokenDistro @entity {
+  id: ID!
+  totalTokens: BigInt
+  startTime: BigInt
+  cliffTime: BigInt
+  duration: BigInt
+  initialAmount: BigInt
+  lockedAmount: BigInt
+}
+
+type UniswapPosition @entity {
     id: ID!
-    periodFinish: BigInt
-    totalSupply : BigInt!
-    rewardRate: BigInt!
-    lastUpdateTime: BigInt
-    rewardPerTokenStored: BigInt!
+    tokenId: String!
+    token0: String!
+    token1: String!
+    liquidity: BigInt!
+    tickLower: Int!
+    tickUpper: Int!
+    tokenURI: String!
+    owner: String!
+    staker: String
+    staked: Boolean
+    closed: Boolean
+}
+
+type UniswapV3Pool @entity {
+    id: ID!
+    token0: String!
+    token1: String!
+    sqrtPriceX96: BigInt!
+    tick: BigInt!
+    liquidity: BigInt!
+}
+
+type UniswapInfinitePosition @entity {
+    id: ID!
+    lastUpdateTimeStamp: BigInt!
+    lastRewardAmount: BigInt!
 }

@@ -10,6 +10,9 @@ const generateManifests = async (): Promise<void> => {
   ) as Record<string, Record<string, unknown>>;
 
   const template = fs.readFileSync('subgraph.template.yaml').toString();
+  Handlebars.registerHelper('isdefined', function (value) {
+    return value !== undefined;
+  });
   Object.entries(networks).forEach(([network, config]) => {
     fs.writeFileSync(
       `subgraph${network === 'mainnet' ? '' : `.${network}`}.yaml`,

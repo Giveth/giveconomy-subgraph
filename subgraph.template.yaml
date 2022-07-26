@@ -3,6 +3,7 @@ description: Giveth Subgraph
 schema:
   file: ./schema.graphql
 dataSources:
+{{#if (isdefined GIVPower)}}
   - kind: ethereum/contract
     name: GIVPower
     network: '{{network}}'
@@ -28,6 +29,197 @@ dataSources:
         - event: Upgraded(indexed address)
           handler: handleUpgrade
       file: ./src/mappings/givPower.ts
+{{/if}}
+
+{{#if (isdefined MerkleDistro)}}
+  - kind: ethereum/contract
+    name: MerkleDistro
+    network: '{{network}}'
+    source:
+      address: '{{MerkleDistro.address}}'
+      abi: MerkleDistro
+      startBlock: {{ MerkleDistro.startBlock }}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      abis:
+        - name: MerkleDistro
+          file: ./abis/MerkleDistro.json
+      entities:
+        - Claimed
+        - OwnershipTransferred
+      eventHandlers:
+        - event: Claimed(uint256,address,address,uint256)
+          handler: handleClaimed
+        # - event: OwnershipTransferred(indexed address,indexed address)
+        #   handler: handleOwnershipTransferred
+      file: ./src/mappings/merkleDistro.ts
+{{/if}}
+
+{{#if (isdefined UniswapV3.Pool)}}
+  - kind: ethereum/contract
+    name: UniswapV3Pool
+    network: '{{network}}'
+    source:
+      address: '{{UniswapV3.Pool.address}}'
+      abi: UniswapV3Pool
+      startBlock: {{ UniswapV3.Pool.startBlock }}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Initialize
+        - Swap
+      abis:
+        - name: UniswapV3Pool
+          file: ./abis/UniswapV3Pool.json
+        - name: UniswapV3Staker
+          file: ./abis/UniswapV3Staker.json
+      eventHandlers:
+        # We don't need this event handler, but data source should have at least one event handler
+        - event: Initialize(uint160,int24)
+          handler: handleInitialize
+        - event: Swap(indexed address,indexed address,int256,int256,uint160,uint128,int24)
+          handler: handleSwap
+      file: ./src/mappings/uniswapV3/uniswapV3PoolMapping.ts
+{{/if}}
+
+{{#if (isdefined UniswapV3.PositionsNft)}}
+  - kind: ethereum/contract
+    name: UniswapV3PositionsNft
+    network: '{{network}}'
+    source:
+      address: '{{UniswapV3.PositionsNft.address}}'
+      abi: UniswapV3PositionsNFT
+      startBlock: {{ UniswapV3.PositionsNft.startBlock }}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - IncreaseLiquidity
+        - DecreaseLiquidity
+        - Transfer
+      abis:
+        - name: UniswapV3PositionsNFT
+          file: ./abis/uniswapV3PositionsNFT.json
+        - name: UniswapV3Staker
+          file: ./abis/UniswapV3Staker.json
+        - name: UniswapV3Pool
+          file: ./abis/UniswapV3Pool.json
+      eventHandlers:
+        - event: IncreaseLiquidity(indexed uint256,uint128,uint256,uint256)
+          handler: handleIncreaseLiquidity
+        - event: DecreaseLiquidity(indexed uint256,uint128,uint256,uint256)
+          handler: handleDecreaseLiquidity
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: ./src/mappings/uniswapV3/uniswapV3PositionsNftMapping.ts
+{{/if}}
+
+{{#if (isdefined UniswapV3.Staker)}}
+  - kind: ethereum/contract
+    name: UniswapV3Staker
+    network: '{{network}}'
+    source:
+      address: '{{UniswapV3.Staker.address}}'
+      abi: UniswapV3Staker
+      startBlock: {{ UniswapV3.Staker.startBlock }}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - TokenStaked
+        - TokenUnstaked
+      abis:
+        - name: UniswapV3Staker
+          file: ./abis/UniswapV3Staker.json
+      eventHandlers:
+        - event: TokenStaked(indexed uint256,indexed bytes32,uint128)
+          handler: handleTokenStaked
+        - event: TokenUnstaked(indexed uint256,indexed bytes32)
+          handler: handleTokenUnstaked
+      file: ./src/mappings/uniswapV3/uniswapV3TokenStakerMapping.ts
+
+   {{/if}}
+
+{{#if (isdefined UniswapV3.RewardToken)}}
+  - kind: ethereum/contract
+    name: UniswapV3RewardToken
+    network: '{{network}}'
+    source:
+      address: '{{UniswapV3.RewardToken.address}}'
+      abi: UniswapV3RewardToken
+      startBlock: {{ UniswapV3.RewardToken.startBlock }}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - OwnershipTransferred
+        - RewardPaid
+        - Transfer
+      abis:
+        - name: UniswapV3RewardToken
+          file: ./abis/UniswapV3RewardToken.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: RewardPaid(indexed address,uint256)
+          handler: handleRewardPaid
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/mappings/uniswapV3/uniswapV3RewardTokenMapping.ts
+   {{/if}}
+
+{{#each TokenDistro}}
+  - kind: ethereum/contract
+    name: '{{name}}'
+    network: '{{../network}}'
+    source:
+      address: '{{address}}'
+      abi: TokenDistro
+      startBlock: {{ startBlock }}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      abis:
+        - name: TokenDistro
+          file: ./abis/TokenDistro.json
+      entities:
+        - TokenDistroBalance
+        - TokenAllocation
+        - TransactionTokenAllocation
+        - TokenDistroContractInfo
+      eventHandlers:
+        - event: Allocate(indexed address,indexed address,uint256)
+          handler: handleAllocate
+        - event: Assign(indexed address,indexed address,uint256)
+          handler: handleAssign
+        - event: ChangeAddress(indexed address,indexed address)
+          handler: handleChangeAddress
+        - event: Claim(indexed address,uint256)
+          handler: handleClaim
+        - event: GivBackPaid(address)
+          handler: handleGivBackPaid
+        # - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+        #   handler: handleRoleAdminChanged
+        # - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+        #   handler: handleRoleGranted
+        # - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+        #   handler: handleRoleRevoked
+        - event: StartTimeChanged(uint256,uint256)
+          handler: handleStartTimeChanged
+
+      file: ./src/mappings/tokenDistro.ts
+{{/each}}
 
 {{#each ERC20}}
   - kind: ethereum/contract
@@ -82,4 +274,4 @@ dataSources:
           handler: handleRewardAdded
 
       file: ./src/mappings/unipool.ts
-{{/each}}
+  {{/each}}
