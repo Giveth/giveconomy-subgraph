@@ -1,6 +1,6 @@
 {
-  "name": "@tomfrench/subgraph-template",
-  "version": "1.0.0",
+  "name": "@giveth/givpower-subgraph",
+  "version": "1.1.0",
   "description": "Template for subgraph development boilerplate",
   "scripts": {
     "auth": "graph auth https://api.thegraph.com/deploy/",
