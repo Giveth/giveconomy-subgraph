@@ -12,7 +12,7 @@
     "deploy:amin": "graph deploy --product hosted-service aminlatifi/givpower subgraph.gnosis.yaml",
     "deploy:mateo": "yarn generate-manifests && graph deploy --product hosted-service mateodaza/givpower-subgraph subgraph.deployment-7.yaml",
     "deploy:xdai:deployment-6:amin": "yarn generate-manifests && graph deploy --product hosted-service aminlatifi/givpower-deployment-six subgraph.deployment-6-xdai.yaml",
-    "deploy:kovan:deployment-6:amin": "yarn generate-manifests && graph deploy --product hosted-service aminlatifi/givpower-deployment-six-kovan subgraph.deployment-6-xdai.yaml",
+    "deploy:kovan:deployment-6:amin": "yarn generate-manifests && graph deploy --product hosted-service aminlatifi/givpower-deployment-six-kovan subgraph.deployment-6-kovan.yaml",
     "deploy:deployment-7": "yarn generate-manifests && graph deploy --product hosted-service mateodaza/givpower-subgraph subgraph.deployment-7.yaml",
     "deploy:xdai:deployment-7": "yarn generate-manifests && graph deploy --product hosted-service aminlatifi/giveconomy-xdai-deployment-seven subgraph.deployment-7-xdai.yaml",
     "deploy:kovan:deployment-7:mohammad": "yarn generate-manifests && graph deploy --product hosted-service mohammadranjbarz/giv-economy-kovan subgraph.deployment-7-kovan.yaml",
