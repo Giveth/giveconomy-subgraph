@@ -1,4 +1,4 @@
-import { Address, BigInt, log } from '@graphprotocol/graph-ts';
+import { Address, BigInt } from '@graphprotocol/graph-ts';
 import {
   GIVPower,
   TokenBalance,
@@ -120,7 +120,7 @@ export function getUnipool(address: Address): Unipool {
     unipool.periodFinish = contract.periodFinish();
     unipool.rewardPerTokenStored = contract.rewardPerTokenStored();
     unipool.rewardRate = contract.rewardRate();
-    unipool.totalSupply = contract.totalSupply();
+    unipool.totalSupply = BigInt.zero();
     unipool.save();
   }
 
