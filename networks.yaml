@@ -227,10 +227,61 @@ deployment-7-kovan:
 production-mainnet:
   network: mainnet
 
+  ERC20:
+    - name: 'GIV'
+      address: '0x900db999074d9277c5da2a43f252d74366230da0'
+      startBlock: 13816800
+    - name: 'GIV/DAI LP'
+      address: '0xbeba1666c62c65e58770376de332891b09461eeb'
+      startBlock: 14436516
+    - name: 'BALANCER GIV/ETH LP'
+      address: '0x7819f1532c49388106f7762328c51ee70edd134c'
+      startBlock: 13816861
+    - name: 'CULT/ETH LP'
+      address: '0x5281E311734869C64ca60eF047fd87759397EFe6'
+      startBlock: 14122174
+    - name: 'ICHI LP'
+      address: '0xc3151A58d519B94E915f66B044De3E55F77c2dd9'
+      startBlock: 15128219
+
   Unipool:
     - name: 'GIV/DAI'
       address: '0xa4523D703F663615Bd41606B46B58dEb2F926D98'
       startBlock: 14620191
+    - name: 'BALANCER GIV/ETH LM'
+      address: '0xc0dbDcA66a0636236fAbe1B3C16B1bD4C84bB1E1'
+      startBlock: 13862860
+    - name: 'GIV LM'
+      address: '0x4B9EfAE862a1755F7CEcb021856D467E86976755'
+      startBlock: 13862875
+    - name: 'CULT/ETH LM'
+      address: '0xa479103c2618aD514653B53F064Bc6c9dC35a30b'
+      startBlock: 14919615
+    - name: 'ICHI LM'
+      address: '0xA4b727DF6fD608d1835e3440288c73fB28c4eF16'
+      startBlock: 15230706
+
+  TokenDistro:
+    - name: 'GIVstream'
+      address: '0x87dE995F6744B75bBe0255A973081142aDb61f4d'
+      startBlock: 13862850
+    - name: 'CULTstream'
+      address: '0x73f2D115C2cBAa3b5F477A78F7A7CD348D8b70a2'
+      startBlock: 14919609
+
+  UniswapV3:
+    Pool:
+      address: '0xc763b6b3d0f75167db95daa6a0a0d75dd467c4e1'
+      startBlock: 13821537
+    PositionsNft:
+      address: '0xc36442b4a4522e871399cd717abdd847ab11fe88'
+      startBlock: 13816800
+    Staker:
+      address: '0x1f98407aaB862CdDeF78Ed252D6f557aA5b0f00d'
+      startBlock: 13816800
+    RewardToken:
+      address: '0x3115e5aAa3D6f742d09fbB649150dfE285a9c2A3'
+      startBlock: 13862852
 
 
 production-xdai:
