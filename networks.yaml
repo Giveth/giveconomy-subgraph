@@ -186,6 +186,12 @@ deployment-7-kovan:
       # GIV Staking Unipool
       address: '0x17207684344B206A06BF8651d6e5e1833660418b'
       startBlock: 28901438
+    - name: 'ICHI LM - OLD'
+      address: '0x76e98f3Db6681E7de4804F97C085bEe0205164f3'
+      startBlock: 32850829
+    - name: 'ICH LM - NEW'
+      address: '0x7CD371D230338C74563A9A23AF72dd009a7D1b1C'
+      startBlock: 32973882
 
   UniswapV3:
     Pool:
@@ -222,6 +228,9 @@ deployment-7-kovan:
     - name: 'Balancer WETH/GIV LP'
       address: '0x8a6b25e33b12d1bb6929a8793961076bd1f9d3eb'
       startBlock: 28898529
+    - name: 'ICHI LP'
+      address: '0xA0D500fd3479CBCb64a2238082b7a1Df9f87d98D'
+      startBlock: 27817991
 
 production-mainnet:
   network: mainnet
