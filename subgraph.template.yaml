@@ -217,6 +217,8 @@ dataSources:
         #   handler: handleRoleRevoked
         - event: StartTimeChanged(uint256,uint256)
           handler: handleStartTimeChanged
+        - event: DurationChanged(uint256)
+          handler: handleDurationChanged
 
       file: ./src/mappings/tokenDistro.ts
 {{/each}}

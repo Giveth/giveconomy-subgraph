@@ -6,6 +6,7 @@ import {
   TokenDistro,
   StartTimeChanged,
   ChangeAddress,
+  DurationChanged,
 } from '../types/TokenDistro/TokenDistro';
 import {
   TokenAllocation,
@@ -148,5 +149,9 @@ export function handleRoleGranted(): void {}
 export function handleRoleRevoked(): void {}
 
 export function handleStartTimeChanged(event: StartTimeChanged): void {
+  updateTokenDistro(event.address);
+}
+
+export function handleDurationChanged(event: DurationChanged): void {
   updateTokenDistro(event.address);
 }
