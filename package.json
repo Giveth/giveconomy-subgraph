@@ -18,6 +18,7 @@
     "deploy:xdai:develop": "yarn generate-manifests && graph deploy --product hosted-service giveth/giveth-economy-second-xdai-staging subgraph.deployment-7-xdai.yaml",
     "deploy:kovan:develop": "yarn generate-manifests && graph deploy --product hosted-service giveth/giveth-economy-second-kovan-staging subgraph.deployment-7-kovan.yaml",
     "deploy:kovan:deployment-7:mohammad": "yarn generate-manifests && graph deploy --product hosted-service mohammadranjbarz/giv-economy-kovan subgraph.deployment-7-kovan.yaml",
+    "deploy:goerli:develop": "yarn generate-manifests && graph deploy --product hosted-service giveth/giveth-economy-goerli-staging subgraph.deployment-7-goerli.yaml",
     "deploy:xdai:production": "yarn generate-manifests && graph deploy --product hosted-service giveth/giveth-economy-second-xdai subgraph.production-xdai.yaml",
     "deploy:mainnet:production": "yarn generate-manifests && graph deploy --product hosted-service giveth/giveth-economy-second-mainnet subgraph.production-mainnet.yaml",
     "deploy:mainnet": "yarn deploy ORGANISATION/SUBGRAPH",
@@ -27,6 +28,7 @@
     "build:deployment-6": "yarn generate-manifests && graph build subgraph.deployment-6.yaml",
     "build:deployment-7": "yarn generate-manifests && graph build subgraph.deployment-7.yaml",
     "build:deployment-7:kovan": "yarn generate-manifests && graph build subgraph.deployment-7-kovan.yaml",
+    "build:deployment-7:goerli": "yarn generate-manifests && graph build subgraph.deployment-7-goerli.yaml",
     "generate-manifests": "ts-node ./scripts/generate-manifests && graph codegen subgraph.model.yaml --output-dir src/types/"
   },
   "repository": {
