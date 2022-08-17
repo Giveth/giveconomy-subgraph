@@ -172,12 +172,12 @@ deployment-7-kovan:
   network: kovan
 
   Unipool:
-    - name: 'CULT/ETH LM'
-      address: '0x9D23d449Af3e2c07a286688c85ff5d3d4c219D79'
-      startBlock: 31509500
     - name: 'GIV/DAI LM'
       address: '0x9e4EcF5fE5F58C888C84338525422A1D0915f6ff'
       startBlock: 31115701
+    - name: 'CULT/ETH LM'
+      address: '0x9D23d449Af3e2c07a286688c85ff5d3d4c219D79'
+      startBlock: 31509500
     - name: 'BALANCER WET/ETH LM'
       address: '0x4B319c068685aF260c91407B651918307df30061'
       startBlock: 28901423
