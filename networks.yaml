@@ -164,11 +164,9 @@ deployment-7-xdai:
       address: '0xD28C07F802212F04AF41834ec0CC81d2d283124B'
       startBlock: 20732925
 
-
   MerkleDistro:
     address: '0xc87403C70c9FBfb594d98d3B5E695BBE4C694188'
     startBlock: 19717419
-
 
 deployment-7-kovan:
   network: kovan
@@ -292,7 +290,6 @@ production-mainnet:
       address: '0x3115e5aAa3D6f742d09fbB649150dfE285a9c2A3'
       startBlock: 13862852
 
-
 production-xdai:
   network: xdai
 
@@ -341,3 +338,28 @@ production-xdai:
     - name: 'FOX/HNY LM'
       address: '0x502EC7a040F486EE6Cb7d634D94764874B29dE68'
       startBlock: 21392979
+
+deployment-7-goerli:
+  network: goerli
+
+  Unipool:
+    - name: 'GIV LM'
+      # GIV Staking Unipool
+      address: '0x929C9353D67af21411d4475B30D960F23C209abd'
+      startBlock: 7417687
+
+  TokenDistro:
+    - name: 'GIVstream'
+      address: '0x4358c99abFe7A9983B6c96785b8870b5412C5B4B'
+      startBlock: 7417681
+
+  ERC20:
+    - name: 'DRGIV3'
+      address: '0xA2470F25bb8b53Bd3924C7AC0C68d32BF2aBd5be'
+      startBlock: 7417432
+    - name: 'GIV/DAI LP'
+      address: '0x0551f038a84cb0d42584a8E3eaf5a409D22F4211'
+      startBlock: 7417963
+    - name: 'GIV/WETH LP'
+      address: '0xDADe0F0f5759FB1F041217BD9cC680950796339F'
+      startBlock: 7418018
