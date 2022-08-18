@@ -354,7 +354,7 @@ deployment-7-goerli:
       address: '0x3E0daD7225E60F1b3Ce46964D6976d9B43166d12'
       startBlock: 7420025
     - name: 'BALANCER GIV/ETH LM'
-      address: '0x11275A970e17B21Cf6917C9D3DA5AcB6722c5dcC'
+      address: '0x887673d8295aF9BE0D8e12412c2B87a49cFcd7bd'
       startBlock: 7420037
 
   TokenDistro:
