@@ -373,5 +373,5 @@ deployment-7-goerli:
       address: '0xDADe0F0f5759FB1F041217BD9cC680950796339F'
       startBlock: 7418018
     - name: 'Balancer WETH/GIV LP'
-      address: '0xFaEb6A8B5F15Af77673666E51A44f6B9B6CA5Da2'
+      address: '0xf8cba1c22b6515982bf43e71b7e8b546a3323ea8'
       startBlock: 7419890
