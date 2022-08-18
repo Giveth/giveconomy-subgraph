@@ -355,7 +355,7 @@ deployment-7-goerli:
       startBlock: 7420025
     - name: 'BALANCER GIV/ETH LM'
       address: '0x887673d8295aF9BE0D8e12412c2B87a49cFcd7bd'
-      startBlock: 7420037
+      startBlock: 7427822
 
   TokenDistro:
     - name: 'GIVstream'
@@ -374,4 +374,4 @@ deployment-7-goerli:
       startBlock: 7418018
     - name: 'Balancer WETH/GIV LP'
       address: '0xf8cba1c22b6515982bf43e71b7e8b546a3323ea8'
-      startBlock: 7419890
+      startBlock: 7425927
