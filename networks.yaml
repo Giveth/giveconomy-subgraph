@@ -347,6 +347,15 @@ deployment-7-goerli:
       # GIV Staking Unipool
       address: '0x929C9353D67af21411d4475B30D960F23C209abd'
       startBlock: 7417687
+    - name: 'GIV/DAI LM'
+      address: '0x6420Ad2d9B512f1cF0B899794598Ed17da2C5836'
+      startBlock: 7420032
+    - name: 'GIV/ETH LM'
+      address: '0x3E0daD7225E60F1b3Ce46964D6976d9B43166d12'
+      startBlock: 7420025
+    - name: 'BALANCER GIV/ETH LM'
+      address: '0x887673d8295aF9BE0D8e12412c2B87a49cFcd7bd'
+      startBlock: 7420037
 
   TokenDistro:
     - name: 'GIVstream'
@@ -360,6 +369,9 @@ deployment-7-goerli:
     - name: 'GIV/DAI LP'
       address: '0x0551f038a84cb0d42584a8E3eaf5a409D22F4211'
       startBlock: 7417963
-    - name: 'GIV/WETH LP'
+    - name: 'GIV/ETH LP'
       address: '0xDADe0F0f5759FB1F041217BD9cC680950796339F'
       startBlock: 7418018
+    - name: 'Balancer WETH/GIV LP'
+      address: '0xf8cba1c22b6515982bf43e71b7e8b546a3323ea8'
+      startBlock: 7419890
