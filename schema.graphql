@@ -20,10 +20,18 @@ type TokenLock @entity {
 type User @entity {
   id: ID!
   givLocked: BigInt!
+  lastGivPowerUpdateTime: BigInt!
   locksOwned: [TokenLock!] @derivedFrom(field: "user")
   tokensBalance: [TokenBalance!] @derivedFrom(field: "user")
   unipoolsBalance: [UnipoolBalance!] @derivedFrom(field: "user")
   tokenDistroBalance: [TokenDistroBalance!] @derivedFrom(field: "user")
+}
+
+type UserGivPowerSnapshot @entity {
+    id: ID!
+    timestamp: BigInt!
+    givPowerAmount: BigInt!
+    cumulativeGivPowerAmount: BigInt!
 }
 
 type TokenBalance @entity {
