@@ -1,67 +1,18 @@
-import { Address, BigInt, log } from '@graphprotocol/graph-ts';
+import { BigInt } from '@graphprotocol/graph-ts';
 import {
   TokenLocked,
   TokenUnlocked,
   Upgraded,
   Transfer,
 } from '../types/GIVPower/GIVPower';
-import { TokenLock, UserGivPowerSnapshot } from '../types/schema';
+import { TokenLock } from '../types/schema';
 import {
   getGIVPower,
-  getGivPowerSnapshotId,
   getTokenLockId,
   getUserEntity,
-  getUserUnipoolBalance,
   updateGivPower,
 } from '../utils/misc';
 import { MAX_LOCK_ROUNDS } from '../utils/constants';
-
-function updateSnapshot(
-  contractAddress: Address,
-  userAddress: Address,
-  currentTimestamp: BigInt,
-): void {
-  const user = getUserEntity(userAddress);
-  const userBalance = getUserUnipoolBalance(contractAddress, userAddress);
-
-  const lastSnapshotTimestamp = user.lastGivPowerUpdateTime;
-
-  if (!lastSnapshotTimestamp.isZero()) {
-    const lastSnapshotId = getGivPowerSnapshotId(
-      userAddress,
-      lastSnapshotTimestamp,
-    );
-    const newSnapshotId = getGivPowerSnapshotId(userAddress, currentTimestamp);
-
-    const lastSnapshot = UserGivPowerSnapshot.load(lastSnapshotId);
-    let newSnapshot = UserGivPowerSnapshot.load(newSnapshotId);
-    if (!newSnapshot) {
-      newSnapshot = new UserGivPowerSnapshot(newSnapshotId);
-      newSnapshot.timestamp = currentTimestamp;
-    }
-
-    newSnapshot.givPowerAmount = userBalance.balance;
-
-    if (!lastSnapshot) {
-      log.error('Snapshot was not saved for time {} of user {}', [
-        lastSnapshotTimestamp.toString(),
-        userAddress.toHex(),
-      ]);
-    } else {
-      newSnapshot.cumulativeGivPowerAmount =
-        lastSnapshot.cumulativeGivPowerAmount.plus(
-          lastSnapshot.givPowerAmount.times(
-            currentTimestamp.minus(lastSnapshot.timestamp),
-          ),
-        );
-    }
-
-    newSnapshot.save();
-
-    user.lastGivPowerUpdateTime = currentTimestamp;
-    user.save();
-  }
-}
 
 export function handleTokenLocked(event: TokenLocked): void {
   const userAddress = event.params.account;
@@ -130,15 +81,4 @@ export function handleUpgrade(event: Upgraded): void {
   updateGivPower(event.address);
 }
 
-export function handleTransfer(event: Transfer): void {
-  const fromAddress = event.params.from;
-  const toAddress = event.params.to;
-
-  if (fromAddress.toHex() != Address.zero().toHex()) {
-    updateSnapshot(event.address, fromAddress, event.block.timestamp);
-  }
-
-  if (toAddress.toHex() != Address.zero().toHex()) {
-    updateSnapshot(event.address, toAddress, event.block.timestamp);
-  }
-}
+export function handleTransfer(event: Transfer): void {}

@@ -30,6 +30,7 @@ type User @entity {
 type UserGivPowerSnapshot @entity {
     id: ID!
     timestamp: BigInt!
+    user: User!
     givPowerAmount: BigInt!
     cumulativeGivPowerAmount: BigInt!
 }
