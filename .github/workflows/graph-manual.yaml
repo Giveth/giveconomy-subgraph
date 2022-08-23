@@ -15,7 +15,7 @@ on:
         description: 'Branch to build (development, staging, master or another)'
         required: true
         default: 'main'
-      branch:
+      network:
         description: 'Network'
         required: true
         default: 'goerli'
