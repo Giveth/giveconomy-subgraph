@@ -37,7 +37,7 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Codegen
         run: yarn codegen:deployment-7
-      - uses: gtaschuk/graph-deploy@v0.1.5
+      - uses: gtaschuk/graph-deploy@v0.1.12
         with:
           graph_access_token: ${{ secrets.GRAPH_ACCESS_TOKEN }}
           graph_subgraph_name: $GRAPH_SUBGRAPH_NAME
@@ -61,7 +61,7 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Codegen
         run: yarn codegen:deployment-7:goerli
-      - uses: gtaschuk/graph-deploy@v0.1.5
+      - uses: gtaschuk/graph-deploy@v0.1.12
         with:
           graph_access_token: ${{ secrets.GRAPH_ACCESS_TOKEN }}
           graph_subgraph_name: $GRAPH_SUBGRAPH_NAME
