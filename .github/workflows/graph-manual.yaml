@@ -15,6 +15,10 @@ on:
         description: 'Branch to build (development, staging, master or another)'
         required: true
         default: 'main'
+      branch:
+        description: 'Network'
+        required: true
+        default: 'goerli'
       yaml:
         description: 'Subgraph yaml file name'
         required: true
