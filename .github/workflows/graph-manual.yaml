@@ -22,8 +22,8 @@ jobs:
     env:
       GRAPH_SUBGRAPH_ACCOUNT: ${{ github.repository_owner }}
       GRAPH_SUBGRAPH_NAME: ${{ github.event.inputs.subgraph }}
-      GRAPH_CONFIG_FILE: subgraph.yaml
-      NETWORK: mainnet # ${{ github.event.inputs.network }}
+      GRAPH_CONFIG_FILE: ${{ github.event.inputs.yaml }}
+      NETWORK: ${{ github.event.inputs.network }}
     steps:
       - uses: actions/checkout@v2
       - name: Install node
@@ -33,7 +33,7 @@ jobs:
       - name: Install
         run: yarn --frozen-lockfile
       - name: Codegen
-        run: yarn codegen:$NETWORK
+        run: yarn codegen:deployment-7:$NETWORK
       - uses: gtaschuk/graph-deploy@v0.1.5
         with:
           graph_access_token: ${{ secrets.GRAPH_ACCESS_TOKEN }}
