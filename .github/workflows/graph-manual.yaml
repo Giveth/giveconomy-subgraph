@@ -10,11 +10,15 @@ on:
       subgraph:
         description: 'Name of the subgraph'
         required: true
-        default: 'subgraph-template'
+        default: 'giveth-economy-goerli-staging'
       branch:
         description: 'Branch to build (development, staging, master or another)'
         required: true
-        default: 'master'
+        default: 'main'
+      yaml:
+        description: 'Subgraph yaml file name'
+        required: true
+        default: 'subgraph.deployment-7-goerli.yaml'
 
 jobs:
   deploy:
