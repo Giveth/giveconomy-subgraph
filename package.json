@@ -25,6 +25,7 @@
     "codegen:deployment-6": "yarn generate-manifests && graph codegen subgraph.deployment-6.yaml --output-dir src/types/",
     "codegen:deployment-7": "yarn generate-manifests && graph codegen subgraph.deployment-7-xdai.yaml --output-dir src/types/",
     "codegen:deployment-7:kovan": "yarn generate-manifests && graph codegen subgraph.deployment-7-kovan.yaml --output-dir src/types/",
+    "codegen:deployment-7:goerli": "yarn generate-manifests && graph codegen subgraph.deployment-7-goerli.yaml --output-dir src/types/",
     "build:deployment-6": "yarn generate-manifests && graph build subgraph.deployment-6.yaml",
     "build:deployment-7": "yarn generate-manifests && graph build subgraph.deployment-7.yaml",
     "build:deployment-7:kovan": "yarn generate-manifests && graph build subgraph.deployment-7-kovan.yaml",
