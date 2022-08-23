@@ -41,7 +41,7 @@ jobs:
       - name: Install
         run: yarn --frozen-lockfile
       - name: Codegen
-        run: yarn codegen:deployment-7$NETWORK
+        run: yarn codegen:deployment-7:$NETWORK
       - uses: gtaschuk/graph-deploy@v0.1.5
         with:
           graph_access_token: ${{ secrets.GRAPH_ACCESS_TOKEN }}
