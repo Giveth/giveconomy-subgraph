@@ -2,26 +2,26 @@ name: Build after pull request
 
 on:
   pull_request:
-
+    branches: [main]
 jobs:
-  check-pull-request:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Install node
-      uses: actions/setup-node@v1
-      with:
-        node-version: 16
-    - name: Install
-      run: yarn --frozen-lockfile
-    - name: Lint
-      run: yarn lint
-    - name: Build Mainnet Production
-      run: yarn build:deployment-production-xdai
-    - name: Build xDAI Production
-    run: yarn build:deployment-production-xdai
-    - name: Build Goerli Staging
-      run: build:deployment-7:goerli
-    - name: Build xDAI Staging
-      run: yarn build:deployment-7:xdai
+      - uses: actions/checkout@v2
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Install
+        run: yarn --frozen-lockfile
+      - name: Lint
+        run: yarn lint
+      - name: Build Mainnet Production
+        run: yarn build:deployment-production-xdai
+      - name: Build xDAI Production
+        run: yarn build:deployment-production-xdai
+      - name: Build Goerli Staging
+        run: build:deployment-7:goerli
+      - name: Build xDAI Staging
+        run: yarn build:deployment-7:xdai
