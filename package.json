@@ -28,6 +28,7 @@
     "codegen:deployment-7": "yarn generate-manifests && graph codegen subgraph.deployment-7-xdai.yaml --output-dir src/types/",
     "codegen:deployment-7:kovan": "yarn generate-manifests && graph codegen subgraph.deployment-7-kovan.yaml --output-dir src/types/",
     "codegen:deployment-7:goerli": "yarn generate-manifests && graph codegen subgraph.deployment-7-goerli.yaml --output-dir src/types/",
+    "codegen:deployment-7:xdai": "yarn generate-manifests && graph codegen subgraph.deployment-7-xdai.yaml --output-dir src/types/",
     "build:deployment-production-mainnet": "yarn generate-manifests && graph build subgraph.production-mainnet.yaml",
     "build:deployment-production-xdai": "yarn generate-manifests && graph build subgraph.production-xdai.yaml",
     "build:deployment-6": "yarn generate-manifests && graph build subgraph.deployment-6.yaml",
