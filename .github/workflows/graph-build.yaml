@@ -22,6 +22,6 @@ jobs:
       - name: Build xDAI Production
         run: yarn build:deployment-production-xdai
       - name: Build Goerli Staging
-        run: build:deployment-7:goerli
+        run: yarn build:deployment-7:goerli
       - name: Build xDAI Staging
         run: yarn build:deployment-7:xdai
