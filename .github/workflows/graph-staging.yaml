@@ -20,8 +20,12 @@ jobs:
           node-version: 16
       - name: Install
         run: yarn --frozen-lockfile
+      - name: Lint
+        run: yarn lint
       - name: Codegen
         run: yarn codegen:deployment-7:goerli
+      - name: Build
+        run: yarn build:deployment-7:goerli
       - uses: gtaschuk/graph-deploy@v0.1.12
         with:
           graph_access_token: ${{ secrets.GRAPH_ACCESS_TOKEN }}
