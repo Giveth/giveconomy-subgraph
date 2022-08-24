@@ -35,6 +35,7 @@
     "build:deployment-7": "yarn generate-manifests && graph build subgraph.deployment-7.yaml",
     "build:deployment-7:kovan": "yarn generate-manifests && graph build subgraph.deployment-7-kovan.yaml",
     "build:deployment-7:goerli": "yarn generate-manifests && graph build subgraph.deployment-7-goerli.yaml",
+    "build:deployment-7:xdai": "yarn generate-manifests && graph build subgraph.deployment-7-xdai.yaml",
     "generate-manifests": "ts-node ./scripts/generate-manifests && graph codegen subgraph.model.yaml --output-dir src/types/"
   },
   "repository": {
