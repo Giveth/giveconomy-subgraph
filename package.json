@@ -26,8 +26,8 @@
     "codegen:deployment-7": "yarn generate-manifests && graph codegen subgraph.deployment-7-xdai.yaml --output-dir src/types/",
     "build:deployment-6": "yarn generate-manifests && graph build subgraph.deployment-6.yaml",
     "build:deployment-7": "yarn generate-manifests && graph build subgraph.deployment-7.yaml",
-    "build": "yarn generate-manifests && graph build subgraph.model.yaml",
-    "generate-manifests": "ts-node ./scripts/generate-manifests && graph codegen subgraph.template.yaml --output-dir src/types/"
+    "build": "yarn generate-manifests && graph build subgraph.template.yaml",
+    "generate-manifests": "ts-node ./scripts/generate-manifests && graph codegen subgraph.model.yaml --output-dir src/types/"
   },
   "repository": {
     "type": "git",
