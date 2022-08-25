@@ -1,15 +1,10 @@
 {
   "name": "@giveth/givpower-subgraph",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Template for subgraph development boilerplate",
   "scripts": {
     "auth": "graph auth https://api.thegraph.com/deploy/",
     "lint": "eslint ./src",
-    "local:create": "graph create --node http://localhost:8020/ ORGANISATION/SUBGRAPH",
-    "local:remove": "graph remove --node http://localhost:8020/ ORGANISATION/SUBGRAPH",
-    "local:deploy": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 ORGANISATION/SUBGRAPH",
-    "deploy": "graph deploy --product hosted-service mendesfabio/giveth subgraph.gnosis.yaml",
-    "deploy:amin": "graph deploy --product hosted-service aminlatifi/givpower subgraph.gnosis.yaml",
     "deploy:mateo": "yarn generate-manifests && graph deploy --product hosted-service mateodaza/givpower-subgraph subgraph.deployment-7.yaml",
     "deploy:xdai:deployment-6:amin": "yarn generate-manifests && graph deploy --product hosted-service aminlatifi/givpower-deployment-six subgraph.deployment-6-xdai.yaml",
     "deploy:kovan:deployment-6:amin": "yarn generate-manifests && graph deploy --product hosted-service aminlatifi/givpower-deployment-six-kovan subgraph.deployment-6-kovan.yaml",

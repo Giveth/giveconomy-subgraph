@@ -3,6 +3,7 @@ import {
   TokenLocked,
   TokenUnlocked,
   Upgraded,
+  Transfer,
 } from '../types/GIVPower/GIVPower';
 import { TokenLock } from '../types/schema';
 import {
@@ -79,3 +80,5 @@ export function handleTokenUnlocked(event: TokenUnlocked): void {
 export function handleUpgrade(event: Upgraded): void {
   updateGivPower(event.address);
 }
+
+export function handleTransfer(event: Transfer): void {}

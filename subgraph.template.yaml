@@ -28,7 +28,38 @@ dataSources:
           handler: handleTokenUnlocked
         - event: Upgraded(indexed address)
           handler: handleUpgrade
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
       file: ./src/mappings/givPower.ts
+
+  - kind: ethereum/contract
+    name: 'gardenUnipool'
+    network: '{{network}}'
+    source:
+      address: '{{GIVPower.address}}'
+      abi: UnipoolTokenDistributor
+      startBlock: {{ GIVPower.gardenUnipoolStartBlock }}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      abis:
+        - name: UnipoolTokenDistributor
+          file: ./abis/UnipoolTokenDistributor.json
+      entities:
+        - Unipool
+        - UnipoolBalance
+      eventHandlers:
+        - event: RewardPaid(indexed address,uint256)
+          handler: handleRewardPaid
+        - event: Staked(indexed address,uint256)
+          handler: handleStaked
+        - event: Withdrawn(indexed address,uint256)
+          handler: handleWithdrawn
+        - event: RewardAdded(uint256)
+          handler: handleRewardAdded
+      file: ./src/mappings/gardenUnipool.ts
+
 {{/if}}
 
 {{#if (isdefined MerkleDistro)}}

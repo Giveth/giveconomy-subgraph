@@ -4,6 +4,7 @@ model:
   GIVPower:
     address: '0x0000000000000000000000000000000000000000'
     startBlock: 9999999999999
+    gardenUnipoolStartBlock: 9999999999999
   ERC20:
     - name: 'ERC20'
       address: '0x0000000000000000000000000000000000000000'
@@ -37,7 +38,8 @@ deployment-6-xdai:
   network: xdai
   GIVPower:
     address: '0x898Baa558A401e59Cb2aA77bb8b2D89978Cf506F'
-    startBlock: 22911767
+    startBlock: 23829546
+    gardenUnipoolStartBlock: 19713038
 
   ERC20:
     - name: 'DRGIV2'
@@ -58,9 +60,6 @@ deployment-6-xdai:
     startBlock: 19713011
 
   Unipool:
-    - name: 'garden'
-      address: '0x898Baa558A401e59Cb2aA77bb8b2D89978Cf506F'
-      startBlock: 19713038
     - name: 'GIV/HNY LM'
       address: '0x34F8Cc88b872f13d32084464af56f1052A2eF0f6'
       startBlock: 19713018
@@ -117,12 +116,10 @@ deployment-7-xdai:
 
   GIVPower:
     address: '0xDAEa66Adc97833781139373DF5B3bcEd3fdda5b1'
-    startBlock: 19717442
+    startBlock: 9999999999999
+    gardenUnipoolStartBlock: 19717442
 
   Unipool:
-    - name: 'garden'
-      address: '0xDAEa66Adc97833781139373DF5B3bcEd3fdda5b1'
-      startBlock: 19717442
     - name: 'GIV/DAI LM'
       address: '0xe2c436E177C39A5D18AF6923Fc2Fc673f4729C05'
       startBlock: 22290367
