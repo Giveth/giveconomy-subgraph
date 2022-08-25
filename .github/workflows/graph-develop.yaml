@@ -1,17 +1,12 @@
-name: Deploy Graph
+name: Deploy Graph to develop
 
 on:
   push:
-    branches: [main]
+    branches: [develop]
 
 jobs:
-  deploy-mainnet:
+  lint:
     runs-on: ubuntu-latest
-    env:
-      GRAPH_SUBGRAPH_ACCOUNT: ${{ github.repository_owner }}
-      GRAPH_SUBGRAPH_NAME: givpower-subgraph
-      GRAPH_CONFIG_FILE: subgraph.production-mainnet.yaml
-      NETWORK_NAME: mainnet
     steps:
       - uses: actions/checkout@v2
       - name: Install node
@@ -22,10 +17,22 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Lint
         run: yarn lint
-      - name: Codegen
-        run: yarn codegen:deployment-production-mainnet
-      - name: Build
-        run: yarn build:deployment-production-mainnet
+
+  deploy-staging-gnosis:
+    runs-on: ubuntu-latest
+    env:
+      GRAPH_SUBGRAPH_ACCOUNT: ${{ github.repository_owner }}
+      GRAPH_SUBGRAPH_NAME: giveth-economy-goerli-staging
+      GRAPH_CONFIG_FILE: subgraph.deployment-7-goerli.yaml
+      NETWORK_NAME: goerli
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Install
+        run: yarn --frozen-lockfile
       - uses: gtaschuk/graph-deploy@v0.1.12
         with:
           graph_access_token: ${{ secrets.GRAPH_ACCESS_TOKEN }}
@@ -33,13 +40,13 @@ jobs:
           graph_account: $GRAPH_SUBGRAPH_ACCOUNT
           graph_config_file: $GRAPH_CONFIG_FILE
 
-  deploy-xdai:
+  deploy-staging-xdai:
     runs-on: ubuntu-latest
     env:
       GRAPH_SUBGRAPH_ACCOUNT: ${{ github.repository_owner }}
-      GRAPH_SUBGRAPH_NAME: giveth-economy-xdai
-      GRAPH_CONFIG_FILE: subgraph.production-xdai.yaml
-      NETWORK_NAME: xdai
+      GRAPH_SUBGRAPH_NAME: giveth-economy-xdai-staging
+      GRAPH_CONFIG_FILE: subgraph.deployment-7-xdai.yaml
+      NETWORK_NAME: goerli
     steps:
       - uses: actions/checkout@v2
       - name: Install node
@@ -48,12 +55,6 @@ jobs:
           node-version: 16
       - name: Install
         run: yarn --frozen-lockfile
-      - name: Lint
-        run: yarn lint
-      - name: Codegen
-        run: yarn codegen:deployment-production-xdai
-      - name: Build
-        run: yarn build:deployment-production-xdai
       - uses: gtaschuk/graph-deploy@v0.1.12
         with:
           graph_access_token: ${{ secrets.GRAPH_ACCESS_TOKEN }}

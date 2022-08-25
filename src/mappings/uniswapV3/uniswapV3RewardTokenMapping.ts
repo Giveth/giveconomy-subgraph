@@ -1,9 +1,4 @@
-import {
-  // Approval,
-  // OwnershipTransferred,
-  RewardPaid,
-  // Transfer,
-} from '../../types/UniswapV3RewardToken/UniswapV3RewardToken';
+import { RewardPaid } from '../../types/UniswapV3RewardToken/UniswapV3RewardToken';
 import { updateTokenAllocationDistributor } from '../../utils/tokenDistroHelper';
 import { UNISWAP_V3 } from '../../utils/constants';
 

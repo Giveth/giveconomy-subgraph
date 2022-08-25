@@ -1,8 +1,6 @@
 name: Build after pull request
 
-on:
-  pull_request:
-    branches: [main]
+on: pull_request
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,11 +15,5 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Lint
         run: yarn lint
-      - name: Build Mainnet Production
-        run: yarn build:deployment-production-xdai
-      - name: Build xDAI Production
-        run: yarn build:deployment-production-xdai
-      - name: Build Goerli Staging
-        run: yarn build:deployment-7:goerli
-      - name: Build xDAI Staging
-        run: yarn build:deployment-7:xdai
+      - name: Build
+        run: yarn build
