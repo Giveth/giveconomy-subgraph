@@ -3,7 +3,7 @@ import {
   UniswapV3PositionsNFT,
   Transfer,
   DecreaseLiquidity,
-} from '../../types/UniswapV3PositionsNFT/UniswapV3PositionsNFT';
+} from '../../types/UniswapV3PositionsNft/UniswapV3PositionsNFT';
 import {
   UniswapInfinitePosition,
   UniswapPosition,
