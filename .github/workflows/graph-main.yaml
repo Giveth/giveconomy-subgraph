@@ -20,11 +20,6 @@ jobs:
 
   deploy-mainnet:
     runs-on: ubuntu-latest
-    env:
-      GRAPH_SUBGRAPH_ACCOUNT: ${{ github.repository_owner }}
-      GRAPH_SUBGRAPH_NAME: givpower-subgraph
-      GRAPH_CONFIG_FILE: subgraph.production-mainnet.yaml
-      NETWORK_NAME: mainnet
     steps:
       - uses: actions/checkout@v2
       - name: Install node
@@ -36,17 +31,12 @@ jobs:
       - uses: gtaschuk/graph-deploy@v0.1.12
         with:
           graph_access_token: ${{ secrets.GRAPH_ACCESS_TOKEN }}
-          graph_subgraph_name: $GRAPH_SUBGRAPH_NAME
-          graph_account: $GRAPH_SUBGRAPH_ACCOUNT
-          graph_config_file: $GRAPH_CONFIG_FILE
+          graph_subgraph_name: givpower-subgraph
+          graph_account: ${{ github.repository_owner }}
+          graph_config_file: subgraph.production-mainnet.yaml
 
   deploy-xdai:
     runs-on: ubuntu-latest
-    env:
-      GRAPH_SUBGRAPH_ACCOUNT: ${{ github.repository_owner }}
-      GRAPH_SUBGRAPH_NAME: giveth-economy-xdai
-      GRAPH_CONFIG_FILE: subgraph.production-xdai.yaml
-      NETWORK_NAME: xdai
     steps:
       - uses: actions/checkout@v2
       - name: Install node
@@ -58,6 +48,6 @@ jobs:
       - uses: gtaschuk/graph-deploy@v0.1.12
         with:
           graph_access_token: ${{ secrets.GRAPH_ACCESS_TOKEN }}
-          graph_subgraph_name: $GRAPH_SUBGRAPH_NAME
-          graph_account: $GRAPH_SUBGRAPH_ACCOUNT
-          graph_config_file: $GRAPH_CONFIG_FILE
+          graph_subgraph_name: giveth-economy-xdai
+          graph_account: ${{ github.repository_owner }}
+          graph_config_file: subgraph.production-xdai.yaml
