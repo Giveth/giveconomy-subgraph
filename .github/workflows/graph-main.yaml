@@ -37,7 +37,7 @@ jobs:
           graph_config_file: subgraph.production-mainnet.yaml
 
   deploy-xdai:
-    needs: [lint, deploy-mainnet]
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

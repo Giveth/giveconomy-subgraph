@@ -37,7 +37,7 @@ jobs:
           graph_config_file: subgraph.deployment-7-goerli.yaml
 
   deploy-staging-xdai:
-    needs: [lint, deploy-staging-goerli]
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
