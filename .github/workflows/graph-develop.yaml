@@ -20,19 +20,13 @@ jobs:
 
   generate-manifests:
     runs-on: ubuntu-latest
+    needs: lint
     steps:
-      - uses: actions/checkout@v2
-      - name: Install node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16
-      - name: Install
-        run: yarn --frozen-lockfile
       - name: Lint
         run: yarn generate-manifests
 
   deploy-staging-goerli:
-    needs: [lint, generate-manifests]
+    needs: generate-manifests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -50,7 +44,7 @@ jobs:
           graph_config_file: subgraph.deployment-7-goerli.yaml
 
   deploy-staging-xdai:
-    needs: [lint, generate-manifests]
+    needs: generate-manifests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
