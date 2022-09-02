@@ -14,5 +14,7 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Lint
         run: yarn lint
+      - name: Generate Manifests
+        run: yarn generate-manifests
       - name: Build
         run: yarn build:deployment
