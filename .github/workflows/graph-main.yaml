@@ -18,8 +18,21 @@ jobs:
       - name: Lint
         run: yarn lint
 
+  generate-manifests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Install
+        run: yarn --frozen-lockfile
+      - name: Lint
+        run: yarn enerate-manifests
+
   deploy-mainnet:
-    needs: lint
+    needs: [lint, generate-manifests]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -37,7 +50,7 @@ jobs:
           graph_config_file: subgraph.production-mainnet.yaml
 
   deploy-xdai:
-    needs: lint
+    needs: [lint, generate-manifests]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

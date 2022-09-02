@@ -276,19 +276,19 @@ production-mainnet:
       address: '0x73f2D115C2cBAa3b5F477A78F7A7CD348D8b70a2'
       startBlock: 14919609
 
-  UniswapV3:
-    Pool:
-      address: '0xc763b6b3d0f75167db95daa6a0a0d75dd467c4e1'
-      startBlock: 13821537
-    PositionsNft:
-      address: '0xc36442b4a4522e871399cd717abdd847ab11fe88'
-      startBlock: 13816800
-    Staker:
-      address: '0x1f98407aaB862CdDeF78Ed252D6f557aA5b0f00d'
-      startBlock: 13816800
-    RewardToken:
-      address: '0x3115e5aAa3D6f742d09fbB649150dfE285a9c2A3'
-      startBlock: 13862852
+  # UniswapV3:
+  #   Pool:
+  #     address: '0xc763b6b3d0f75167db95daa6a0a0d75dd467c4e1'
+  #     startBlock: 13821537
+  #   PositionsNft:
+  #     address: '0xc36442b4a4522e871399cd717abdd847ab11fe88'
+  #     startBlock: 13816800
+  #   Staker:
+  #     address: '0x1f98407aaB862CdDeF78Ed252D6f557aA5b0f00d'
+  #     startBlock: 13816800
+  #   RewardToken:
+  #     address: '0x3115e5aAa3D6f742d09fbB649150dfE285a9c2A3'
+  #     startBlock: 13862852
 
 production-xdai:
   network: xdai
