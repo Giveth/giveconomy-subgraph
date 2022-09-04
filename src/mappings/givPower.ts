@@ -81,4 +81,4 @@ export function handleUpgrade(event: Upgraded): void {
   updateGivPower(event.address);
 }
 
-export function handleTransfer(event: Transfer): void {}
+export function handleTransfer(): void {}
