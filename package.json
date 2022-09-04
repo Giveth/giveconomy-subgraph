@@ -28,7 +28,7 @@
     "build:deployment-6": "yarn generate-manifests && graph build subgraph.deployment-6.yaml",
     "build:deployment-7": "yarn generate-manifests && graph build subgraph.deployment-7.yaml",
     "build:deployment-mainnet": "yarn generate-manifests && graph build subgraph.production-mainnet.yaml",
-    "build:deployment": "yarn generate-manifests && graph build subgraph.model.yaml",
+    "build": "yarn generate-manifests && graph build subgraph.model.yaml",
     "generate-manifests": "ts-node ./scripts/generate-manifests && graph codegen subgraph.model.yaml --output-dir src/types/"
   },
   "repository": {
