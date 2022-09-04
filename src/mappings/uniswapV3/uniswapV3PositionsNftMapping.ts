@@ -4,7 +4,11 @@ import {
   Transfer,
   DecreaseLiquidity,
 } from '../../types/UniswapV3PositionsNFT/UniswapV3PositionsNFT';
-import { UniswapInfinitePosition, UniswapPosition, UniswapV3Pool as Pool } from '../../types/schema';
+import {
+  UniswapInfinitePosition,
+  UniswapPosition,
+  UniswapV3Pool as Pool,
+} from '../../types/schema';
 import { networkUniswapV3Config } from '../../configuration';
 import { Address, BigInt, dataSource, log } from '@graphprotocol/graph-ts';
 import { recordUniswapV3InfinitePositionReward } from '../../commons/uniswapV3RewardRecorder';
@@ -12,7 +16,10 @@ import { UniswapV3Pool } from '../../types/UniswapV3Pool/UniswapV3Pool';
 
 const network = dataSource.network();
 
-const uniswapV3Config = network == 'kovan' ? networkUniswapV3Config.kovan : networkUniswapV3Config.mainnet;
+const uniswapV3Config =
+  network == 'kovan'
+    ? networkUniswapV3Config.kovan
+    : networkUniswapV3Config.mainnet;
 
 const fee: i32 = 3000;
 
@@ -24,7 +31,9 @@ function updateUniswapV3PoolLiquidity(): void {
     ]);
     return;
   }
-  const poolContract = UniswapV3Pool.bind(Address.fromString(uniswapV3Config.UNISWAP_V3_POOL_ADDRESS));
+  const poolContract = UniswapV3Pool.bind(
+    Address.fromString(uniswapV3Config.UNISWAP_V3_POOL_ADDRESS),
+  );
   pool.liquidity = poolContract.liquidity();
   pool.save();
 }
@@ -33,7 +42,9 @@ export function handleIncreaseLiquidity(event: IncreaseLiquidity): void {
   const tokenId = event.params.tokenId;
   const uniswapToken = UniswapPosition.load(tokenId.toString());
   if (uniswapToken) {
-    uniswapToken.liquidity = uniswapToken.liquidity.plus(event.params.liquidity);
+    uniswapToken.liquidity = uniswapToken.liquidity.plus(
+      event.params.liquidity,
+    );
     uniswapToken.closed = false;
     uniswapToken.save();
 
@@ -71,7 +82,9 @@ export function handleIncreaseLiquidity(event: IncreaseLiquidity): void {
     uniswapStakedPosition.save();
 
     if (uniswapV3Config.UNISWAP_INFINITE_POSITION == tokenId.toString()) {
-      const uniswapInfinitePosition = new UniswapInfinitePosition(tokenId.toString());
+      const uniswapInfinitePosition = new UniswapInfinitePosition(
+        tokenId.toString(),
+      );
       uniswapInfinitePosition.lastRewardAmount = BigInt.zero();
       uniswapInfinitePosition.lastUpdateTimeStamp = event.block.timestamp;
       uniswapInfinitePosition.save();
@@ -90,7 +103,9 @@ export function handleDecreaseLiquidity(event: DecreaseLiquidity): void {
     // In decrease we dont check token0, token1, we just check if we have it we know it's our NFT otherwise we do nothing
     return;
   }
-  uniswapStakedPosition.liquidity = uniswapStakedPosition.liquidity.minus(event.params.liquidity);
+  uniswapStakedPosition.liquidity = uniswapStakedPosition.liquidity.minus(
+    event.params.liquidity,
+  );
   if (uniswapStakedPosition.liquidity.equals(BigInt.fromString('0'))) {
     uniswapStakedPosition.closed = true;
   }

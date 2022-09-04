@@ -1,0 +1,59 @@
+name: Deploy Graph
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Install
+        run: yarn --frozen-lockfile
+      - name: Lint
+        run: yarn lint
+
+  deploy-mainnet:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Install
+        run: yarn --frozen-lockfile
+      - name: Generate Manifest
+        run: yarn generate-manifests
+      - uses: gtaschuk/graph-deploy@v0.1.12
+        with:
+          graph_access_token: ${{ secrets.GRAPH_ACCESS_TOKEN }}
+          graph_subgraph_name: giveth-economy-second-mainnet
+          graph_account: ${{ github.repository_owner }}
+          graph_config_file: subgraph.production-mainnet.yaml
+
+  deploy-xdai:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Install
+        run: yarn --frozen-lockfile
+      - name: Generate Manifest
+        run: yarn generate-manifests
+      - uses: gtaschuk/graph-deploy@v0.1.12
+        with:
+          graph_access_token: ${{ secrets.GRAPH_ACCESS_TOKEN }}
+          graph_subgraph_name: giveth-economy-second-xdai
+          graph_account: ${{ github.repository_owner }}
+          graph_config_file: subgraph.production-xdai.yaml
