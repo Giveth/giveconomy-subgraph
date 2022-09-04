@@ -1,0 +1,20 @@
+name: Build after pull request
+
+on: pull_request
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Install
+        run: yarn --frozen-lockfile
+      - name: Lint
+        run: yarn lint
+      - name: Generate Manifests
+        run: yarn generate-manifests
+      - name: Build
+        run: yarn build

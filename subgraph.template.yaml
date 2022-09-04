@@ -88,7 +88,7 @@ dataSources:
 
 {{#if (isdefined UniswapV3.PositionsNft)}}
   - kind: ethereum/contract
-    name: UniswapV3PositionsNft
+    name: UniswapV3PositionsNFT
     network: '{{network}}'
     source:
       address: '{{UniswapV3.PositionsNft.address}}'
