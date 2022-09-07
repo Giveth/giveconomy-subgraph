@@ -22,6 +22,7 @@
     "deploy:xdai:production": "yarn generate-manifests && graph deploy --product hosted-service giveth/giveth-economy-second-xdai subgraph.production-xdai.yaml",
     "deploy:xdai:production-mateo": "yarn generate-manifests && graph deploy --product hosted-service mateodaza/giveth-economy-second-xdai subgraph.production-xdai.yaml",
     "deploy:mainnet:production": "yarn generate-manifests && graph deploy --product hosted-service giveth/giveth-economy-second-mainnet subgraph.production-mainnet.yaml",
+    "deploy:mainnet:production-mateo": "yarn generate-manifests && graph deploy --product hosted-service mateodaza/giveth-economy-second-mainnet subgraph.production-mainnet.yaml",
     "deploy:mainnet": "yarn deploy ORGANISATION/SUBGRAPH",
     "codegen:deployment-6": "yarn generate-manifests && graph codegen subgraph.deployment-6.yaml --output-dir src/types/",
     "codegen:deployment-7": "yarn generate-manifests && graph codegen subgraph.deployment-7-xdai.yaml --output-dir src/types/",
@@ -57,7 +58,7 @@
     "fs-extra": "^8.1.0"
   },
   "devDependencies": {
-    "@graphprotocol/graph-cli": "^0.25.1",
+    "@graphprotocol/graph-cli": "0.26.0",
     "@types/fs-extra": "^9.0.2",
     "@types/js-yaml": "^4.0.5",
     "@types/node": "^14.14.37",
