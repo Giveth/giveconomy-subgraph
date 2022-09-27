@@ -35,7 +35,7 @@ jobs:
         with:
           graph_access_token: ${{ secrets.GRAPH_ACCESS_TOKEN }}
           graph_subgraph_name: giveth-economy-goerli-staging
-          graph_account: ${{ github.repository_owner }}
+          graph_account: giveth
           graph_config_file: subgraph.deployment-7-goerli.yaml
 
   deploy-staging-xdai:
@@ -55,5 +55,5 @@ jobs:
         with:
           graph_access_token: ${{ secrets.GRAPH_ACCESS_TOKEN }}
           graph_subgraph_name: giveth-economy-xdai-staging
-          graph_account: ${{ github.repository_owner }}
+          graph_account: giveth
           graph_config_file: subgraph.deployment-7-xdai.yaml
