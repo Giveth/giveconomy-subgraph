@@ -114,10 +114,12 @@ deployment-6-kovan:
 deployment-7-xdai:
   network: xdai
 
+  GIVPower:
+    address: '0xDAEa66Adc97833781139373DF5B3bcEd3fdda5b1'
+    startBlock: 24288955
+    gardenUnipoolStartBlock: 19717442
+
   Unipool:
-    - name: 'GIV LM'
-      address: '0xDAEa66Adc97833781139373DF5B3bcEd3fdda5b1'
-      startBlock: 19717442
     - name: 'GIV/DAI LM'
       address: '0xe2c436E177C39A5D18AF6923Fc2Fc673f4729C05'
       startBlock: 22290367

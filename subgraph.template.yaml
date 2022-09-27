@@ -28,8 +28,6 @@ dataSources:
           handler: handleTokenUnlocked
         - event: Upgraded(indexed address)
           handler: handleUpgrade
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleTransfer
       file: ./src/mappings/givPower.ts
 
   - kind: ethereum/contract

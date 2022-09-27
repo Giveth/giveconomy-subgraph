@@ -80,5 +80,3 @@ export function handleTokenUnlocked(event: TokenUnlocked): void {
 export function handleUpgrade(event: Upgraded): void {
   updateGivPower(event.address);
 }
-
-export function handleTransfer(): void {}
