@@ -116,7 +116,7 @@ deployment-7-xdai:
 
   GIVPower:
     address: '0xDAEa66Adc97833781139373DF5B3bcEd3fdda5b1'
-    startBlock: 24288955
+    startBlock: 24374376
     gardenUnipoolStartBlock: 19717442
 
   Unipool:
