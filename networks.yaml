@@ -296,6 +296,11 @@ production-mainnet:
 production-xdai:
   network: xdai
 
+  GIVPower:
+    address: '0xD93d3bDBa18ebcB3317a57119ea44ed2Cf41C2F2'
+    startBlock: 24393329
+    gardenUnipoolStartBlock: 19731598
+
   ERC20:
     - name: 'GIV'
       address: '0x4f4F9b8D5B4d0Dc10506e5551B0513B61fD59e75'
@@ -335,9 +340,6 @@ production-xdai:
     - name: 'HNY/GIV LM'
       address: '0x4B9EfAE862a1755F7CEcb021856D467E86976755'
       startBlock: 19731583
-    - name: 'GIV LM'
-      address: '0xD93d3bDBa18ebcB3317a57119ea44ed2Cf41C2F2'
-      startBlock: 19731598
     - name: 'FOX/HNY LM'
       address: '0x502EC7a040F486EE6Cb7d634D94764874B29dE68'
       startBlock: 21392979
