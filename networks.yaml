@@ -166,9 +166,6 @@ deployment-7-xdai:
     - name: 'FOX/DAI LP'
       address: '0x0714A2fE9574F591a4ed3fD03b63714e8681fBb7'
       startBlock: 24360512
-    - name: 'gGIV'
-      address: '0x4Bee761229AD815Cc64461783580F629dA0f0350'
-      startBlock: 19716991
 
   MerkleDistro:
     address: '0xc87403C70c9FBfb594d98d3B5E695BBE4C694188'
