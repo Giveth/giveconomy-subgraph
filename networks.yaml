@@ -320,6 +320,9 @@ production-xdai:
     - name: 'gGIV'
       address: '0xfFBAbEb49be77E5254333d5fdfF72920B989425f'
       startBlock: 19719021
+    - name: 'FOX/DAI LP'
+      address: '0xc22313fd39f7d4d73a89558f9e8e444c86464bac'
+      startBlock: 17841457
 
   MerkleDistro:
     address: '0xFad63adEFb8203F7605F25f6a921c8bf45604A5e'
@@ -346,6 +349,9 @@ production-xdai:
     - name: 'FOX/HNY LM'
       address: '0x502EC7a040F486EE6Cb7d634D94764874B29dE68'
       startBlock: 21392979
+    - name: 'FOX/DAI LM'
+      address: '0x9A333AD00868472c0314F76DB8dA305B83890129'
+      startBlock: 24387787
 
 deployment-7-goerli:
   network: goerli
