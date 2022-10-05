@@ -6,6 +6,11 @@
   },
   {
     "inputs": [],
+    "name": "LockRoundLimit",
+    "type": "error"
+  },
+  {
+    "inputs": [],
     "name": "NotEnoughBalanceToLock",
     "type": "error"
   },
@@ -234,6 +239,45 @@
   },
   {
     "inputs": [],
+    "name": "INITIAL_DATE",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MAX_LOCK_ROUNDS",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "ROUND_DURATION",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "__LPTokenWrapper_initialize",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -323,12 +367,12 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_amount",
+        "name": "amount",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_rounds",
+        "name": "rounds",
         "type": "uint256"
       }
     ],
@@ -373,6 +417,19 @@
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "decimals",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "pure",
     "type": "function"
   },
   {
@@ -465,19 +522,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "givPowerManager",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "address",
@@ -499,19 +543,6 @@
       }
     ],
     "stateMutability": "pure",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "initialDate",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -567,18 +598,31 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_amount",
+        "name": "amount",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_rounds",
+        "name": "rounds",
         "type": "uint256"
       }
     ],
     "name": "lock",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "name",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "pure",
     "type": "function"
   },
   {
@@ -794,7 +838,7 @@
   },
   {
     "inputs": [],
-    "name": "roundDuration",
+    "name": "roundEndsIn",
     "outputs": [
       {
         "internalType": "uint256",
@@ -803,19 +847,6 @@
       }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_givPowerManager",
-        "type": "address"
-      }
-    ],
-    "name": "setGivPowerManager",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -832,21 +863,16 @@
     "type": "function"
   },
   {
-    "inputs": [
+    "inputs": [],
+    "name": "symbol",
+    "outputs": [
       {
-        "internalType": "address",
-        "name": "user",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
+        "internalType": "string",
+        "name": "",
+        "type": "string"
       }
     ],
-    "name": "stakeGivPower",
-    "outputs": [],
-    "stateMutability": "nonpayable",
+    "stateMutability": "pure",
     "type": "function"
   },
   {
@@ -945,12 +971,12 @@
     "inputs": [
       {
         "internalType": "address[]",
-        "name": "_accounts",
+        "name": "accounts",
         "type": "address[]"
       },
       {
         "internalType": "uint256",
-        "name": "_round",
+        "name": "round",
         "type": "uint256"
       }
     ],
@@ -995,24 +1021,6 @@
       }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "user",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "withdrawGivPower",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {

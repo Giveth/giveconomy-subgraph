@@ -3,6 +3,7 @@ import {
   TokenLocked,
   TokenUnlocked,
   Upgraded,
+  Transfer,
 } from '../types/GIVPower/GIVPower';
 import { TokenLock } from '../types/schema';
 import {

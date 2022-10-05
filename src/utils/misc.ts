@@ -26,8 +26,8 @@ export function getGIVPower(givPowerAddress: Address): GIVPower {
   if (givpower == null) {
     givpower = new GIVPower(givPowerAddress.toHex());
     const givPowerContract = GIVPowerContract.bind(givPowerAddress);
-    const dateCall = givPowerContract.try_initialDate();
-    const durationCall = givPowerContract.try_roundDuration();
+    const dateCall = givPowerContract.try_INITIAL_DATE();
+    const durationCall = givPowerContract.try_ROUND_DURATION();
 
     let initialDate = dateCall.reverted ? BigInt.zero() : dateCall.value;
     let roundDuration = durationCall.reverted ? 0 : durationCall.value.toI32();
@@ -45,8 +45,8 @@ export function updateGivPower(givPowerAddress: Address): void {
   const givPower = getGIVPower(givPowerAddress);
 
   const givPowerContract = GIVPowerContract.bind(givPowerAddress);
-  const dateCall = givPowerContract.try_initialDate();
-  const durationCall = givPowerContract.try_roundDuration();
+  const dateCall = givPowerContract.try_INITIAL_DATE();
+  const durationCall = givPowerContract.try_ROUND_DURATION();
 
   let initialDate = dateCall.reverted ? BigInt.zero() : dateCall.value;
   let roundDuration = durationCall.reverted ? 0 : durationCall.value.toI32();
@@ -125,4 +125,11 @@ export function getUnipool(address: Address): Unipool {
   }
 
   return unipool;
+}
+
+export function getGivPowerSnapshotId(
+  userAddress: Address,
+  timestamp: BigInt,
+): string {
+  return userAddress.toHex() + '-' + timestamp.toString();
 }
