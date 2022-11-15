@@ -267,6 +267,9 @@ production-mainnet:
     - name: 'CULT/ETH LM'
       address: '0xa479103c2618aD514653B53F064Bc6c9dC35a30b'
       startBlock: 14919615
+    - name: 'CULT/ETH LM New'
+      address: '0xcA128517053e8c459E12E3aCB615bb421d768219'
+      startBlock: 15889522
     - name: 'ICHI LM'
       address: '0xA4b727DF6fD608d1835e3440288c73fB28c4eF16'
       startBlock: 15230706
