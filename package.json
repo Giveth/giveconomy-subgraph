@@ -47,13 +47,13 @@
   },
   "homepage": "https://github.com/TomAFrench/subgraph-template#readme",
   "dependencies": {
-    "@graphprotocol/graph-ts": "^0.24.1",
-    "js-yaml": "^4.1.0",
+    "@graphprotocol/graph-cli": "^0.37.2",
+    "@graphprotocol/graph-ts": "^0.29.1",
+    "fs-extra": "^8.1.0",
     "handlebars": "^4.7.6",
-    "fs-extra": "^8.1.0"
+    "js-yaml": "^4.1.0"
   },
   "devDependencies": {
-    "@graphprotocol/graph-cli": "0.26.0",
     "@types/fs-extra": "^9.0.2",
     "@types/js-yaml": "^4.0.5",
     "@types/node": "^14.14.37",

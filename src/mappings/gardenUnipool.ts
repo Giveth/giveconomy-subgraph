@@ -24,6 +24,8 @@ function updateSnapshot(
     newSnapshot = new UserGivPowerSnapshot(newSnapshotId);
     newSnapshot.user = userAddress.toHex();
     newSnapshot.timestamp = currentTimestamp;
+    newSnapshot.givPowerAmount = BigInt.zero();
+    newSnapshot.cumulativeGivPowerAmount = BigInt.zero();
   }
   const lastSnapshotTimestamp = user.lastGivPowerUpdateTime;
 

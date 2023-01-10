@@ -35,7 +35,7 @@ model:
       startBlock: 9999999999999
 
 deployment-6-xdai:
-  network: xdai
+  network: gnosis
   GIVPower:
     address: '0x898Baa558A401e59Cb2aA77bb8b2D89978Cf506F'
     startBlock: 23829546
@@ -112,7 +112,7 @@ deployment-6-kovan:
       startBlock: 28895593
 
 deployment-7-xdai:
-  network: xdai
+  network: gnosis
 
   GIVPower:
     address: '0xDAEa66Adc97833781139373DF5B3bcEd3fdda5b1'
@@ -294,7 +294,7 @@ production-mainnet:
       startBlock: 13862852
 
 production-xdai:
-  network: xdai
+  network: gnosis
 
   GIVPower:
     address: '0xD93d3bDBa18ebcB3317a57119ea44ed2Cf41C2F2'
