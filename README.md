@@ -6,7 +6,6 @@ Subgraph for Giveth Economy contracts
 
 - Mainnet: `https://thegraph.com/hosted-service/subgraph/giveth/giveth-economy-second-mainnet`
 - Gnosis: `https://thegraph.com/hosted-service/subgraph/giveth/giveth-economy-second-xdai`
-- 
 
 ## Hosted node endpoints on staging
 
@@ -55,5 +54,5 @@ yarn deploy:goerli:develop
 **For gnosis**
 
 ```bash
-yarn deploy:xdai:production
+yarn deploy:gnosis:production
 ```

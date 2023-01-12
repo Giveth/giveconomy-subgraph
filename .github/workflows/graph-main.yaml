@@ -38,7 +38,7 @@ jobs:
           graph_account: giveth
           graph_config_file: subgraph.production-mainnet.yaml
 
-  deploy-xdai:
+  deploy-gnosis:
     needs: lint
     runs-on: ubuntu-latest
     steps:
@@ -56,4 +56,4 @@ jobs:
           graph_access_token: ${{ secrets.GRAPH_ACCESS_TOKEN }}
           graph_subgraph_name: giveth-economy-second-xdai
           graph_account: giveth
-          graph_config_file: subgraph.production-xdai.yaml
+          graph_config_file: subgraph.production-gnosis.yaml

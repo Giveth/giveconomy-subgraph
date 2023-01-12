@@ -17,9 +17,9 @@ export function saveTokenAllocation(
   let transactionTokenAllocations = TransactionTokenAllocation.load(txHash);
   if (!transactionTokenAllocations) {
     transactionTokenAllocations = new TransactionTokenAllocation(txHash);
+    transactionTokenAllocations.tokenAllocationIds = [];
   }
-  const tokenAllocationIds =
-    transactionTokenAllocations.tokenAllocationIds || [];
+  const tokenAllocationIds = transactionTokenAllocations.tokenAllocationIds;
   const entityId = `${txHash}-${logIndex}`;
   const entity = new TokenAllocation(entityId);
   entity.amount = amount;
@@ -42,6 +42,11 @@ export function getTokenDistroBalance(
   if (!tokenDistroBalance) {
     tokenDistroBalance = new TokenDistroBalance(id);
     tokenDistroBalance.user = userAddress;
+    tokenDistroBalance.allocatedTokens = BigInt.zero();
+    tokenDistroBalance.allocationCount = BigInt.zero();
+    tokenDistroBalance.claimed = BigInt.zero();
+    tokenDistroBalance.givback = BigInt.zero();
+    tokenDistroBalance.givbackLiquidPart = BigInt.zero();
     tokenDistroBalance.tokenDistroAddress = tokenDistro;
     tokenDistroBalance.save();
   }

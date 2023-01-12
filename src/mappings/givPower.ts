@@ -35,6 +35,7 @@ export function handleTokenLocked(event: TokenLocked): void {
   if (tokenLock == null) {
     tokenLock = new TokenLock(lockId);
     tokenLock.user = userAddress.toHex();
+    tokenLock.amount = BigInt.zero();
     tokenLock.untilRound = untilRound;
     tokenLock.rounds = rounds;
     tokenLock.unlocked = false;
