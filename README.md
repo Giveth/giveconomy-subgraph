@@ -54,5 +54,5 @@ yarn deploy:goerli:develop
 **For gnosis**
 
 ```bash
-yarn deploy:xdai:production
+yarn deploy:gnosis:production
 ```

@@ -34,8 +34,8 @@ model:
       address: '0x0000000000000000000000000000000000000000'
       startBlock: 9999999999999
 
-deployment-6-xdai:
-  network: xdai
+deployment-6-gnosis:
+  network: gnosis
   GIVPower:
     address: '0x898Baa558A401e59Cb2aA77bb8b2D89978Cf506F'
     startBlock: 23829546
@@ -111,8 +111,8 @@ deployment-6-kovan:
       address: '0x02653cae0cad6b3cd73e7dbc4f7a3ce6693c3ed7'
       startBlock: 28895593
 
-deployment-7-xdai:
-  network: xdai
+deployment-7-gnosis:
+  network: gnosis
 
   GIVPower:
     address: '0xDAEa66Adc97833781139373DF5B3bcEd3fdda5b1'
@@ -293,8 +293,8 @@ production-mainnet:
       address: '0x3115e5aAa3D6f742d09fbB649150dfE285a9c2A3'
       startBlock: 13862852
 
-production-xdai:
-  network: xdai
+production-gnosis:
+  network: gnosis
 
   GIVPower:
     address: '0xD93d3bDBa18ebcB3317a57119ea44ed2Cf41C2F2'

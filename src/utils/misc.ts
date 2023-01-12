@@ -14,6 +14,8 @@ export function getUserEntity(userAddress: Address): User {
 
   if (user == null) {
     user = new User(userAddress.toHex());
+    user.givLocked = BigInt.zero();
+    user.lastGivPowerUpdateTime = BigInt.zero();
     user.save();
   }
 
@@ -35,6 +37,7 @@ export function getGIVPower(givPowerAddress: Address): GIVPower {
     givpower.initialDate = initialDate;
     givpower.roundDuration = roundDuration;
     givpower.locksCreated = 0;
+    givpower.totalGIVLocked = BigInt.zero();
     givpower.save();
   }
 
@@ -81,6 +84,7 @@ export function getUserTokenBalance(
     tokenBalance = new TokenBalance(id);
     tokenBalance.token = tokenAddress.toHex();
     tokenBalance.user = userAddress.toHex();
+    tokenBalance.balance = BigInt.zero();
     tokenBalance.save();
   }
 
@@ -101,6 +105,7 @@ export function getUserUnipoolBalance(
     unipoolBalance = new UnipoolBalance(id);
     unipoolBalance.unipool = unipoolAddress.toHex();
     unipoolBalance.user = userAddress.toHex();
+    unipoolBalance.balance = BigInt.zero();
     unipoolBalance.rewards = BigInt.zero();
     unipoolBalance.rewardPerTokenPaid = BigInt.zero();
     unipoolBalance.save();

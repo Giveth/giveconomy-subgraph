@@ -38,7 +38,7 @@ jobs:
           graph_account: giveth
           graph_config_file: subgraph.deployment-7-goerli.yaml
 
-  deploy-staging-xdai:
+  deploy-staging-gnosis:
     needs: lint
     runs-on: ubuntu-latest
     steps:
@@ -56,4 +56,4 @@ jobs:
           graph_access_token: ${{ secrets.GRAPH_ACCESS_TOKEN }}
           graph_subgraph_name: giveth-economy-xdai-staging
           graph_account: giveth
-          graph_config_file: subgraph.deployment-7-xdai.yaml
+          graph_config_file: subgraph.deployment-7-gnosis.yaml
