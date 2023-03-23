@@ -25,6 +25,7 @@ type User @entity {
   tokensBalance: [TokenBalance!] @derivedFrom(field: "user")
   unipoolsBalance: [UnipoolBalance!] @derivedFrom(field: "user")
   tokenDistroBalance: [TokenDistroBalance!] @derivedFrom(field: "user")
+  giversPFPToken: [GiversPFPToken!] @derivedFrom(field: "user")
 }
 
 type UserGivPowerSnapshot @entity {
@@ -126,4 +127,12 @@ type UniswapInfinitePosition @entity {
     id: ID!
     lastUpdateTimeStamp: BigInt!
     lastRewardAmount: BigInt!
+}
+
+type GiversPFPToken @entity {
+    id: ID!
+    tokenId: Int!
+    user: User!
+    imageIpfs: String!
+    contractAddress: String!
 }

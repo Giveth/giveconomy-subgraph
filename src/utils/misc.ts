@@ -138,3 +138,10 @@ export function getGivPowerSnapshotId(
 ): string {
   return userAddress.toHex() + '-' + timestamp.toString();
 }
+
+export function getGiversPFPTokenId(
+  contractAddress: Address,
+  tokenId: i32,
+): string {
+  return contractAddress.toHex() + '-' + tokenId.toString();
+}
