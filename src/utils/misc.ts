@@ -14,6 +14,8 @@ export function getUserEntity(userAddress: Address): User {
 
   if (user == null) {
     user = new User(userAddress.toHex());
+    user.givLocked = BigInt.zero();
+    user.lastGivPowerUpdateTime = BigInt.zero();
     user.save();
   }
 
@@ -26,8 +28,8 @@ export function getGIVPower(givPowerAddress: Address): GIVPower {
   if (givpower == null) {
     givpower = new GIVPower(givPowerAddress.toHex());
     const givPowerContract = GIVPowerContract.bind(givPowerAddress);
-    const dateCall = givPowerContract.try_initialDate();
-    const durationCall = givPowerContract.try_roundDuration();
+    const dateCall = givPowerContract.try_INITIAL_DATE();
+    const durationCall = givPowerContract.try_ROUND_DURATION();
 
     let initialDate = dateCall.reverted ? BigInt.zero() : dateCall.value;
     let roundDuration = durationCall.reverted ? 0 : durationCall.value.toI32();
@@ -35,6 +37,7 @@ export function getGIVPower(givPowerAddress: Address): GIVPower {
     givpower.initialDate = initialDate;
     givpower.roundDuration = roundDuration;
     givpower.locksCreated = 0;
+    givpower.totalGIVLocked = BigInt.zero();
     givpower.save();
   }
 
@@ -45,8 +48,8 @@ export function updateGivPower(givPowerAddress: Address): void {
   const givPower = getGIVPower(givPowerAddress);
 
   const givPowerContract = GIVPowerContract.bind(givPowerAddress);
-  const dateCall = givPowerContract.try_initialDate();
-  const durationCall = givPowerContract.try_roundDuration();
+  const dateCall = givPowerContract.try_INITIAL_DATE();
+  const durationCall = givPowerContract.try_ROUND_DURATION();
 
   let initialDate = dateCall.reverted ? BigInt.zero() : dateCall.value;
   let roundDuration = durationCall.reverted ? 0 : durationCall.value.toI32();
@@ -81,6 +84,7 @@ export function getUserTokenBalance(
     tokenBalance = new TokenBalance(id);
     tokenBalance.token = tokenAddress.toHex();
     tokenBalance.user = userAddress.toHex();
+    tokenBalance.balance = BigInt.zero();
     tokenBalance.save();
   }
 
@@ -101,6 +105,7 @@ export function getUserUnipoolBalance(
     unipoolBalance = new UnipoolBalance(id);
     unipoolBalance.unipool = unipoolAddress.toHex();
     unipoolBalance.user = userAddress.toHex();
+    unipoolBalance.balance = BigInt.zero();
     unipoolBalance.rewards = BigInt.zero();
     unipoolBalance.rewardPerTokenPaid = BigInt.zero();
     unipoolBalance.save();
@@ -125,6 +130,13 @@ export function getUnipool(address: Address): Unipool {
   }
 
   return unipool;
+}
+
+export function getGivPowerSnapshotId(
+  userAddress: Address,
+  timestamp: BigInt,
+): string {
+  return userAddress.toHex() + '-' + timestamp.toString();
 }
 
 export function getGiversPFPTokenId(

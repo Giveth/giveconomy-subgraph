@@ -17,4 +17,4 @@ jobs:
       - name: Generate Manifests
         run: yarn generate-manifests
       - name: Build
-        run: yarn build:deployment
+        run: yarn build

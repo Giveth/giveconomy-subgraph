@@ -18,15 +18,8 @@ jobs:
       - name: Lint
         run: yarn lint
 
-  generate-manifests:
-    runs-on: ubuntu-latest
-    needs: lint
-    steps:
-      - name: Lint
-        run: yarn generate-manifests
-
   deploy-staging-goerli:
-    needs: generate-manifests
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -36,15 +29,17 @@ jobs:
           node-version: 16
       - name: Install
         run: yarn --frozen-lockfile
+      - name: Generate Manifest
+        run: yarn generate-manifests
       - uses: gtaschuk/graph-deploy@v0.1.12
         with:
           graph_access_token: ${{ secrets.GRAPH_ACCESS_TOKEN }}
           graph_subgraph_name: giveth-economy-goerli-staging
-          graph_account: ${{ github.repository_owner }}
+          graph_account: giveth
           graph_config_file: subgraph.deployment-7-goerli.yaml
 
-  deploy-staging-xdai:
-    needs: generate-manifests
+  deploy-staging-gnosis:
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -54,9 +49,11 @@ jobs:
           node-version: 16
       - name: Install
         run: yarn --frozen-lockfile
+      - name: Generate Manifest
+        run: yarn generate-manifests
       - uses: gtaschuk/graph-deploy@v0.1.12
         with:
           graph_access_token: ${{ secrets.GRAPH_ACCESS_TOKEN }}
           graph_subgraph_name: giveth-economy-xdai-staging
-          graph_account: ${{ github.repository_owner }}
-          graph_config_file: subgraph.deployment-7-xdai.yaml
+          graph_account: giveth
+          graph_config_file: subgraph.deployment-7-gnosis.yaml
