@@ -305,4 +305,29 @@ dataSources:
           handler: handleRewardAdded
 
       file: ./src/mappings/unipool.ts
-  {{/each}}
+{{/each}}
+
+{{#if (isdefined GiversPFP)}}
+
+  - kind: ethereum/contract
+    name: GiversPFP
+    network: '{{network}}'
+    source:
+      address: '{{GiversPFP.address}}'
+      abi: GiversPFP
+      startBlock: {{ GiversPFP.startBlock }}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      abis:
+        - name: GiversPFP
+          file: ./abis/GiversPFP.json
+      entities:
+        - Transfer
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: ./src/mappings/giversPFP.ts
+
+  {{/if}}
