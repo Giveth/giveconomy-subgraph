@@ -32,6 +32,9 @@ model:
     RewardToken:
       address: '0x0000000000000000000000000000000000000000'
       startBlock: 9999999999999
+  GiversPFP:
+    address: '0x0000000000000000000000000000000000000000'
+    startBlock: 9999999999999
 
 deployment-6-xdai:
   network: xdai
@@ -290,6 +293,10 @@ production-mainnet:
       address: '0x3115e5aAa3D6f742d09fbB649150dfE285a9c2A3'
       startBlock: 13862852
 
+  GiversPFP:
+    address: '0x78fde77737d5b9ab32fc718c9535c7f1b8ce84db'
+    startBlock: 16771375
+
 production-xdai:
   network: xdai
 
@@ -375,3 +382,8 @@ deployment-7-goerli:
     - name: 'Balancer WETH/GIV LP'
       address: '0xf8cba1c22b6515982bf43e71b7e8b546a3323ea8'
       startBlock: 7425927
+
+  GiversPFP:
+    address: '0x9F8c0e0353234F6f644fc7AF84Ac006f02cecE77'
+    startBlock: 8485825
+

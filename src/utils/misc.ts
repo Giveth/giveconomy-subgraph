@@ -126,3 +126,10 @@ export function getUnipool(address: Address): Unipool {
 
   return unipool;
 }
+
+export function getGiversPFPTokenId(
+  contractAddress: Address,
+  tokenId: i32,
+): string {
+  return contractAddress.toHex() + '-' + tokenId.toString();
+}
