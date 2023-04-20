@@ -13,6 +13,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
+      - name: Clean cache
+        run: yarn cache clean
       - name: Install
         run: yarn --frozen-lockfile
       - name: Lint
@@ -27,6 +29,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
+      - name: Clean cache
+        run: yarn cache clean
       - name: Install
         run: yarn --frozen-lockfile
       - name: Generate Manifest
@@ -47,6 +51,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
+      - name: Clean cache
+        run: yarn cache clean
       - name: Install
         run: yarn --frozen-lockfile
       - name: Generate Manifest
