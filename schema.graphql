@@ -81,6 +81,7 @@ type TokenAllocation @entity {
   txHash: String!
   distributor: String
   givback: Boolean
+  praise: Boolean
   tokenDistroAddress: String!
 }
 
