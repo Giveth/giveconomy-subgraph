@@ -29,23 +29,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TomAFrench/subgraph-template.git"
+    "url": "https://github.com/Giveth/giveconomy-subgraph.git"
   },
-  "contributors": [
-    {
-      "name": "Tom French",
-      "url": "https://github.com/tomafrench"
-    },
-    {
-      "name": "Dylan Golow",
-      "url": "https://github.com/dylangolow"
-    }
-  ],
+  "contributors": [],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TomAFrench/subgraph-template/issues"
+    "url": "https://github.com/Giveth/giveconomy-subgraph"
   },
-  "homepage": "https://github.com/TomAFrench/subgraph-template#readme",
+  "homepage": "https://github.com/Giveth/giveconomy-subgraph",
   "dependencies": {
     "@graphprotocol/graph-cli": "^0.37.2",
     "@graphprotocol/graph-ts": "^0.29.1",
