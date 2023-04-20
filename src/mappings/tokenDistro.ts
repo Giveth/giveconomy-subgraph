@@ -7,13 +7,14 @@ import {
   StartTimeChanged,
   ChangeAddress,
   DurationChanged,
+  PraiseRewardPaid,
 } from '../types/TokenDistro/TokenDistro';
 import {
   TokenAllocation,
   TransactionTokenAllocation,
   TokenDistroBalance,
 } from '../types/schema';
-import { GIVBACK } from '../utils/constants';
+import { GIVBACK, PRAISE } from '../utils/constants';
 import { BigInt, log } from '@graphprotocol/graph-ts';
 import {
   addAllocatedTokens,
@@ -139,6 +140,32 @@ export function handleGivBackPaid(event: GivBackPaid): void {
     }
 
     balance.save();
+  }
+}
+
+export function handlePraiseRewardPaid(event: PraiseRewardPaid): void {
+  const transactionTokenAllocations = TransactionTokenAllocation.load(
+    event.transaction.hash.toHex(),
+  );
+
+  if (!transactionTokenAllocations) {
+    return;
+  }
+
+  for (
+    let i = 0;
+    i < transactionTokenAllocations.tokenAllocationIds.length;
+    i++
+  ) {
+    const tokenAllocation = TokenAllocation.load(
+      transactionTokenAllocations.tokenAllocationIds[i],
+    );
+    if (!tokenAllocation) {
+      continue;
+    }
+    tokenAllocation.praise = true;
+    tokenAllocation.distributor = PRAISE;
+    tokenAllocation.save();
   }
 }
 
