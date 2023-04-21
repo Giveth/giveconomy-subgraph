@@ -13,12 +13,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
-      - name: Use latest yarn version
-        run: yarn set version latest
-      - name: Cleans yarn cache
-        run: yarn cache clean
       - name: Install
-        run: yarn
+        run: yarn --frozen-lockfile
       - name: Lint
         run: yarn lint
 
@@ -31,12 +27,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
-      - name: Use latest yarn version
-        run: yarn set version latest
-      - name: Cleans yarn cache
-        run: yarn cache clean
       - name: Install
-        run: yarn
+        run: yarn --frozen-lockfile
       - name: Generate Manifest
         run: yarn generate-manifests
       - uses: gtaschuk/graph-deploy@v0.1.12
@@ -55,12 +47,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
-      - name: Use latest yarn version
-        run: yarn set version latest
-      - name: Cleans yarn cache
-        run: yarn cache clean
       - name: Install
-        run: yarn
+        run: yarn --frozen-lockfile
       - name: Generate Manifest
         run: yarn generate-manifests
       - uses: gtaschuk/graph-deploy@v0.1.12
