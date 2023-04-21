@@ -16,7 +16,7 @@ jobs:
       - name: Use latest yarn version
         run: yarn set version latest
       - name: Install
-        run: yarn --frozen-lockfile
+        run: yarn
       - name: Lint
         run: yarn lint
 
@@ -32,7 +32,7 @@ jobs:
       - name: Use latest yarn version
         run: yarn set version latest
       - name: Install
-        run: yarn --frozen-lockfile
+        run: yarn
       - name: Generate Manifest
         run: yarn generate-manifests
       - uses: gtaschuk/graph-deploy@v0.1.12
@@ -54,7 +54,7 @@ jobs:
       - name: Use latest yarn version
         run: yarn set version latest
       - name: Install
-        run: yarn --frozen-lockfile
+        run: yarn
       - name: Generate Manifest
         run: yarn generate-manifests
       - uses: gtaschuk/graph-deploy@v0.1.12
