@@ -1,4 +1,4 @@
-name: Deploy Graph to develop
+name: Deploy Graph to Develop
 
 on:
   push:
