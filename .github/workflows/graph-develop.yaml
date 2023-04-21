@@ -15,6 +15,8 @@ jobs:
           node-version: 16
       - name: Use latest yarn version
         run: yarn set version latest
+      - name: Cleans yarn cache
+        run: yarn cache clean
       - name: Install
         run: yarn
       - name: Lint
@@ -31,6 +33,8 @@ jobs:
           node-version: 16
       - name: Use latest yarn version
         run: yarn set version latest
+      - name: Cleans yarn cache
+        run: yarn cache clean
       - name: Install
         run: yarn
       - name: Generate Manifest
@@ -53,6 +57,8 @@ jobs:
           node-version: 16
       - name: Use latest yarn version
         run: yarn set version latest
+      - name: Cleans yarn cache
+        run: yarn cache clean
       - name: Install
         run: yarn
       - name: Generate Manifest
