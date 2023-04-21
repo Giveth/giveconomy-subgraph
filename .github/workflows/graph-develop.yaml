@@ -51,7 +51,7 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Generate Manifest
         run: yarn generate-manifests
-      - uses: gtaschuk/graph-deploy@v0.1.12
+      - uses: giveth/graph-deploy
         with:
           graph_access_token: ${{ secrets.GRAPH_ACCESS_TOKEN }}
           graph_subgraph_name: giveth-economy-xdai-staging
