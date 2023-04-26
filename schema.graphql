@@ -41,6 +41,7 @@ type TokenBalance @entity {
   balance: BigInt!
   user: User!
   token: String!
+  updatedAt: BigInt!
 }
 
 type UnipoolBalance @entity {
@@ -50,6 +51,15 @@ type UnipoolBalance @entity {
   unipool: String!
   rewards: BigInt!
   rewardPerTokenPaid: BigInt!
+  updatedAt: BigInt!
+}
+
+type BalanceChange @entity {
+  id: ID!
+  account: String!
+  contractAddress: String!
+  time: BigInt!
+  amount: BigInt!
 }
 
 type Unipool @entity {

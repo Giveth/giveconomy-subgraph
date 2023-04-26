@@ -1,10 +1,11 @@
-import { Address, BigInt } from '@graphprotocol/graph-ts';
+import { Address, BigInt, ethereum } from '@graphprotocol/graph-ts';
 import {
   GIVPower,
   TokenBalance,
   User,
   Unipool,
   UnipoolBalance,
+  BalanceChange,
 } from '../types/schema';
 import { GIVPower as GIVPowerContract } from '../types/GIVPower/GIVPower';
 import { UnipoolTokenDistributor as UnipoolContract } from '../types/Unipool/UnipoolTokenDistributor';
@@ -144,4 +145,23 @@ export function getGiversPFPTokenId(
   tokenId: i32,
 ): string {
   return contractAddress.toHex() + '-' + tokenId.toString();
+}
+
+export function recordBalanceChange(
+  event: ethereum.Event,
+  account: Address,
+  amount: BigInt,
+): void {
+  const contractAddress = event.address.toHex();
+  const block = event.block;
+
+  // Key is contractAddress-blockNumber-transactionIndex-logIndex
+  const id = `${contractAddress}-${block.number}-${event.transaction.index}-${event.logIndex}`;
+
+  const balanceChange = new BalanceChange(id);
+  balanceChange.account = account.toHex();
+  balanceChange.contractAddress = contractAddress;
+  balanceChange.time = block.timestamp;
+  balanceChange.amount = amount;
+  balanceChange.save();
 }
