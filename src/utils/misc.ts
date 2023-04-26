@@ -86,6 +86,7 @@ export function getUserTokenBalance(
     tokenBalance.token = tokenAddress.toHex();
     tokenBalance.user = userAddress.toHex();
     tokenBalance.balance = BigInt.zero();
+    tokenBalance.updatedAt = BigInt.zero();
     tokenBalance.save();
   }
 
@@ -109,6 +110,7 @@ export function getUserUnipoolBalance(
     unipoolBalance.balance = BigInt.zero();
     unipoolBalance.rewards = BigInt.zero();
     unipoolBalance.rewardPerTokenPaid = BigInt.zero();
+    unipoolBalance.updatedAt = BigInt.zero();
     unipoolBalance.save();
   }
 
