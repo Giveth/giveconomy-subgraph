@@ -238,6 +238,8 @@ dataSources:
           handler: handleClaim
         - event: GivBackPaid(address)
           handler: handleGivBackPaid
+        - event: PraiseRewardPaid(address)
+          handler: handlePraiseRewardPaid
         # - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
         #   handler: handleRoleAdminChanged
         # - event: RoleGranted(indexed bytes32,indexed address,indexed address)

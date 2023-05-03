@@ -7,7 +7,11 @@ import {
   Withdrawn,
 } from '../types/Unipool/UnipoolTokenDistributor';
 import { UNIPOOL } from '../utils/constants';
-import { getUnipool, getUserUnipoolBalance } from '../utils/misc';
+import {
+  getUnipool,
+  getUserUnipoolBalance,
+  recordBalanceChange,
+} from '../utils/misc';
 import { updateTokenAllocationDistributor } from '../utils/tokenDistroHelper';
 
 function updateReward(address: Address, userAddress: Address): void {
@@ -60,7 +64,10 @@ export function handleStaked(event: Staked): void {
 
   const userBalance = getUserUnipoolBalance(event.address, event.params.user);
   userBalance.balance = userBalance.balance.plus(event.params.amount);
+  userBalance.updatedAt = event.block.timestamp;
   userBalance.save();
+
+  recordBalanceChange(event, event.params.user, event.params.amount);
 }
 
 export function handleWithdrawn(event: Withdrawn): void {
@@ -72,5 +79,8 @@ export function handleWithdrawn(event: Withdrawn): void {
 
   const userBalance = getUserUnipoolBalance(event.address, event.params.user);
   userBalance.balance = userBalance.balance.minus(event.params.amount);
+  userBalance.updatedAt = event.block.timestamp;
   userBalance.save();
+
+  recordBalanceChange(event, event.params.user, event.params.amount.neg());
 }

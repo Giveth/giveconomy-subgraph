@@ -1,4 +1,4 @@
-name: Deploy Graph to develop
+name: Deploy Graph to Develop
 
 on:
   push:
@@ -31,7 +31,7 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Generate Manifest
         run: yarn generate-manifests
-      - uses: gtaschuk/graph-deploy@v0.1.12
+      - uses: gtaschuk/graph-deploy@v0.1.9
         with:
           graph_access_token: ${{ secrets.GRAPH_ACCESS_TOKEN }}
           graph_subgraph_name: giveth-economy-goerli-staging
@@ -51,7 +51,7 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Generate Manifest
         run: yarn generate-manifests
-      - uses: gtaschuk/graph-deploy@v0.1.12
+      - uses: gtaschuk/graph-deploy@v0.1.9
         with:
           graph_access_token: ${{ secrets.GRAPH_ACCESS_TOKEN }}
           graph_subgraph_name: giveth-economy-xdai-staging

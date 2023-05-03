@@ -1,6 +1,6 @@
 {
   "name": "@giveth/givpower-subgraph",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Template for subgraph development boilerplate",
   "scripts": {
     "auth": "graph auth https://api.thegraph.com/deploy/",
@@ -29,26 +29,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TomAFrench/subgraph-template.git"
+    "url": "https://github.com/Giveth/giveconomy-subgraph.git"
   },
-  "contributors": [
-    {
-      "name": "Tom French",
-      "url": "https://github.com/tomafrench"
-    },
-    {
-      "name": "Dylan Golow",
-      "url": "https://github.com/dylangolow"
-    }
-  ],
+  "contributors": [],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TomAFrench/subgraph-template/issues"
+    "url": "https://github.com/Giveth/giveconomy-subgraph"
   },
-  "homepage": "https://github.com/TomAFrench/subgraph-template#readme",
+  "homepage": "https://github.com/Giveth/giveconomy-subgraph",
   "dependencies": {
-    "@graphprotocol/graph-cli": "^0.37.2",
-    "@graphprotocol/graph-ts": "^0.29.1",
+    "@graphprotocol/graph-cli": "^0.47.0",
+    "@graphprotocol/graph-ts": "^0.29.3",
     "fs-extra": "^8.1.0",
     "handlebars": "^4.7.6",
     "js-yaml": "^4.1.0"
@@ -60,7 +51,7 @@
     "eslint": "^7.10.0",
     "eslint-config-airbnb-base-typescript-prettier": "^4.1.0",
     "prettier": "^2.1.2",
-    "ts-node": "^9.0.0",
+    "ts-node": "^10.9.1",
     "typescript": "^4.0.3"
   }
 }

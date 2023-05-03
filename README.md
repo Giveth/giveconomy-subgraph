@@ -2,6 +2,7 @@
 # GIVEconomy Subgraph
 Subgraph for Giveth Economy contracts
 
+
 ## Hosted node endpoints on production
 
 - Mainnet: `https://thegraph.com/hosted-service/subgraph/giveth/giveth-economy-second-mainnet`
