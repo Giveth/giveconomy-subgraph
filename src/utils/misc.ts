@@ -159,7 +159,10 @@ export function recordBalanceChange(
   const block = event.block;
 
   // Key is contractAddress-blockNumber-transactionIndex-logIndex
-  const id = `${contractAddress}-${block.number}-${event.transaction.index}-${event.logIndex}`;
+  const id = `${contractAddress}-${block.number}-${padZeroLeft(
+    event.transaction.index.toString(),
+    4,
+  )}-${padZeroLeft(event.logIndex.toString(), 4)}`;
 
   const balanceChange = new BalanceChange(id);
   balanceChange.account = account.toHex();
@@ -169,4 +172,15 @@ export function recordBalanceChange(
   balanceChange.amount = amount;
   balanceChange.newBalance = newBalance;
   balanceChange.save();
+}
+
+export function padLeft(str: string, len: i32, char: string): string {
+  while (str.length < len) {
+    str = char + str;
+  }
+  return str;
+}
+
+export function padZeroLeft(str: string, len: i32): string {
+  return padLeft(str, len, '0');
 }
