@@ -59,7 +59,9 @@ type BalanceChange @entity {
   account: String!
   contractAddress: String!
   time: BigInt!
+  block: BigInt!
   amount: BigInt!
+  newBalance: BigInt!
 }
 
 type Unipool @entity {

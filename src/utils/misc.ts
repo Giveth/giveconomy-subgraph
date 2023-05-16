@@ -153,6 +153,7 @@ export function recordBalanceChange(
   event: ethereum.Event,
   account: Address,
   amount: BigInt,
+  newBalance: BigInt,
 ): void {
   const contractAddress = event.address.toHex();
   const block = event.block;
@@ -164,6 +165,8 @@ export function recordBalanceChange(
   balanceChange.account = account.toHex();
   balanceChange.contractAddress = contractAddress;
   balanceChange.time = block.timestamp;
+  balanceChange.block = block.number;
   balanceChange.amount = amount;
+  balanceChange.newBalance = newBalance;
   balanceChange.save();
 }
