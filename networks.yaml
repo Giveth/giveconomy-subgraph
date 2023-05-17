@@ -404,3 +404,14 @@ deployment-7-goerli:
     address: '0x9F8c0e0353234F6f644fc7AF84Ac006f02cecE77'
     startBlock: 8485825
 
+deployment-7-optimism-goerli:
+  network: optimism-goerli
+
+  TokenDistro:
+    - name: 'GIVstream'
+      address: '0x8D2cBce8ea0256bFFBa6fa4bf7CEC46a1d9b43f6'
+      startBlock: 9371285
+  ERC20:
+    - name: 'GIV'
+      address: '0xc916Ce4025Cb479d9BA9D798A80094a449667F5D'
+      startBlock: 9370029

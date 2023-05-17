@@ -67,7 +67,12 @@ export function handleStaked(event: Staked): void {
   userBalance.updatedAt = event.block.timestamp;
   userBalance.save();
 
-  recordBalanceChange(event, event.params.user, event.params.amount);
+  recordBalanceChange(
+    event,
+    event.params.user,
+    event.params.amount,
+    userBalance.balance,
+  );
 }
 
 export function handleWithdrawn(event: Withdrawn): void {
@@ -82,5 +87,10 @@ export function handleWithdrawn(event: Withdrawn): void {
   userBalance.updatedAt = event.block.timestamp;
   userBalance.save();
 
-  recordBalanceChange(event, event.params.user, event.params.amount.neg());
+  recordBalanceChange(
+    event,
+    event.params.user,
+    event.params.amount.neg(),
+    userBalance.balance,
+  );
 }

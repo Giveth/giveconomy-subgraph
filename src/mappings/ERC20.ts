@@ -12,6 +12,7 @@ export function handleTransfer(event: Transfer): void {
     fromBalance.balance = fromBalance.balance.minus(amount);
     fromBalance.updatedAt = event.block.timestamp;
     fromBalance.save();
+    recordBalanceChange(event, fromAddress, amount.neg(), fromBalance.balance);
   }
 
   if (toAddress.toHex() != Address.zero().toHex()) {
@@ -19,8 +20,6 @@ export function handleTransfer(event: Transfer): void {
     toBalance.balance = toBalance.balance.plus(amount);
     toBalance.updatedAt = event.block.timestamp;
     toBalance.save();
+    recordBalanceChange(event, toAddress, amount, toBalance.balance);
   }
-
-  recordBalanceChange(event, fromAddress, amount.neg());
-  recordBalanceChange(event, toAddress, amount);
 }
