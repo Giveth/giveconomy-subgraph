@@ -78,6 +78,7 @@ dataSources:
       entities:
         - User
         - TokenLock
+        - TokenBalance
       eventHandlers:
         - event: TokenLocked(indexed address,uint256,uint256,uint256)
           handler: handleTokenLocked
