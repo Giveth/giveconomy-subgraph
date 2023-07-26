@@ -60,6 +60,68 @@ dataSources:
 
 {{/if}}
 
+{{#if (isdefined UnipoolGIVPower)}}
+  - kind: ethereum/contract
+    name: UnipoolGIVPower
+    network: '{{network}}'
+    source:
+      address: '{{UnipoolGIVPower.address}}'
+      abi: UnipoolGIVPower
+      startBlock: {{ UnipoolGIVPower.startBlock }}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      abis:
+        - name: UnipoolGIVPower
+          file: ./abis/UnipoolGIVPower.json
+      entities:
+        - User
+        - TokenLock
+      eventHandlers:
+        - event: TokenLocked(indexed address,uint256,uint256,uint256)
+          handler: handleTokenLocked
+        - event: TokenUnlocked(indexed address,uint256,uint256)
+          handler: handleTokenUnlocked
+        - event: Upgraded(indexed address)
+          handler: handleUpgrade
+        - event: DepositTokenDeposited(indexed address,uint256)
+          handler: handleDepositTokenDeposited
+        - event: DepositTokenWithdrawn(indexed address,uint256)
+          handler: handleDepositTokenWithdrawn
+
+      file: ./src/mappings/unipoolGivPower.ts
+
+  - kind: ethereum/contract
+    name: 'unipoolGivPowerUnipool'
+    network: '{{network}}'
+    source:
+      address: '{{UnipoolGIVPower.address}}'
+      abi: UnipoolTokenDistributor
+      startBlock: {{ UnipoolGIVPower.startBlock }}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      abis:
+        - name: UnipoolTokenDistributor
+          file: ./abis/UnipoolTokenDistributor.json
+      entities:
+        - Unipool
+        - UnipoolBalance
+      eventHandlers:
+        - event: RewardPaid(indexed address,uint256)
+          handler: handleRewardPaid
+        - event: Staked(indexed address,uint256)
+          handler: handleStaked
+        - event: Withdrawn(indexed address,uint256)
+          handler: handleWithdrawn
+        - event: RewardAdded(uint256)
+          handler: handleRewardAdded
+      file: ./src/mappings/unipool.ts
+
+{{/if}}
+
 {{#if (isdefined MerkleDistro)}}
   - kind: ethereum/contract
     name: MerkleDistro
