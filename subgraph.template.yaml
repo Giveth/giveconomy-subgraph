@@ -75,6 +75,8 @@ dataSources:
       abis:
         - name: UnipoolGIVPower
           file: ./abis/UnipoolGIVPower.json
+        - name: GIVPower
+          file: ./abis/GIVPower.json
       entities:
         - User
         - TokenLock
