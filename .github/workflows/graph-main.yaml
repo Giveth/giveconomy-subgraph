@@ -58,7 +58,7 @@ jobs:
           graph_account: giveth
           graph_config_file: subgraph.production-gnosis.yaml
 
-  deploy-staging-optimism-goerli:
+  deploy-optimism:
     needs: lint
     runs-on: ubuntu-latest
     steps:
