@@ -424,6 +424,7 @@ deployment-7-optimism-goerli:
 
 production-optimism-mainnet:
   network: optimism
+
   TokenDistro:
     - name: 'GIVstream'
       address: '0xE3Ac7b3e6B4065f4765d76fDC215606483BF3bD1'
@@ -432,3 +433,6 @@ production-optimism-mainnet:
     - name: 'GIV'
       address: '0x528CDc92eAB044E1E39FE43B9514bfdAB4412B98'
       startBlock: 91994520
+  UnipoolGIVPower:
+    address: '0x301c739cf6bfb6b47a74878bdeb13f92f13ae5e7'
+    startBlock: 108350094
