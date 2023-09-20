@@ -1,4 +1,4 @@
-import { Address, BigInt, ethereum } from '@graphprotocol/graph-ts';
+import { Address, BigInt, dataSource, ethereum } from '@graphprotocol/graph-ts';
 import {
   GIVPower,
   TokenBalance,
@@ -6,9 +6,11 @@ import {
   Unipool,
   UnipoolBalance,
   BalanceChange,
+  TokenLock,
 } from '../types/schema';
 import { GIVPower as GIVPowerContract } from '../types/GIVPower/GIVPower';
 import { UnipoolTokenDistributor as UnipoolContract } from '../types/Unipool/UnipoolTokenDistributor';
+import { TO_UPDATE_GIV_POWER_LOCKS_IDS } from '../utils/optimismGivPowerLocks';
 
 export function getUserEntity(userAddress: Address): User {
   let user = User.load(userAddress.toHex());
@@ -45,6 +47,29 @@ export function getGIVPower(givPowerAddress: Address): GIVPower {
   return givpower;
 }
 
+export function updateGivPowerLocks(givPowerAddress: Address): void {
+  const network = dataSource.network();
+  if (network == 'optimism') {
+    const givPowerContract = GIVPowerContract.bind(givPowerAddress);
+    const dateCall = givPowerContract.try_INITIAL_DATE();
+    const durationCall = givPowerContract.try_ROUND_DURATION();
+
+    const initialDate = dateCall.reverted ? BigInt.zero() : dateCall.value;
+    const roundDuration = durationCall.reverted
+      ? 0
+      : durationCall.value.toI32();
+
+    for (let i = 0; i < TO_UPDATE_GIV_POWER_LOCKS_IDS.length; i += 1) {
+      const lock = TokenLock.load(TO_UPDATE_GIV_POWER_LOCKS_IDS[i]);
+      if (!lock) continue;
+      lock.unlockableAt = initialDate.plus(
+        BigInt.fromI64((lock.untilRound + 1) * roundDuration),
+      );
+      lock.save();
+    }
+  }
+}
+
 export function updateGivPower(givPowerAddress: Address): void {
   const givPower = getGIVPower(givPowerAddress);
 
@@ -52,13 +77,15 @@ export function updateGivPower(givPowerAddress: Address): void {
   const dateCall = givPowerContract.try_INITIAL_DATE();
   const durationCall = givPowerContract.try_ROUND_DURATION();
 
-  let initialDate = dateCall.reverted ? BigInt.zero() : dateCall.value;
-  let roundDuration = durationCall.reverted ? 0 : durationCall.value.toI32();
+  const initialDate = dateCall.reverted ? BigInt.zero() : dateCall.value;
+  const roundDuration = durationCall.reverted ? 0 : durationCall.value.toI32();
 
   givPower.initialDate = initialDate;
   givPower.roundDuration = roundDuration;
 
   givPower.save();
+
+  updateGivPowerLocks(givPowerAddress);
 }
 
 export function getTokenLockId(
