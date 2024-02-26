@@ -12,6 +12,7 @@
     "deploy:gnosis:deployment-7": "yarn generate-manifests && graph deploy --product hosted-service aminlatifi/giveconomy-xdai-deployment-seven subgraph.deployment-7-gnosis.yaml",
     "deploy:gnosis:develop": "yarn generate-manifests && graph deploy --product hosted-service giveth/giveth-economy-second-xdai-staging subgraph.deployment-7-gnosis.yaml",
     "deploy:optimism-goerli:develop": "yarn generate-manifests && graph deploy --product hosted-service giveth/giveth-economy-optim-staging subgraph.deployment-7-optimism-goerli.yaml",
+    "deploy:optimism-sepolia:develop": "yarn generate-manifests && graph deploy --product hosted-service giveth/giveth-economy-optim-sepolia subgraph.deployment-7-optimism-sepolia.yaml",
     "deploy:kovan:develop": "yarn generate-manifests && graph deploy --product hosted-service giveth/giveth-economy-second-kovan-staging subgraph.deployment-7-kovan.yaml",
     "deploy:kovan:deployment-7:mohammad": "yarn generate-manifests && graph deploy --product hosted-service mohammadranjbarz/giv-economy-kovan subgraph.deployment-7-kovan.yaml",
     "deploy:goerli:develop": "yarn generate-manifests && graph deploy --product hosted-service giveth/giveth-economy-goerli-staging subgraph.deployment-7-goerli.yaml",
