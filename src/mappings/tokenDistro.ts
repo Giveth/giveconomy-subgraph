@@ -49,19 +49,10 @@ export function handleChangeAddress(event: ChangeAddress): void {
     event.address.toHex(),
     event.params.oldAddress.toHex(),
   );
-  if (!oldBalance) {
-    log.debug('Change Address oldAddress {} balance is null!', [
-      event.params.oldAddress.toHex(),
-    ]);
-    return;
-  }
-  let newBalance = getTokenDistroBalance(
+  const newBalance = getTokenDistroBalance(
     event.address.toHex(),
     event.params.newAddress.toHex(),
   );
-  if (!newBalance) {
-    newBalance = new TokenDistroBalance(event.params.newAddress.toHex());
-  }
 
   // New Address allocatedTokens amount should be zero
   newBalance.allocatedTokens = newBalance.allocatedTokens.plus(
