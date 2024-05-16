@@ -6,6 +6,7 @@ import {
 } from '../types/schema';
 import { Address, BigInt, log } from '@graphprotocol/graph-ts';
 import { TokenDistro as TokenDistroContract } from '../types/TokenDistro/TokenDistro';
+import { getUserEntity } from './misc';
 export function saveTokenAllocation(
   recipient: string,
   txHash: string,
@@ -38,6 +39,8 @@ export function getTokenDistroBalance(
 ): TokenDistroBalance {
   const id = tokenDistro + '-' + userAddress;
   let tokenDistroBalance = TokenDistroBalance.load(id);
+
+  getUserEntity(Address.fromString(userAddress));
 
   if (!tokenDistroBalance) {
     tokenDistroBalance = new TokenDistroBalance(id);

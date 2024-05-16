@@ -2,7 +2,7 @@ import {
   DepositTokenDeposited,
   DepositTokenWithdrawn,
 } from '../types/UnipoolGIVPower/UnipoolGIVPower';
-import { getUserTokenBalance, recordBalanceChange } from '../utils/misc';
+import { getUserTokenBalance } from '../utils/misc';
 
 export {
   handleTokenUnlocked,
@@ -19,7 +19,6 @@ export function handleDepositTokenDeposited(
   balance.balance = balance.balance.plus(amount);
   balance.updatedAt = event.block.timestamp;
   balance.save();
-  recordBalanceChange(event, account, amount, balance.balance);
 }
 
 export function handleDepositTokenWithdrawn(
@@ -31,5 +30,4 @@ export function handleDepositTokenWithdrawn(
   balance.balance = balance.balance.minus(amount);
   balance.updatedAt = event.block.timestamp;
   balance.save();
-  recordBalanceChange(event, account, amount.neg(), balance.balance);
 }

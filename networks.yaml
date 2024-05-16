@@ -422,6 +422,21 @@ deployment-7-optimism-goerli:
     address: '0x632AC305ed88817480d12155A7F1244cC182C298'
     startBlock: 12436803
 
+deployment-7-optimism-sepolia:
+  network: optimism-sepolia
+
+  TokenDistro:
+    - name: 'GIVstream'
+      address: '0x301C739CF6bfb6B47A74878BdEB13f92F13Ae5E7'
+      startBlock: 8568240 
+  ERC20:
+    - name: 'GIV'
+      address: '0x2f2c819210191750F2E11F7CfC5664a0eB4fd5e6'
+      startBlock: 8566601
+  UnipoolGIVPower:
+    address: '0xE6836325B13819CF38f030108255A5213491A725'
+    startBlock: 8570759 
+
 production-optimism-mainnet:
   network: optimism
 
