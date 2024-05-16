@@ -1,0 +1,63 @@
+name: Deploy <develop branch> to Graph Studio
+
+on:
+  push:
+    branches: [develop]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Install
+        run: yarn --frozen-lockfile
+      - name: Lint
+        run: yarn lint
+
+  deploy-staging-gnosis:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Install
+        run: yarn --frozen-lockfile
+      - name: Generate Manifest
+        run: yarn generate-manifests
+      - uses: balancer-labs/graph-deploy@v0.0.1
+        with:
+          graph_deploy_key: ${{secrets.GRAPH_DEPLOY_KEY}}
+          graph_version_label: ${GITHUB_SHA::8}
+          graph_subgraph_name: 'giveth-economy-xdai-staging'
+          graph_account: 'giveth'
+          graph_config_file: 'subgraph.deployment-7-gnosis.yaml'
+          graph_deploy_studio: true
+
+  deploy-staging-optimism-goerli:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Install
+        run: yarn --frozen-lockfile
+      - name: Generate Manifest
+        run: yarn generate-manifests
+      - uses: balancer-labs/graph-deploy@v0.0.1
+        with:
+          graph_deploy_key: ${{secrets.GRAPH_DEPLOY_KEY}}
+          graph_version_label: ${GITHUB_SHA::8}
+          graph_subgraph_name: 'giveth-economy-optimism-staging'
+          graph_account: 'giveth'
+          graph_config_file: 'subgraph.deployment-7-optimism-goerli.yaml'
+          graph_deploy_studio: true
