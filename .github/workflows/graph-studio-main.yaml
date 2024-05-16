@@ -1,0 +1,63 @@
+name: Deploy <main branch> to Graph Studio
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18
+      - name: Install
+        run: yarn --frozen-lockfile
+      - name: Lint
+        run: yarn lint
+
+  deploy-mainnet:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18
+      - name: Install
+        run: yarn --frozen-lockfile
+      - name: Generate Manifest
+        run: yarn generate-manifests
+      - uses: balancer-labs/graph-deploy@v0.0.1
+        with:
+          graph_deploy_key: ${{secrets.GRAPH_DEPLOY_KEY}}
+          graph_version_label: ${GITHUB_SHA::8}
+          graph_subgraph_name: 'giveth-giveconomy-mainnet'
+          graph_account: 'giveth'
+          graph_config_file: 'subgraph.production-mainnet.yaml'
+          graph_deploy_studio: true
+
+  deploy-gnosis:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18
+      - name: Install
+        run: yarn --frozen-lockfile
+      - name: Generate Manifest
+        run: yarn generate-manifests
+      - uses: balancer-labs/graph-deploy@v0.0.1
+        with:
+          graph_deploy_key: ${{secrets.GRAPH_DEPLOY_KEY}}
+          graph_version_label: ${GITHUB_SHA::8}
+          graph_subgraph_name: 'giveth-giveconomy-gnosischain'
+          graph_account: 'giveth'
+          graph_config_file: 'subgraph.production-gnosis.yaml'
+          graph_deploy_studio: true
