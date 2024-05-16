@@ -35,7 +35,7 @@ jobs:
         with:
           graph_deploy_key: ${{secrets.GRAPH_DEPLOY_KEY}}
           graph_version_label: ${GITHUB_SHA::8}
-          graph_subgraph_name: 'giveth-economy-xdai-staging'
+          graph_subgraph_name: 'giveconomy-staging-gnosischain'
           graph_account: 'giveth'
           graph_config_file: 'subgraph.deployment-7-gnosis.yaml'
           graph_deploy_studio: true
@@ -57,7 +57,7 @@ jobs:
         with:
           graph_deploy_key: ${{secrets.GRAPH_DEPLOY_KEY}}
           graph_version_label: ${GITHUB_SHA::8}
-          graph_subgraph_name: 'giveth-economy-optimism-staging'
+          graph_subgraph_name: 'giveth-staging-optimism-goerli'
           graph_account: 'giveth'
           graph_config_file: 'subgraph.deployment-7-optimism-goerli.yaml'
           graph_deploy_studio: true
