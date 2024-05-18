@@ -61,3 +61,25 @@ jobs:
           graph_account: 'giveth'
           graph_config_file: 'subgraph.production-gnosis.yaml'
           graph_deploy_studio: true
+  
+  deploy-optimism:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18
+      - name: Install
+        run: yarn --frozen-lockfile
+      - name: Generate Manifest
+        run: yarn generate-manifests
+      - uses: balancer-labs/graph-deploy@v0.0.1
+        with:
+          graph_deploy_key: ${{secrets.GRAPH_DEPLOY_KEY}}
+          graph_version_label: ${GITHUB_SHA::8}
+          graph_subgraph_name: 'giveth-giveconomy-optimism'
+          graph_account: 'giveth'
+          graph_config_file: 'subgraph.production-optimism-mainnet.yaml'
+          graph_deploy_studio: true
