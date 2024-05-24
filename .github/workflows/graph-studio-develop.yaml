@@ -40,7 +40,7 @@ jobs:
           graph_config_file: 'subgraph.deployment-7-gnosis.yaml'
           graph_deploy_studio: true
 
-  deploy-staging-optimism-goerli:
+  deploy-staging-optimism-sepolia:
     needs: lint
     runs-on: ubuntu-latest
     steps:
@@ -48,7 +48,7 @@ jobs:
       - name: Install node
         uses: actions/setup-node@v1
         with:
-          node-version: 18
+          node-version: 16
       - name: Install
         run: yarn --frozen-lockfile
       - name: Generate Manifest
@@ -57,7 +57,7 @@ jobs:
         with:
           graph_deploy_key: ${{secrets.GRAPH_DEPLOY_KEY}}
           graph_version_label: ${GITHUB_SHA::8}
-          graph_subgraph_name: 'giveth-staging-optimism-goerli'
+          graph_subgraph_name: 'giveconomy-staging-op-sepolia'
           graph_account: 'giveth'
-          graph_config_file: 'subgraph.deployment-7-optimism-goerli.yaml'
+          graph_config_file: 'subgraph.deployment-7-optimism-sepolia.yaml'
           graph_deploy_studio: true
