@@ -468,7 +468,7 @@ production-optimism-mainnet:
     startBlock: 108350094
 
 production-zkevm-mainnet:
-  network: zkevm
+  network: polygon-zkevm
 
   TokenDistro:
     - name: 'GIVstream'
