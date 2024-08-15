@@ -466,3 +466,18 @@ production-optimism-mainnet:
   UnipoolGIVPower:
     address: '0x301c739cf6bfb6b47a74878bdeb13f92f13ae5e7'
     startBlock: 108350094
+
+production-zkevm-mainnet:
+  network: zkevm
+
+  TokenDistro:
+    - name: 'GIVstream'
+      address: '0x4fB9B10ECDe1b048DBC79aBEAB3793edc93a0d54'
+      startBlock: 15130401
+  ERC20:
+    - name: 'GIV'
+      address: '0xddAFB91475bBf6210a151FA911AC8fdA7dE46Ec2'
+      startBlock: 15111176
+  UnipoolGIVPower:
+    address: '0xc790f82bf6f8709aa4a56dc11afad7af7c2a9867'
+    startBlock: 15130779
