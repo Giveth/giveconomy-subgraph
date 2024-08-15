@@ -437,6 +437,21 @@ deployment-7-optimism-sepolia:
     address: '0xE6836325B13819CF38f030108255A5213491A725'
     startBlock: 8570759
 
+deployment-7-zkevm-cardona:
+  network: polygon-zkevm-cardona
+
+  TokenDistro:
+    - name: 'GIVstream'
+      address: '0x2Df3e67Be4e441Cddd2d29c3d41DFd7D516f18e6'
+      startBlock: 5356116
+  ERC20:
+    - name: 'GIV'
+      address: '0xa77390562986F5d08F5aECF5D3Fb82BD16B44548'
+      startBlock: 4988065
+  UnipoolGIVPower:
+    address: '0x7E9f30A74fCDf035018bc007f9930aA171863E33'
+    startBlock: 5386646
+
 production-optimism-mainnet:
   network: optimism
 
