@@ -3,47 +3,32 @@
 ## 1. Project Overview
 
 ### Purpose
-The Giveth Economy Subgraph is a Graph Protocol subgraph that indexes and makes queryable the Giveth Economy smart contracts. It provides a way to efficiently query blockchain data related to GIV token locking, staking, rewards distribution, and Uniswap V3 integration.
+The Giveth Economy Subgraph is a Graph Protocol subgraph that is built for the Giveth Economy smart contracts. It is used to index and make queryable the Giveth Economy smart contracts.
 
 ### Key Features
-- Tracks GIV token locking and unlocking events
-- Monitors Uniswap V3 liquidity positions and staking
-- Records token distributions and allocations
-- Tracks user balances and rewards across different pools
+- Supports GIVeconomy DeFi protocol variety of balances, e.g. GIV Power, GIV Token Lock, GIV Merkle Distro, GIV Uniswap V3 Liquidity Mining, Givers PFP, etc.
 - Provides historical snapshots of GIV Power
+- Provides GIVPower locked positions information, e.g. amount, unlocked, unlockable at,...
+- Automatic indexing config generation using handlebars templates
 
 ### Live Links
 - Mainnet Subgraph: https://thegraph.com/hosted-service/subgraph/giveth/giveth-economy-second-mainnet
 - Gnosis Chain Subgraph: https://thegraph.com/hosted-service/subgraph/giveth/giveth-economy-second-xdai
 
-## 2. Architecture Overview
+## 2. System Architecture
 
-### System Diagram
+### Flow Diagram
 ```mermaid
-graph TD
-    A[Smart Contracts] --> B[Subgraph]
-    B --> C[GraphQL API]
-    C --> D[Frontend Applications]
-    
-    subgraph Smart Contracts
-        A1[GIVPower]
-        A2[Unipool]
-        A3[MerkleDistro]
-        A4[UniswapV3]
-    end
-    
-    subgraph Subgraph
-        B1[Event Handlers]
-        B2[Entity Mappings]
-        B3[Schema]
-    end
+flowchart LR
+    A(Config networks.yaml) --> |generate manifest| B(Subgraph Deployment yaml file)
+    B --> |deploy| C(The Graph)
 ```
 
 ### Tech Stack
 - Graph Protocol
 - TypeScript/AssemblyScript
 - GraphQL
-- Ethereum/Gnosis Chain
+- Handlebars
 
 ### Data Flow
 1. Smart contracts emit events
@@ -55,8 +40,7 @@ graph TD
 
 ### Prerequisites
 - Node.js (v14 or higher)
-- Yarn package manager
-- Graph CLI (`npm install -g @graphprotocol/graph-cli`)
+- NPM or Yarn package manager
 - Access to The Graph hosted service
 
 ### Installation Steps
@@ -78,26 +62,22 @@ yarn auth
 
 ### Configuration
 The subgraph configuration is managed through:
-- `subgraph.template.yaml`: Template for subgraph configuration
-- `networks.yaml`: Network-specific contract addresses and configurations
-- Environment variables for deployment keys
+- `subgraph.template.yaml`: Template for subgraph configuration. No need to write manually if you use the networks.yaml file and the generate-manifests command.
+- `networks.yaml`: A template to configure contract addresses and start blocks for each network. This will be processed by the generate-manifests command to create the subgraph deployment yaml file.
 
 ## 4. Usage Instructions
 
 ### Running the Application
 To build and deploy the subgraph:
 
-1. Generate manifests:
-```bash
-yarn generate-manifests
-```
+1. Update the networks.yaml file with the correct contract addresses and start blocks for each network.
 
-2. Build the subgraph:
+2. Build: This will generate the subgraph deployment yaml file and subgraph code.
 ```bash
 yarn build
 ```
 
-3. Deploy to specific network:
+3. Deploy to specific network: 
 ```bash
 # For Gnosis Chain
 yarn deploy:gnosis:production
@@ -105,6 +85,7 @@ yarn deploy:gnosis:production
 # For Mainnet
 yarn deploy:mainnet:production
 ```
+Look at the corresponding scripts in the package.json to customize it for new networks.
 
 ### Testing
 The subgraph includes linting and type checking:
@@ -112,23 +93,13 @@ The subgraph includes linting and type checking:
 yarn lint
 ```
 
-### Common Tasks
-- Generate TypeScript types:
+### Build Issues
+Test type and build issues with build command.
 ```bash
-yarn codegen:deployment-7
-```
-
-- Build specific deployment:
-```bash
-yarn build:deployment-7
+yarn build
 ```
 
 ## 5. Deployment Process
-
-### Environments
-- Production (Mainnet & Gnosis Chain)
-- Staging (Various test networks)
-- Development (Local development)
 
 ### Deployment Steps
 1. Update contract addresses in `networks.yaml` if needed
@@ -146,23 +117,25 @@ Deployments are managed through GitHub Actions in the `.github/workflows` direct
    - Check network configuration in `networks.yaml`
    - Verify contract addresses and start blocks
    - Ensure proper authentication with The Graph
+   - Check the graph hosted service accessability
 
 2. **Query Errors**
    - Verify entity schema matches the GraphQL schema
-   - Check event handler implementations
-   - Ensure proper indexing of events
+   - Check subgraph health, i.e. sync status, indexing status, etc.
 
 ### Logs and Debugging
 - Use Graph Protocol's dashboard to monitor indexing status
 - Check deployment logs in The Graph's hosted service
-- Monitor subgraph health through GraphQL queries
+- Monitor subgraph health through GraphQL queries, e.g. block number,...
+- Unreliable subgraph results due to malfunctioning subgraph nodes
 
 ## Schema Documentation
 
 The subgraph defines several key entities:
 
 ### Core Entities
-- `GIVPower`: Tracks overall GIV Power statistics
+- `GIVPower`: Tracks overall GIV Power balances
+- `ERC20`: Tracks ERC20 token balances, i.e. simple tokens and LP tokens
 - `TokenLock`: Records individual token locks
 - `User`: Manages user balances and relationships
 - `Unipool`: Tracks liquidity pool information
