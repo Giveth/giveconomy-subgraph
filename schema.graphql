@@ -1,4 +1,4 @@
-type GIVPower @entity {
+type GIVPower @entity(immutable: false) {
   id: ID!
   initialDate: BigInt!
   locksCreated: Int!
@@ -6,7 +6,7 @@ type GIVPower @entity {
   totalGIVLocked: BigInt!
 }
 
-type TokenLock @entity {
+type TokenLock @entity(immutable: false) {
   id: ID!
   user: User!
   amount: BigInt!
@@ -17,7 +17,7 @@ type TokenLock @entity {
   unlocked: Boolean!
 }
 
-type User @entity {
+type User @entity(immutable: false) {
   id: ID!
   givLocked: BigInt!
   lastGivPowerUpdateTime: BigInt!
@@ -28,7 +28,7 @@ type User @entity {
   giversPFPToken: [GiversPFPToken!] @derivedFrom(field: "user")
 }
 
-type UserGivPowerSnapshot @entity {
+type UserGivPowerSnapshot @entity(immutable: false) {
     id: ID!
     timestamp: BigInt!
     user: User!
@@ -36,7 +36,7 @@ type UserGivPowerSnapshot @entity {
     cumulativeGivPowerAmount: BigInt!
 }
 
-type TokenBalance @entity {
+type TokenBalance @entity(immutable: false) {
   id: ID!
   balance: BigInt!
   user: User!
@@ -44,7 +44,7 @@ type TokenBalance @entity {
   updatedAt: BigInt!
 }
 
-type UnipoolBalance @entity {
+type UnipoolBalance @entity(immutable: false) {
   id: ID!
   balance: BigInt!
   user: User!
@@ -54,7 +54,7 @@ type UnipoolBalance @entity {
   updatedAt: BigInt!
 }
 
-type BalanceChange @entity {
+type BalanceChange @entity(immutable: false) {
   id: ID!
   account: String!
   contractAddress: String!
@@ -64,7 +64,7 @@ type BalanceChange @entity {
   newBalance: BigInt!
 }
 
-type Unipool @entity {
+type Unipool @entity(immutable: false) {
   id: ID!
   periodFinish: BigInt
   totalSupply: BigInt!
@@ -73,7 +73,7 @@ type Unipool @entity {
   rewardPerTokenStored: BigInt!
 }
 
-type TokenDistroBalance @entity {
+type TokenDistroBalance @entity(immutable: false) {
   id: ID!
   user: User!
   allocatedTokens: BigInt!
@@ -85,7 +85,7 @@ type TokenDistroBalance @entity {
   tokenDistroAddress: String
 }
 
-type TokenAllocation @entity {
+type TokenAllocation @entity(immutable: false) {
   id: ID!
   recipient: String!
   amount: BigInt!
@@ -97,12 +97,12 @@ type TokenAllocation @entity {
   tokenDistroAddress: String!
 }
 
-type TransactionTokenAllocation @entity {
+type TransactionTokenAllocation @entity(immutable: false) {
   id: ID!
   tokenAllocationIds: [String!]!
 }
 
-type TokenDistro @entity {
+type TokenDistro @entity(immutable: false) {
   id: ID!
   totalTokens: BigInt
   startTime: BigInt
@@ -112,7 +112,7 @@ type TokenDistro @entity {
   lockedAmount: BigInt
 }
 
-type UniswapPosition @entity {
+type UniswapPosition @entity(immutable: false) {
     id: ID!
     tokenId: String!
     token0: String!
@@ -127,7 +127,7 @@ type UniswapPosition @entity {
     closed: Boolean
 }
 
-type UniswapV3Pool @entity {
+type UniswapV3Pool @entity(immutable: false) {
     id: ID!
     token0: String!
     token1: String!
@@ -136,13 +136,13 @@ type UniswapV3Pool @entity {
     liquidity: BigInt!
 }
 
-type UniswapInfinitePosition @entity {
+type UniswapInfinitePosition @entity(immutable: false) {
     id: ID!
     lastUpdateTimeStamp: BigInt!
     lastRewardAmount: BigInt!
 }
 
-type GiversPFPToken @entity {
+type GiversPFPToken @entity(immutable: false) {
     id: ID!
     tokenId: Int!
     user: User!

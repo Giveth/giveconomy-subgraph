@@ -20,12 +20,14 @@
     "deploy:gnosis:production-mateo": "yarn generate-manifests && graph deploy --product hosted-service mateodaza/giveth-economy-second-xdai subgraph.production-gnosis.yaml",
     "deploy:mainnet:production": "yarn generate-manifests && graph deploy --product hosted-service giveth/giveth-economy-second-mainnet subgraph.production-mainnet.yaml",
     "deploy:mainnet:production-mateo": "yarn generate-manifests && graph deploy --product hosted-service mateodaza/giveth-economy-second-mainnet subgraph.production-mainnet.yaml",
+    "deploy:optimism-mainnet:studio": "yarn generate-manifests && graph deploy giveth-giveconomy-optimism subgraph.production-optimism-mainnet.yaml --node https://api.studio.thegraph.com/deploy/",
     "deploy:mainnet": "yarn deploy ORGANISATION/SUBGRAPH",
     "codegen:deployment-6": "yarn generate-manifests && graph codegen subgraph.deployment-6.yaml --output-dir src/types/",
     "codegen:deployment-7": "yarn generate-manifests && graph codegen subgraph.deployment-7-gnosis.yaml --output-dir src/types/",
     "build:deployment-6": "yarn generate-manifests && graph build subgraph.deployment-6.yaml",
     "build:deployment-7": "yarn generate-manifests && graph build subgraph.deployment-7.yaml",
     "build:deployment-mainnet": "yarn generate-manifests && graph build subgraph.production-mainnet.yaml",
+    "build:optimism-mainnet": "yarn generate-manifests && graph build subgraph.production-optimism-mainnet.yaml",
     "build": "yarn generate-manifests && graph build subgraph.model.yaml",
     "generate-manifests": "ts-node ./scripts/generate-manifests && graph codegen subgraph.model.yaml --output-dir src/types/"
   },
@@ -40,8 +42,8 @@
   },
   "homepage": "https://github.com/Giveth/giveconomy-subgraph",
   "dependencies": {
-    "@graphprotocol/graph-cli": "^0.68.5",
-    "@graphprotocol/graph-ts": "^0.33.0",
+    "@graphprotocol/graph-cli": "0.98.1",
+    "@graphprotocol/graph-ts": "0.38.1",
     "fs-extra": "^8.1.0",
     "handlebars": "^4.7.6",
     "js-yaml": "^4.1.0"

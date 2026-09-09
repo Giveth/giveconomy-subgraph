@@ -12,7 +12,7 @@ jobs:
       - name: Install node
         uses: actions/setup-node@v1
         with:
-          node-version: 18
+          node-version: 20
       - name: Install
         run: yarn --frozen-lockfile
       - name: Lint
@@ -26,19 +26,21 @@ jobs:
       - name: Install node
         uses: actions/setup-node@v1
         with:
-          node-version: 18
+          node-version: 20
       - name: Install
         run: yarn --frozen-lockfile
       - name: Generate Manifest
         run: yarn generate-manifests
-      - uses: balancer-labs/graph-deploy@v0.0.1
-        with:
-          graph_deploy_key: ${{secrets.GRAPH_DEPLOY_KEY}}
-          graph_version_label: ${GITHUB_SHA::8}
-          graph_subgraph_name: 'giveconomy-staging-gnosischain'
-          graph_account: 'giveth'
-          graph_config_file: 'subgraph.deployment-7-gnosis.yaml'
-          graph_deploy_studio: true
+      - name: Deploy to Graph Studio
+        run: |
+          yarn run graph deploy "$SUBGRAPH_NAME" "$CONFIG_FILE" \
+            --node https://api.studio.thegraph.com/deploy/ \
+            --deploy-key "$DEPLOY_KEY" \
+            --version-label "${GITHUB_SHA:0:8}"
+        env:
+          DEPLOY_KEY: ${{ secrets.GRAPH_DEPLOY_KEY }}
+          SUBGRAPH_NAME: giveconomy-staging-gnosischain
+          CONFIG_FILE: subgraph.deployment-7-gnosis.yaml
 
   deploy-staging-optimism-sepolia:
     needs: lint
@@ -48,16 +50,18 @@ jobs:
       - name: Install node
         uses: actions/setup-node@v1
         with:
-          node-version: 18
+          node-version: 20
       - name: Install
         run: yarn --frozen-lockfile
       - name: Generate Manifest
         run: yarn generate-manifests
-      - uses: balancer-labs/graph-deploy@v0.0.1
-        with:
-          graph_deploy_key: ${{secrets.GRAPH_DEPLOY_KEY}}
-          graph_version_label: ${GITHUB_SHA::8}
-          graph_subgraph_name: 'giveconomy-staging-op-sepolia'
-          graph_account: 'giveth'
-          graph_config_file: 'subgraph.deployment-7-optimism-sepolia.yaml'
-          graph_deploy_studio: true
+      - name: Deploy to Graph Studio
+        run: |
+          yarn run graph deploy "$SUBGRAPH_NAME" "$CONFIG_FILE" \
+            --node https://api.studio.thegraph.com/deploy/ \
+            --deploy-key "$DEPLOY_KEY" \
+            --version-label "${GITHUB_SHA:0:8}"
+        env:
+          DEPLOY_KEY: ${{ secrets.GRAPH_DEPLOY_KEY }}
+          SUBGRAPH_NAME: giveconomy-staging-op-sepolia
+          CONFIG_FILE: subgraph.deployment-7-optimism-sepolia.yaml

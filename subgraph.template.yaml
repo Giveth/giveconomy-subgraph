@@ -1,4 +1,4 @@
-specVersion: 0.0.2
+specVersion: 1.0.0
 description: Giveth Subgraph
 schema:
   file: ./schema.graphql
@@ -13,7 +13,7 @@ dataSources:
       startBlock: {{ GIVPower.startBlock }}
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.9
       language: wasm/assemblyscript
       abis:
         - name: GIVPower
@@ -39,7 +39,7 @@ dataSources:
       startBlock: {{ GIVPower.gardenUnipoolStartBlock }}
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.9
       language: wasm/assemblyscript
       abis:
         - name: UnipoolTokenDistributor
@@ -70,7 +70,7 @@ dataSources:
       startBlock: {{ UnipoolGIVPower.startBlock }}
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.9
       language: wasm/assemblyscript
       abis:
         - name: UnipoolGIVPower
@@ -104,7 +104,7 @@ dataSources:
       startBlock: {{ UnipoolGIVPower.startBlock }}
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.9
       language: wasm/assemblyscript
       abis:
         - name: UnipoolTokenDistributor
@@ -135,7 +135,7 @@ dataSources:
       startBlock: {{ MerkleDistro.startBlock }}
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.9
       language: wasm/assemblyscript
       abis:
         - name: MerkleDistro
@@ -161,7 +161,7 @@ dataSources:
       startBlock: {{ UniswapV3.Pool.startBlock }}
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.9
       language: wasm/assemblyscript
       entities:
         - Initialize
@@ -190,7 +190,7 @@ dataSources:
       startBlock: {{ UniswapV3.PositionsNft.startBlock }}
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.9
       language: wasm/assemblyscript
       entities:
         - IncreaseLiquidity
@@ -223,7 +223,7 @@ dataSources:
       startBlock: {{ UniswapV3.Staker.startBlock }}
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.9
       language: wasm/assemblyscript
       entities:
         - TokenStaked
@@ -250,7 +250,7 @@ dataSources:
       startBlock: {{ UniswapV3.RewardToken.startBlock }}
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.9
       language: wasm/assemblyscript
       entities:
         - Approval
@@ -282,7 +282,7 @@ dataSources:
       startBlock: {{ startBlock }}
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.9
       language: wasm/assemblyscript
       abis:
         - name: TokenDistro
@@ -329,7 +329,7 @@ dataSources:
       startBlock: {{ startBlock }}
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.9
       language: wasm/assemblyscript
       abis:
         - name: ERC20
@@ -353,7 +353,7 @@ dataSources:
       startBlock: {{ startBlock }}
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.9
       language: wasm/assemblyscript
       abis:
         - name: UnipoolTokenDistributor
@@ -385,7 +385,7 @@ dataSources:
       startBlock: {{ GiversPFP.startBlock }}
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.9
       language: wasm/assemblyscript
       abis:
         - name: GiversPFP
